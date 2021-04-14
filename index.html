@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="public/css/css-reset.css">
+        <link rel="stylesheet" href="public/css/style.css">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+    <body>
+        <div id="scroll-container">
+            <section id="landing">
+                <h1>Vulnerable</h1>
+                <h3>How armed conflicts disrupt a global fight to end child mortality</h3>
+                <a href="#intro">
+                    Explore
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="#fefefe" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6L10.9425 4.9425L6.75001 9.1275V0H5.25001V9.1275L1.06501 4.935L9.53674e-06 6L6.00001 12L12 6Z" fill="#303030"/>
+                    </svg>                        
+                </a>
+            </section>
+
+            <section id="intro" class="info-plot">
+                <article class="text-half">
+                    <article class="paragraph">
+                        <p>In 1989, the United Nations’ Convention on the Rights of a Child (UNCRC) 
+                            declared all children have the right to ‘life, survival and development’, and be 
+                            ‘protected from violence, abuse or neglect’.</p>
+                    </article>
+                    <article class="paragraph">
+                        <p>In 1989, the United Nations’ Convention on the Rights of a Child (UNCRC) 
+                            declared all children have the right to ‘life, survival and development’, and be 
+                            ‘protected from violence, abuse or neglect’.</p>
+                    </article>
+                    <article class="paragraph">
+                        <p>In 1989, the United Nations’ Convention on the Rights of a Child (UNCRC) 
+                            declared all children have the right to ‘life, survival and development’, and be 
+                            ‘protected from violence, abuse or neglect’.</p>
+                    </article>
+                </article>
+
+                <article>
+                    <div style="position: sticky; top: 10px;" id="myPlot"></div>
+                </article>
+
+            </section>
+            <section class="info-plot">
+                <article class="text-half">
+                    <p>Since the UNCRC’s ratification, the global child mortality rate continues to decline, 
+                    as governments work to deliver intervention measures to stave off causes of preventable
+                    death.</p>
+                    <p>Driven by rapid economic growth, billions have also been pulled out of extreme 
+                    poverty and live with better access to basic needs, particularly clean water, food and 
+                    health care.</p>
+                    <p>Driven by rapid economic growth, billions have also been pulled out of extreme 
+                        poverty and live with better access to basic needs, particularly clean water, food and 
+                        health care.</p>
+                        <p>Driven by rapid economic growth, billions have also been pulled out of extreme 
+                            poverty and live with better access to basic needs, particularly clean water, food and 
+                            health care.</p>
+                </article>
+            </section>
+            <section id="intro" class="info-plot">
+                <article class="text-half">
+                    <article class="paragraph">
+                        <p>In 1989, the United Nations’ Convention on the Rights of a Child (UNCRC) 
+                            declared all children have the right to ‘life, survival and development’, and be 
+                            ‘protected from violence, abuse or neglect’.</p>
+                    </article>
+                    <article class="paragraph">
+                        <p>In 1989, the United Nations’ Convention on the Rights of a Child (UNCRC) 
+                            declared all children have the right to ‘life, survival and development’, and be 
+                            ‘protected from violence, abuse or neglect’.</p>
+                    </article>
+
+                </article>
+
+                <article>
+                    <div style="position: sticky; top: 10px;" id="myPlot"></div>
+                </article>
+            </section>
+            <div class="dot-container"></div>
+        </div>
+
+        <script>
+            // smooth scrolling found on stack exchange
+            // https://stackoverflow.com/questions/7717527/smooth-scrolling-when-clicking-an-anchor-link
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
+        <script src="public/js/script.js"></script>
+        <script src="public/js/scroll.js"></script>
+    </body>
+    <!-- <script>
+        var plotDiv = document.getElementById('myPlot');
+        const plotDiv = document.getElementById('myPlot');
+
+        var plotData = {
+
+        }
+
+        Plotly.newPlot(plotDiv, [plotData]);
+        // library object, plot function, HTML element, data object
+        // input parameter must be an array...
+        // (second one)
+    </script> -->
+</html>
