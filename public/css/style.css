@@ -36,7 +36,7 @@ section {
     /* max-height: 100vh; */
     overflow: visible;
     scroll-snap-type: y mandatory;
-    border: solid 2px green;
+    /* border: solid 2px green; */
 }
 
 section.info-plot {
@@ -68,7 +68,7 @@ section.info-plot article > article.paragraph {
     flex-direction: column;
     justify-content: center;
     scroll-snap-align: start;
-    border: solid 4px salmon;
+    /* border: solid 4px salmon; */
 }
 
 section.info-plot article > article.paragraph > h3 {
@@ -167,7 +167,7 @@ section#landing a {
     top: 10vh;
     width: 100%;
     height: 80vh;
-    border: 2px solid salmon;
+    /* border: 2px solid salmon; */
     /* background-color: blue; */
 }
 
