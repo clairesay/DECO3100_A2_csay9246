@@ -180,6 +180,9 @@ section#landing a {
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
+    opacity: 0;
+
+    transition: all 0.2s ease-out;
 }
 
 .dot {
@@ -222,12 +225,7 @@ section#landing a {
     align-items: center;
     font-family: 'Source Sans Pro', 'Arial', sans-serif;
     text-transform: uppercase;
-    /* opacity: 0; */
-    /* visibility: hidden; */
-    /* padding-right: 2em; */
-    /* right: 4em; */
-    /* text-align: left; */
-    /* padding-right: 2em; */
+
 }
 
 label > h6 {
