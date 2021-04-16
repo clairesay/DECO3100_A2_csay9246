@@ -1,6 +1,6 @@
 var myPlot = document.getElementById('myPlot')
 
-const dataSource = "https://drive.google.com/file/d/1xiJ8k8NZSaZgAonmYBOr3jLvQxZVrp2H/view?usp=sharing";
+const dataSource = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-child-mortality.csv?token=ANVXV7WUDOZ5KKYPK3YDBWLAQK3EC";
 
 function loadData() {
   Plotly.d3.csv(dataSource, function(data){ processData(data) } );
@@ -8,21 +8,24 @@ function loadData() {
 
 function processData(allRows) {
   console.log(allRows);
-  let date = [], childMortalityRate = [];
+  let foo = [], bar = [];
   for (let i=0; i<allRows.length; i++) {
     let row = allRows[i];
-    date.push( row['Year'] );
-    childMortalityRate.push( row['Child Mortality Rate'] );
+    foo.push( row['Year'] );
+    bar.push( row['Child Mortality Rate'] );
   }
-  makePlot( date, childMortalityRate );
+  makePlot( foo, bar );
 }
 
-function makePlot( x_ray, y_ray ){
+function makePlot( x, y ){
   var traces = [{
-    x: x_ray, 
-    y: y_ray
-    // mode: 
+    x: x, 
+    y: y,
+    type: 'markers',
+    mode: 'scatter',
   }];
-  Plotly.newPlot('myPlot', traces, 
-    {title: 'World Child Mortality Rate'});
+  
+  Plotly.newPlot(myPlot, traces);
 };
+
+loadData()
