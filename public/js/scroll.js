@@ -1,5 +1,5 @@
 // entire page
-const scrollContainer = document.getElementById('scroll-container')
+var scrollContainer = document.getElementById('scroll-container')
 // each divisible section
 var sections = document.querySelectorAll('.paragraph')
 // just the text area of each section
