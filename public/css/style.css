@@ -162,7 +162,7 @@ section#landing a {
 
 /* PLOTS */
 
-#myPlot {
+.plot {
     position: sticky;
     top: 10vh;
     width: 100%;
