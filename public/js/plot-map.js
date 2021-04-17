@@ -33,8 +33,11 @@
       'geo': {
           'scope': 'africa',
           'resolution': 50
-      }
+      },
+      plot_bgcolor:"transparent",
+      paper_bgcolor:"#fefefe",
+    
   };
   
-  Plotly.newPlot(plotSpace[7], data, lay, {displayModeBar: false});
+  Plotly.newPlot(plotSpace[6], data, lay, {displayModeBar: false});
   ///// construction 
