@@ -36,5 +36,5 @@
       }
   };
   
-  Plotly.newPlot(plotSpace[7], data, lay);
+  Plotly.newPlot(plotSpace[7], data, lay, {displayModeBar: false});
   ///// construction 

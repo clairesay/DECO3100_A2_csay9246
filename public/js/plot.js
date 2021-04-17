@@ -2,17 +2,17 @@
 var layout = {
   font: {
   size: 12,
-  family: "Source Sans Pro, Arial, sans-serif",
+  family: "Source Sans Pro, sans-serif",
   color: "#303030"
   },
   xaxis: {
   showgrid: false,
-  range: [1990, 2020]
+  range: [1990, 2020],
   },
   yaxis: {
   showgrid: false,
   },
-  showGrid: false,
+  showgrid: false,
   showLegend: true,
   legend: {
     x: 1.15,
@@ -20,9 +20,13 @@ var layout = {
     // y: 0
   },
   yaxis2: {
+    showgrid: false,
     overlaying: 'y',
     side: 'right'
-  }
+  },
+  plot_bgcolor:"transparent",
+  paper_bgcolor:"#fcfcfc",
+
 };
 
 // currentIndex of the info-plot in view
@@ -80,6 +84,14 @@ const dataAll = [
     plotType: 'new',
     plot: 'scatter',
     title: 'Refugee Numbers in Sub-Saharan Africa'
+  },
+  {
+    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-childmortality.csv?token=ANVXV7R7IVEN37QJX4BV2K3AQPURA",
+    index: 13,
+    section: 10,
+    plotType: 'new',
+    plot: 'scatter',
+    title: 'Sub-Saharan Africa Child Mortality Rate'
   }
 ]
 
@@ -122,7 +134,7 @@ if (plotType == 'new') {
     line: {
       shape: 'spline',
       color: '#904E55',
-      width: 3
+      width: 5
     }
   });
 
@@ -149,7 +161,7 @@ else if (plotType == 'build' && section == solidSection) {
     line: {
       shape: 'spline',
       color: '#564E58',
-      width: 3
+      width: 5
     }
   });
 
