@@ -10,13 +10,15 @@
       type: 'scattergeo',
       mode: 'markers',
 
-      locations: ['MOZ', 'BDI', 'RWA', 'ESP'],
+      locations: ['MOZ', 'BDI', 'RWA'],
       marker: {
-          size: [20, 30, 15, 10],
-          color: [10, 20, 40, 50],
+        //  refugees: [1500000, 870000, 2000000],
+        // childmortalityrate: [226.8, 191.3, 191.9],
+          size: [15, 8.7, 20],
+          color: [227, 191, 192],
           cmin: 0,
-          cmax: 50,
-          colorscale: 'Greens',
+          cmax: 250,
+          colorscale: 'Reds',
           colorbar: {
               title: 'Some rate',
               ticksuffix: '%',

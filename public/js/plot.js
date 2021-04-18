@@ -215,16 +215,12 @@ function styleUpdate(index, piggyIndex, section) {
           yref: 'y',
           text: '1994: 6.7 million refugees',
           font: {
-            // family: 'Courier New, monospace',
-            size: 16,
+            size: 12,
             color: '#fefefe'
           },
           align: 'center',
           arrowcolor: '#303030',
-          width: 240,
-          // bordercolor: '#c7c7c7',
-          // borderwidth: 2,
-          // borderpad: 4,
+          width: 160,
           bgcolor: '#303030',
           showarrow: true,
           arrowhead: 2,
@@ -241,12 +237,12 @@ function styleUpdate(index, piggyIndex, section) {
           text: 'Today: 7.3 million refugees',
           font: {
             // family: 'Courier New, monospace',
-            size: 16,
+            size: 12,
             color: '#fefefe'
           },
           align: 'center',
           arrowcolor: '#303030',
-          width: 260,
+          width: 180,
           bgcolor: '#303030',
           showarrow: true,
           arrowhead: 2,
@@ -269,6 +265,9 @@ for (let i = 0; i < dataAll.length; i ++) {
   }
 }
 
+
+////// SELECTING THE DOT CONTAINER
+var dotContainer = document.getElementsByClassName('dot-container')[0]
 // SCROLL EVENTS FROM NON DATA CALLS
 scrollContainer.addEventListener('scroll', function() {
   if (currentIndex + 1 == 8) {
@@ -276,4 +275,18 @@ scrollContainer.addEventListener('scroll', function() {
   } else if (currentIndex + 1 == 9) {
     styleUpdate(currentIndex + 1, 7, 4)
   }
+
+// ///// if this section is 'centred', set as white
+  // while (currentIndex) {
+    if (currentIndex != -1) {
+      if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('centered')) {
+        dotContainer.classList.add('white')
+      } else {
+        dotContainer.classList.remove('white')
+      }
+    }
+
+  // }
 })
+
+

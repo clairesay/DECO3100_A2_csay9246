@@ -288,9 +288,19 @@ section#landing a {
     align-items: center;
     font-family: 'Source Sans Pro', 'Arial', sans-serif;
     text-transform: uppercase;
+    color: #303030;
+}
+
+.dot-container.white label h6 {
+    color: #fefefe;
+}
+
+.dot-container.white .dot {
+    background-color: #fefefe;
 }
 
 label > h6 {
+    color: #303030;
     visibility: hidden
 }
 
@@ -340,9 +350,9 @@ i > label.definition > strong {
 
 i > label.definition {
     z-index: 5;
-    font-size: 16px;
+    font-size: 14px;
     position: absolute;
-    left: calc(32.5% + 96px);
+    left: calc(32.5% + 48px);
     visibility: hidden;
     border-radius: 4px;
     width: 20%;
