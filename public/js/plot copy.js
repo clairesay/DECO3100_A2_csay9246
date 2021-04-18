@@ -57,7 +57,7 @@ var dataBranch = [];
 var paragraphSections = document.getElementsByClassName('paragraph')
 for (let i = 0; i < paragraphSections.length; i ++) {
   // making space
-  dataBranch.push({x: [], y: [], plotType: '', trace:[]})
+  dataBranch.push({x: [], y: [], plotType: ''})
 }
 
 const dataAll = [
@@ -65,7 +65,6 @@ const dataAll = [
     source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-child-mortality.csv?token=ANVXV7RJSB3WATDZ7SODRE3AQOD7C", 
     index: 2, 
     section: 2,
-    piggyIndex: 2,
     plotType: 'new',
     plot: 'scatter',
     title: 'World Child Mortality Rate'
@@ -74,7 +73,6 @@ const dataAll = [
     source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-poverty.csv?token=ANVXV7RE4UHNUHN2EN6ZYJ3AQOD3I",
     index: 3,
     section: 2,
-    piggyIndex: 2,
     plotType: 'build',
     plot: 'scatter',
     title: 'Percentage of World living in Extreme Poverty'
@@ -83,7 +81,6 @@ const dataAll = [
     source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-refugee.csv?token=ANVXV7WFHTPMPU4LZRR7DBTAQOD5U",
     index: 7,
     section: 4,
-    piggyIndex: 7,
     plotType: 'new',
     plot: 'scatter',
     title: 'Refugee Numbers in Sub-Saharan Africa'
@@ -92,7 +89,6 @@ const dataAll = [
     source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-childmortality.csv?token=ANVXV7R7IVEN37QJX4BV2K3AQPURA",
     index: 12,
     section: 8,
-    piggyIndex: 12,
     plotType: 'new',
     plot: 'scatter',
     title: 'Sub-Saharan Africa Child Mortality Rate'
@@ -101,14 +97,14 @@ const dataAll = [
 
 // ////////////// LOADING THE CSVS /////////////// //
 function loadData(dataSource) {
-  Plotly.d3.csv(dataSource.source, function(data){ processData(data, dataSource.index, dataSource.piggyIndex, dataSource.section, dataSource.plotType, dataSource.plot, dataSource.title) } );
+  Plotly.d3.csv(dataSource.source, function(data){ processData(data, dataSource.index, dataSource.section, dataSource.plotType, dataSource.plot, dataSource.title) } );
 };
 
-// var traces = []
+var traces = []
 var solidSection;
-// var counter = 1
+var counter = 0
 
-function processData(allRows, index, piggyIndex, section, plotType, plot, title) {
+function processData(allRows, index, section, plotType, plot, title) {
   // GETTING THE DATA TITLES
   var xKey = Object.keys(allRows[index])[0];
   var yKey = Object.keys(allRows[index])[1];
@@ -120,89 +116,125 @@ function processData(allRows, index, piggyIndex, section, plotType, plot, title)
     dataBranch[index].y.push( row[yKey] );
     dataBranch[index].plotType = plotType;
   }
-  
-  if (plotType == 'new') {
-    // traces = []
-    plotThis(index, piggyIndex, section, xKey, yKey, title)
-    // plotThis(section, dataBranch[index].trace, dataBranch[index].x, dataBranch[index].y, plot, xKey, yKey, title)
-  } else if (plotType == 'build') {
-    addThis(index, piggyIndex, section, yKey)
-  }
-}
+  if (plot == 'scatter') {
+// if we're creating a new plot
+if (plotType == 'new') {
 
-function plotThis(index, piggyIndex, section, xLegend, yLegend, title) {
-   
-      // pushing the data
-      dataBranch[index].trace.push({
-        x: dataBranch[index].x, 
-        y: dataBranch[index].y,
-        name: yLegend,
-        type: 'scatter',
-        mode: 'lines',
-        line: {
-          shape: 'spline',
-          color: '#904E55',
-          width: 5
-        },
-        // id: counter
-      });
-      // counter += 1
-      // setting the title, x and y axes
-      layout.title = title
-      layout.xaxis.title = xLegend
-      layout.yaxis.title = yLegend
-      Plotly.newPlot(plotSpace[section], dataBranch[index].trace, layout, {displayModeBar: false})
-    // } 
-    scrollContainer.addEventListener('scroll', function() {
-      if (currentIndex + 1 == 2) {
-        styleUpdate(index, piggyIndex, section)
-      }
-    })
-}
+  // temporary traces array clears if we're starting a new data set
+  // traces = []
+  solidSection = section;
 
-function addThis(index, piggyIndex, section, yLegend) {
-  // console.log(yLegend)
-  // console.log('adding')
-  dataBranch[piggyIndex].trace.push({
+  // pushing the data
+  traces.push({
+    x: dataBranch[index].x, 
+    y: dataBranch[index].y,
+    name: yKey,
+    type: plot,
+    mode: 'lines',
+    line: {
+      shape: 'spline',
+      color: '#904E55',
+      width: 5
+    },
+    id: counter
+  });
+  counter += 1
+  // setting the title, x and y axes
+  layout.title = title
+  layout.xaxis.title = xKey
+  layout.yaxis.title = yKey
+
+  // creating the new plot
+  Plotly.newPlot(plotSpace[section], traces, layout, {displayModeBar: false})
+} 
+// if we're adding something to an existing plot
+// we need to know which plot we're working with
+else if (plotType == 'build' && section == solidSection) {
+
+  // pushing the data
+  traces.push({
     x: dataBranch[index].x, 
     y: dataBranch[index].y,
     yaxis: 'y2',
-    name: yLegend,
-    type: 'scatter',
+    name: yKey,
+    type: plot,
     mode: 'lines',
-    opacity: 0.1,
     line: {
       shape: 'spline',
-      color: 'purple',
+      color: 'red',
       width: 5
     },
-    // id: counter
+    id: counter
   });
-  // counter += 1
-  layout.yaxis2.title = yLegend
+  counter += 1
+  layout.yaxis2.title = yKey
   
-  Plotly.update(plotSpace[section], dataBranch[piggyIndex].trace, layout, {displayModeBar: false})
+  Plotly.update(plotSpace[section], traces, layout, {displayModeBar: false})
+}
+  }
+  
+
   scrollContainer.addEventListener('scroll', function() {
-    if (currentIndex + 1 == 3) {
-      styleUpdate(index, piggyIndex, section)
+    // check if this is an add-on data set
+    if (currentIndex + 1 == 7) {
+     console.log(traces.points)
+    }
+    if (currentIndex + 1 == index && plotType == 'build') {
+      // hardcoded!
+      switch(index) {
+        case 3:
+          // console.log('3')
+          // console.log(plotSpace)
+          // console.log(traces)
+          // plotSpace[index].style.backgroundColor = 'green;'
+          traces[1].line.color = 'blue';
+          // traces[0].line.color = 'yellow'
+          Plotly.restyle(plotSpace[section], traces);
+          // for the first chart, we want to show the chart on scroll
+          break;
+        
+        case 8:
+          console.log('8')
+          // for the second chart, we want to zoom into the chart on scroll
+          break;
+        
+        default:
+          break;
+      }
+    
     }
   })
 }
 
-function styleUpdate(index, piggyIndex, section) {
-  if (piggyIndex == 2) {
-    if (index == 2) {
-      Plotly.restyle(plotSpace[section], {opacity: 0.1}, 1);
-      Plotly.restyle(plotSpace[section], {opacity: 1}, 0);
-    } else if (index == 3) {
-      Plotly.restyle(plotSpace[section], {opacity: 1}, 1);
-      Plotly.restyle(plotSpace[section], {opacity: 0.1}, 0);
-    }
-  }
-}
+
+
+// document.getElementById('capsi').addEventListener('click', function(e) {
+//   e.preventDefault();
+//   layout.xaxis.range = [1990, 1999]
+//   console.log(solidSection)
+//   console.log(currentIndex)
+//   console.log(dataBranch)
+//   Plotly.update(plotSpace[solidSection], traces, layout, {displayModeBar: false})
+//   console.log(layout)
+// })
+
+// //////////// TEST THIS //////////////////////////
+// myPlot.on('plotly_unhover', function(data){
+//   var pn='',
+//       tn='',
+//       colors=[];
+//   for(var i=0; i < data.points.length; i++){
+//     pn = data.points[i].pointNumber;
+//     tn = data.points[i].curveNumber;
+//     colors = data.points[i].data.marker.color;
+//   };
+//   colors[pn] = '#00000';
+
+//   var update = {'marker':{color: colors, size:16}};
+//   Plotly.restyle('myDiv', update, [tn]);
 
 ///////// ALL FUNCTIONS EXECUTED BY THE LOAD DATA FUNCTION - CALLS ALL DATA SETS ///////////////////
-for (let i = 0; i < dataAll.length; i ++) {
+for (let i = 0; i < 2; i ++) {
   loadData(dataAll[i]);
 }
 
