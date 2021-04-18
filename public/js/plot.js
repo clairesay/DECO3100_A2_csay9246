@@ -1,7 +1,7 @@
 // Common layout for all charts
 var layout = {
   font: {
-  size: 14,
+  size: 12,
   family: "Source Sans Pro, sans-serif",
   color: "#303030"
   },
@@ -128,6 +128,11 @@ function processData(allRows, index, piggyIndex, section, plotType, plot, title)
   } else if (plotType == 'build') {
     addThis(index, piggyIndex, section, yKey)
   }
+  scrollContainer.addEventListener('scroll', function() {
+    if (currentIndex + 1 == index) {
+      styleUpdate(index, piggyIndex, section)
+    }
+  })
 }
 
 function plotThis(index, piggyIndex, section, xLegend, yLegend, title) {
@@ -153,16 +158,14 @@ function plotThis(index, piggyIndex, section, xLegend, yLegend, title) {
       layout.yaxis.title = yLegend
       Plotly.newPlot(plotSpace[section], dataBranch[index].trace, layout, {displayModeBar: false})
     // } 
-    scrollContainer.addEventListener('scroll', function() {
-      if (currentIndex + 1 == 2) {
-        styleUpdate(index, piggyIndex, section)
-      }
-    })
+    // scrollContainer.addEventListener('scroll', function() {
+    //   if (currentIndex + 1 == index) {
+    //     styleUpdate(index, piggyIndex, section)
+    //   }
+    // })
 }
 
 function addThis(index, piggyIndex, section, yLegend) {
-  // console.log(yLegend)
-  // console.log('adding')
   dataBranch[piggyIndex].trace.push({
     x: dataBranch[index].x, 
     y: dataBranch[index].y,
@@ -176,17 +179,17 @@ function addThis(index, piggyIndex, section, yLegend) {
       color: 'purple',
       width: 5
     },
-    // id: counter
+
   });
-  // counter += 1
+  dataBranch[piggyIndex].trace.text = ['blue'];
   layout.yaxis2.title = yLegend
   
   Plotly.update(plotSpace[section], dataBranch[piggyIndex].trace, layout, {displayModeBar: false})
-  scrollContainer.addEventListener('scroll', function() {
-    if (currentIndex + 1 == 3) {
-      styleUpdate(index, piggyIndex, section)
-    }
-  })
+  // scrollContainer.addEventListener('scroll', function() {
+  //   if (currentIndex + 1 == index) {
+  //     styleUpdate(index, piggyIndex, section)
+  //   }
+  // })
 }
 
 function styleUpdate(index, piggyIndex, section) {
@@ -198,11 +201,79 @@ function styleUpdate(index, piggyIndex, section) {
       Plotly.restyle(plotSpace[section], {opacity: 1}, 1);
       Plotly.restyle(plotSpace[section], {opacity: 0.1}, 0);
     }
+  } else if (piggyIndex == 7) {
+    if (index == 7) {
+      Plotly.update(plotSpace[section], {}, {xaxis: {range: [1990, 2020] }, annotations:[]})
+    } else if (index == 8) {
+      Plotly.update(plotSpace[section], {}, {
+        xaxis: {range: [1990, 2020] }, 
+        annotations: [
+        {
+          x: 1994,
+          y: 6727751,
+          xref: 'x',
+          yref: 'y',
+          text: '1994: 6.7 million refugees',
+          font: {
+            // family: 'Courier New, monospace',
+            size: 16,
+            color: '#fefefe'
+          },
+          align: 'center',
+          arrowcolor: '#303030',
+          width: 240,
+          // bordercolor: '#c7c7c7',
+          // borderwidth: 2,
+          // borderpad: 4,
+          bgcolor: '#303030',
+          showarrow: true,
+          arrowhead: 2,
+          ax: 0,
+          ay: -40,
+          xanchor: 'left',
+          yanchor: 'bottom'
+        },
+        {
+          x: 2019,
+          y: 7304831,
+          xref: 'x',
+          yref: 'y',
+          text: 'Today: 7.3 million refugees',
+          font: {
+            // family: 'Courier New, monospace',
+            size: 16,
+            color: '#fefefe'
+          },
+          align: 'center',
+          arrowcolor: '#303030',
+          width: 260,
+          bgcolor: '#303030',
+          showarrow: true,
+          arrowhead: 2,
+          ax: 0,
+          ay: -40,
+          xanchor: 'right',
+          yanchor: 'bottom'
+        }
+      ]})
+    } else if (index == 9) {
+      Plotly.update(plotSpace[section], {}, {xaxis: {range: [1990, 2000] }})
+    }
   }
 }
 
 ///////// ALL FUNCTIONS EXECUTED BY THE LOAD DATA FUNCTION - CALLS ALL DATA SETS ///////////////////
 for (let i = 0; i < dataAll.length; i ++) {
-  loadData(dataAll[i]);
+  if (dataAll[i] !== undefined) {
+    loadData(dataAll[i]);
+  }
 }
 
+// SCROLL EVENTS FROM NON DATA CALLS
+scrollContainer.addEventListener('scroll', function() {
+  if (currentIndex + 1 == 8) {
+    styleUpdate(currentIndex + 1, 7, 4)
+  } else if (currentIndex + 1 == 9) {
+    styleUpdate(currentIndex + 1, 7, 4)
+  }
+})
