@@ -393,3 +393,23 @@ mark.letter {
     font-size: 64px;
     background-color: transparent;
 }
+
+/* LEGEND DISABLING */
+.plot .legend .traces .legendtoggle {
+    display: none;
+ }
+
+ .legend {
+     width: 200px;
+ }
+
+ g.g-xtitle, g.g-ytitle, g.g-y2title {
+     text-transform: capitalize;
+     font-weight: bold;
+
+ }
+
+ g.g-title {
+     /* text-transform: 1 */
+     /* font-weight: 700; */
+ }

@@ -10,20 +10,27 @@ var layout = {
   range: [1990, 2020],
   },
   yaxis: {
+  // visible: true,
   showgrid: false,
   },
   showgrid: false,
   showLegend: true,
+  // hovermode: 'closest',
   legend: {
     x: 0.5,
-    xanchor: 'center',
+    xanchor: 'right',
+    itemwidth: 20,
     // y: 0
   },
   yaxis2: {
+    // visible: false,
     showgrid: false,
     overlaying: 'y',
     side: 'right'
   },
+  // legend: {
+  //   width:
+  // },
   plot_bgcolor:"transparent",
   paper_bgcolor:"#fefefe",
 
@@ -142,6 +149,7 @@ function plotThis(index, piggyIndex, section, xLegend, yLegend, title) {
         x: dataBranch[index].x, 
         y: dataBranch[index].y,
         name: yLegend,
+        hoverinfo: 'none',
         type: 'scatter',
         mode: 'lines',
         line: {
@@ -183,23 +191,23 @@ function addThis(index, piggyIndex, section, yLegend) {
   });
   dataBranch[piggyIndex].trace.text = ['blue'];
   layout.yaxis2.title = yLegend
-  
+  // layout.hovermode = 'false'
   Plotly.update(plotSpace[section], dataBranch[piggyIndex].trace, layout, {displayModeBar: false})
-  // scrollContainer.addEventListener('scroll', function() {
-  //   if (currentIndex + 1 == index) {
-  //     styleUpdate(index, piggyIndex, section)
-  //   }
-  // })
+
 }
 
 function styleUpdate(index, piggyIndex, section) {
   if (piggyIndex == 2) {
     if (index == 2) {
-      Plotly.restyle(plotSpace[section], {opacity: 0.1}, 1);
-      Plotly.restyle(plotSpace[section], {opacity: 1}, 0);
+      Plotly.restyle(plotSpace[section], {opacity: 0.1, hoverinfo: 'none'}, 1);
+      Plotly.restyle(plotSpace[section], {opacity: 1, hoverinfo: 'x+y'}, 0);
+      Plotly.relayout(plotSpace[section], {yaxis: {color:"#303030", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
+      // Plotly.update(plotSpace[section], {}, {yaxis: {color:"#303030", showgrid:false, title:yLegend}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:yLegend}})
     } else if (index == 3) {
-      Plotly.restyle(plotSpace[section], {opacity: 1}, 1);
-      Plotly.restyle(plotSpace[section], {opacity: 0.1}, 0);
+      Plotly.restyle(plotSpace[section], {opacity: 1, hoverinfo: 'x+y'}, 1);
+      Plotly.restyle(plotSpace[section], {opacity: 0.1, hoverinfo: 'none'}, 0);
+      Plotly.relayout(plotSpace[section], {yaxis: {color:"#30303050", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
+      // Plotly.update(plotSpace[section], {}, {yaxis:{color:"#30303050", showgrid:false, title:yLegend}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:yLegend}})
     }
   } else if (piggyIndex == 7) {
     if (index == 7) {
@@ -223,7 +231,7 @@ function styleUpdate(index, piggyIndex, section) {
           width: 160,
           bgcolor: '#303030',
           showarrow: true,
-          arrowhead: 2,
+          arrowhead: 6,
           ax: 0,
           ay: -40,
           xanchor: 'left',
@@ -245,7 +253,7 @@ function styleUpdate(index, piggyIndex, section) {
           width: 180,
           bgcolor: '#303030',
           showarrow: true,
-          arrowhead: 2,
+          arrowhead: 6,
           ax: 0,
           ay: -40,
           xanchor: 'right',
