@@ -17,9 +17,11 @@ var layout = {
   showLegend: true,
   // hovermode: 'closest',
   legend: {
-    x: 0.5,
-    xanchor: 'right',
+    x: 0.05,
+    xanchor: 'left',
+    y: 0.05,
     itemwidth: 20,
+    // "orientation": "h"
     // y: 0
   },
   yaxis2: {
@@ -32,7 +34,7 @@ var layout = {
   //   width:
   // },
   plot_bgcolor:"transparent",
-  paper_bgcolor:"#fefefe",
+  paper_bgcolor:"transparent",
 
 };
 
@@ -189,7 +191,7 @@ function addThis(index, piggyIndex, section, yLegend) {
     },
 
   });
-  dataBranch[piggyIndex].trace.text = ['blue'];
+  // dataBranch[piggyIndex].trace.text = ['blue'];
   layout.yaxis2.title = yLegend
   // layout.hovermode = 'false'
   Plotly.update(plotSpace[section], dataBranch[piggyIndex].trace, layout, {displayModeBar: false})
@@ -201,19 +203,106 @@ function styleUpdate(index, piggyIndex, section) {
     if (index == 2) {
       Plotly.restyle(plotSpace[section], {opacity: 0.1, hoverinfo: 'none'}, 1);
       Plotly.restyle(plotSpace[section], {opacity: 1, hoverinfo: 'x+y'}, 0);
-      Plotly.relayout(plotSpace[section], {yaxis: {color:"#303030", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
-      // Plotly.update(plotSpace[section], {}, {yaxis: {color:"#303030", showgrid:false, title:yLegend}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:yLegend}})
+      Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#303030", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population', range:[0, 40]}})
+      // Plotly.update(plotSpace[section], {}, {yaxis: {color:"#303030", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title: 'Extreme Poverty % of Population'}})
+      
     } else if (index == 3) {
       Plotly.restyle(plotSpace[section], {opacity: 1, hoverinfo: 'x+y'}, 1);
       Plotly.restyle(plotSpace[section], {opacity: 0.1, hoverinfo: 'none'}, 0);
-      Plotly.relayout(plotSpace[section], {yaxis: {color:"#30303050", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
-      // Plotly.update(plotSpace[section], {}, {yaxis:{color:"#30303050", showgrid:false, title:yLegend}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:yLegend}})
+      Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#30303050", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population', range:[0, 40]}})
+      // Plotly.update(plotSpace[section], {}, {yaxis:{color:"#30303050", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title: 'Extreme Poverty % of Population'}})
     }
   } else if (piggyIndex == 7) {
+    Plotly.restyle(plotSpace[section], {fill: 'tozeroy', hoverinfo: 'x+y'}, 0);
+    Plotly.relayout(plotSpace[section], {title: 'Refugee Population in Sub-Saharan Africa', yaxis: {color:"#303030", showgrid:false, title:'Refugee Population'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
     if (index == 7) {
-      Plotly.update(plotSpace[section], {}, {xaxis: {range: [1990, 2020] }, annotations:[]})
+      Plotly.relayout(plotSpace[section], {
+        shapes: [],
+        xaxis: {range: [1990, 2020] }, 
+        annotations: [
+        {
+          x: 1994,
+          y: 6727751,
+          xref: 'x',
+          yref: 'y',
+          text: '1994: 6.7 million refugees',
+          font: {
+            size: 12,
+            color: 'transparent'
+          },
+          align: 'center',
+          arrowcolor: 'transparent',
+          width: 160,
+          bgcolor: 'transparent',
+          showarrow: true,
+          arrowhead: 6,
+          ax: 0,
+          ay: -40,
+          xanchor: 'left',
+          yanchor: 'bottom'
+        },
+        {
+          x: 2019,
+          y: 7304831,
+          xref: 'x',
+          yref: 'y',
+          text: 'Today: 7.3 million refugees',
+          font: {
+            // family: 'Courier New, monospace',
+            size: 12,
+            color: 'transparent'
+          },
+          align: 'center',
+          arrowcolor: 'transparent',
+          width: 180,
+          bgcolor: 'transparent',
+          showarrow: true,
+          arrowhead: 6,
+          ax: 0,
+          ay: -40,
+          xanchor: 'right',
+          yanchor: 'bottom'
+        }
+      ]})
+      // Plotly.update(plotSpace[section], {}, {xaxis: {range: [1990, 2020] }, annotations:[]})
     } else if (index == 8) {
-      Plotly.update(plotSpace[section], {}, {
+      Plotly.relayout(plotSpace[section], {
+        shapes: [
+          // 1st highlight during 1994
+          {
+              type: 'rect',
+              // x-reference is assigned to the x-values
+              xref: 'x',
+              // y-reference is assigned to the plot paper [0,1]
+              yref: 'paper',
+              x0: '1990',
+              y0: 0,
+              x1: '1998',
+              y1: 1,
+              fillcolor: '#d3d3d3',
+              opacity: 0.2,
+              line: {
+                  width: 0
+              }
+          },
+          {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '2013',
+            y0: 0,
+            x1: '2019',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+
+        ],
         xaxis: {range: [1990, 2020] }, 
         annotations: [
         {
@@ -261,7 +350,73 @@ function styleUpdate(index, piggyIndex, section) {
         }
       ]})
     } else if (index == 9) {
-      Plotly.update(plotSpace[section], {}, {xaxis: {range: [1990, 2000] }})
+      // Plotly.update(plotSpace[section], {}, {xaxis: {range: [1990, 2000] }})
+      Plotly.relayout(plotSpace[section], {
+        shapes: [
+          // 1st highlight during 1994
+          {
+              type: 'rect',
+              // x-reference is assigned to the x-values
+              xref: 'x',
+              // y-reference is assigned to the plot paper [0,1]
+              yref: 'paper',
+              x0: '1990',
+              y0: 0,
+              x1: '1998',
+              y1: 1,
+              fillcolor: '#d3d3d3',
+              opacity: 0.2,
+              line: {
+                  width: 0
+              }
+          },
+        ],
+        xaxis: {range: [1990, 2020] }, 
+        annotations: [
+        {
+          x: 1994,
+          y: 6727751,
+          xref: 'x',
+          yref: 'y',
+          text: '1994: 6.7 million refugees',
+          font: {
+            size: 12,
+            color: '#fefefe'
+          },
+          align: 'center',
+          arrowcolor: '#303030',
+          width: 160,
+          bgcolor: '#303030',
+          showarrow: true,
+          arrowhead: 6,
+          ax: 0,
+          ay: -40,
+          xanchor: 'left',
+          yanchor: 'bottom'
+        },
+        {
+          x: 2019,
+          y: 7304831,
+          xref: 'x',
+          yref: 'y',
+          text: 'Today: 7.3 million refugees',
+          font: {
+            // family: 'Courier New, monospace',
+            size: 12,
+            color: 'transparent'
+          },
+          align: 'center',
+          arrowcolor: 'transparent',
+          width: 180,
+          bgcolor: 'transparent',
+          showarrow: true,
+          arrowhead: 6,
+          ax: 0,
+          ay: -40,
+          xanchor: 'right',
+          yanchor: 'bottom'
+        }
+      ]})
     }
   }
 }
