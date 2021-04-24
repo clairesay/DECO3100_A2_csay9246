@@ -67,13 +67,17 @@ section.info-plot.centered {
     perspective-origin: 50%; */
 }
 
-.centered:first-of-type {
-    background-image: url(../images/intro.jpg);
+section.info-plot.txt-centered {
+
+    padding: 0 20%;
+
+    display: grid;
+    grid-template-columns: 1fr 1px;
+    column-gap: 0;
+
+    position: relative;
 }
 
-.centered:nth-of-type(2) {
-    /* background-image: url(../images/spline.svg); */
-}
 
 .centered > .graphic-half {
     display: none;
@@ -94,12 +98,17 @@ section.info-plot > article:first-child {
     /* scroll-snap-align: start; */
 }
 
-section.info-plot.centered > article:first-child {
+section.info-plot.centered > article:first-child, section.info-plot.txt-centered > article:first-child  {
     background-color: transparent;
 }
 
 section.info-plot.centered .paragraph {
     width: 400px;
+    text-align: center;
+}
+
+section.info-plot.txt-centered .paragraph {
+    width: 360px;
     text-align: center;
 }
 

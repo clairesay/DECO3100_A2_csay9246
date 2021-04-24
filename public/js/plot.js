@@ -71,7 +71,7 @@ for (let i = 0; i < paragraphSections.length; i ++) {
 
 const dataAll = [
   {
-    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-child-mortality.csv?token=ANVXV7RJSB3WATDZ7SODRE3AQOD7C", 
+    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-child-mortality.csv", 
     index: 2, 
     section: 2,
     piggyIndex: 2,
@@ -80,7 +80,7 @@ const dataAll = [
     title: 'World Child Mortality Rate'
   },
   {
-    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-poverty.csv?token=ANVXV7RE4UHNUHN2EN6ZYJ3AQOD3I",
+    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-poverty.csv",
     index: 3,
     section: 2,
     piggyIndex: 2,
@@ -89,7 +89,7 @@ const dataAll = [
     title: 'Percentage of World living in Extreme Poverty'
   },
   {
-    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-refugee.csv?token=ANVXV7WFHTPMPU4LZRR7DBTAQOD5U",
+    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-refugee.csv",
     index: 7,
     section: 4,
     piggyIndex: 7,
@@ -98,7 +98,7 @@ const dataAll = [
     title: 'Refugee Numbers in Sub-Saharan Africa'
   },
   {
-    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-childmortality.csv?token=ANVXV7R7IVEN37QJX4BV2K3AQPURA",
+    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-childmortality.csv",
     index: 12,
     section: 8,
     piggyIndex: 12,
@@ -219,7 +219,7 @@ function styleUpdate(index, piggyIndex, section) {
       Plotly.relayout(plotSpace[section], {
         shapes: [],
         xaxis: {showgrid: false, range: [1990, 2020] }, 
-        yaxis: {showgrid: false},
+        yaxis: {showgrid: false,  range: [2500000, 8000000]},
         annotations: [
         {
           x: 1994,
@@ -305,7 +305,7 @@ function styleUpdate(index, piggyIndex, section) {
 
         ],
         xaxis: {showgrid: false, range: [1990, 2020] }, 
-        yaxis: {showgrid: false},
+        yaxis: {showgrid: false,  range: [2500000, 8000000]},
         annotations: [
         {
           x: 1994,
@@ -374,7 +374,7 @@ function styleUpdate(index, piggyIndex, section) {
           },
         ],
         xaxis: {showgrid: false, range: [1990, 2020] }, 
-        yaxis: {showgrid: false},
+        yaxis: {showgrid: false, range: [2500000, 8000000]},
         annotations: [
         {
           x: 1994,
