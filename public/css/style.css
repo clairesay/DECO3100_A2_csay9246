@@ -15,7 +15,7 @@ h3, h4, h5, h6, a {
 
 p, li, q {
     line-height: 20px;
-    /* font-size: 18px; */
+    font-size: 14px;
 }
 
 /* GLOBAL STYLES */
@@ -45,7 +45,7 @@ section.info-plot {
     padding: 0 20%;
 
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 222px 1fr;
     column-gap: 96px;
 
     position: relative;
@@ -71,11 +71,43 @@ section.info-plot.txt-centered {
 
     padding: 0 20%;
 
-    display: grid;
-    grid-template-columns: 1fr 1px;
+    display: flex;
+    grid-template-columns: 1fr 3fr;
     column-gap: 0;
 
     position: relative;
+    height: 200vh;
+}
+
+section.info-plot.txt-centered .text-half {
+    /* position: absolute; */
+    /* height: 100vh; */
+    /* width: 100vw; */
+    z-index: 2;
+    width: 80%;
+    height: 200vh;
+    position: absolute;
+    top: 0;
+    left: 0;  
+    padding-left: calc(20% - 24px);
+    align-items: flex-start;
+}
+
+section.info-plot.txt-centered article > article.paragraph {
+    align-items: flex-start;
+}
+
+section.info-plot.txt-centered .graphic-half {
+    /* position: absolute; */
+    /* height: 100vh; */
+    /* width: 100vw; */
+    z-index: 1;
+    width: 100%;
+    height: 200vh;
+    position: absolute;
+    top: 0;
+    left: 0;  
+    filter: brightness(50%)
 }
 
 
@@ -102,18 +134,33 @@ section.info-plot.centered > article:first-child, section.info-plot.txt-centered
     background-color: transparent;
 }
 
+section.info-plot.txt-centered > .graphic-half{
+
+}
+
 section.info-plot.centered .paragraph {
     width: 400px;
     text-align: center;
 }
 
 section.info-plot.txt-centered .paragraph {
-    width: 360px;
-    text-align: center;
+    width: 270px;
+    /* left: -20vw; */
+    /* position: relative; */
+    /* text-align: left */
 }
 
+section.info-plot.txt-centered .paragraph p {
+    padding: 24px;
+    filter: drop-shadow(0 0 2px #909090);
+    background-color: #fefefeaf;
+    border-radius: 4px;
+    /* border: solid 2px #BFB48F; */
+}
+
+
 section.info-plot.centered .paragraph p {
-    padding: 1.5em;
+    padding: 24px;
     filter: drop-shadow(0 0 2px #909090);
     background-color: #fefefe;
     border-radius: 4px;
@@ -237,6 +284,7 @@ section#landing a {
     height: 100vh;
     font-weight: 600;
     text-transform: uppercase;
+    /* font-size: 8px; */
     /* padding-right: 2em; */
     /* padding: 2em; */
     /* border: 2px solid salmon; */
@@ -263,6 +311,7 @@ section#landing a {
     opacity: 0;
 
     transition: all 0.2s ease-out;
+    z-index: 5;
 }
 
 .dot {

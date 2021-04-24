@@ -42,6 +42,7 @@ var layout = {
 var currentIndex;
 scrollContainer.addEventListener('scroll', function() {
   currentIndex = Math.round(this.scrollTop/sectionHeight) - 1
+  console.log(currentIndex)
 })
 
 // all info-plots
@@ -90,9 +91,9 @@ const dataAll = [
   },
   {
     source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-refugee.csv",
-    index: 7,
+    index: 5,
     section: 4,
-    piggyIndex: 7,
+    piggyIndex: 5,
     plotType: 'new',
     plot: 'scatter',
     title: 'Refugee Numbers in Sub-Saharan Africa'
@@ -186,7 +187,7 @@ function addThis(index, piggyIndex, section, yLegend) {
     opacity: 0.1,
     line: {
       shape: 'spline',
-      color: 'purple',
+      color: '#BFB48F',
       width: 5
     },
 
@@ -212,10 +213,13 @@ function styleUpdate(index, piggyIndex, section) {
       Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#30303050", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population', range:[0, 40]}})
       // Plotly.update(plotSpace[section], {}, {yaxis:{color:"#30303050", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title: 'Extreme Poverty % of Population'}})
     }
-  } else if (piggyIndex == 7) {
-    Plotly.restyle(plotSpace[section], {fill: 'tozeroy', hoverinfo: 'x+y'}, 0);
+  } else if (piggyIndex == 6) {
+    // console.log('true')
+    Plotly.restyle(plotSpace[section], {line:{color: '#BFB48F'}, hoverinfo: 'x+y'}, 0);
     Plotly.relayout(plotSpace[section], {title: 'Refugee Population in Sub-Saharan Africa', yaxis: {color:"#303030", showgrid:false, title:'Refugee Population'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
-    if (index == 7) {
+    if (index == 5) {
+      // console.log()
+      alert('five')
       Plotly.relayout(plotSpace[section], {
         shapes: [],
         xaxis: {showgrid: false, range: [1990, 2020] }, 
@@ -266,7 +270,8 @@ function styleUpdate(index, piggyIndex, section) {
         }
       ]})
       // Plotly.update(plotSpace[section], {}, {xaxis: {range: [1990, 2020] }, annotations:[]})
-    } else if (index == 8) {
+    } else if (index == 6) {
+      console.log(index)
       Plotly.relayout(plotSpace[section], {
         shapes: [
           // 1st highlight during 1994
@@ -351,7 +356,8 @@ function styleUpdate(index, piggyIndex, section) {
           yanchor: 'bottom'
         }
       ]})
-    } else if (index == 9) {
+    } else if (index == 7) {
+      console.log(index)
       // Plotly.update(plotSpace[section], {}, {xaxis: {range: [1990, 2000] }})
       Plotly.relayout(plotSpace[section], {
         shapes: [
@@ -445,7 +451,8 @@ scrollContainer.addEventListener('scroll', function() {
 // ///// if this section is 'centred', set as white
   // while (currentIndex) {
     if (currentIndex != -1) {
-      if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('centered')) {
+      if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('centered') ||
+      paragraphSections[currentIndex].parentElement.parentElement.classList.contains('txt-centered')) {
         dotContainer.classList.add('white')
       } else {
         dotContainer.classList.remove('white')
