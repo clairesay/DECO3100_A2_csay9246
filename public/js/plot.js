@@ -218,7 +218,8 @@ function styleUpdate(index, piggyIndex, section) {
     if (index == 7) {
       Plotly.relayout(plotSpace[section], {
         shapes: [],
-        xaxis: {range: [1990, 2020] }, 
+        xaxis: {showgrid: false, range: [1990, 2020] }, 
+        yaxis: {showgrid: false},
         annotations: [
         {
           x: 1994,
@@ -303,7 +304,8 @@ function styleUpdate(index, piggyIndex, section) {
         },
 
         ],
-        xaxis: {range: [1990, 2020] }, 
+        xaxis: {showgrid: false, range: [1990, 2020] }, 
+        yaxis: {showgrid: false},
         annotations: [
         {
           x: 1994,
@@ -371,7 +373,8 @@ function styleUpdate(index, piggyIndex, section) {
               }
           },
         ],
-        xaxis: {range: [1990, 2020] }, 
+        xaxis: {showgrid: false, range: [1990, 2020] }, 
+        yaxis: {showgrid: false},
         annotations: [
         {
           x: 1994,

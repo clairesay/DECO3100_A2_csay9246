@@ -67,6 +67,14 @@ section.info-plot.centered {
     perspective-origin: 50%; */
 }
 
+.centered:first-of-type {
+    background-image: url(../images/intro.jpg);
+}
+
+.centered:nth-of-type(2) {
+    /* background-image: url(../images/spline.svg); */
+}
+
 .centered > .graphic-half {
     display: none;
 }
@@ -293,10 +301,12 @@ section#landing a {
 
 .dot-container.white label h6 {
     color: #fefefe;
+
 }
 
 .dot-container.white .dot {
     background-color: #fefefe;
+    border-color: #fefefe;
 }
 
 label > h6 {

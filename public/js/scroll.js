@@ -51,12 +51,15 @@ sections.forEach(function(value, index) {
 
         if (currentIndex == -1) {
             dotContainer.style.opacity = 0;
+            dotContainer.style.display = 'none';
             dotLabelText[0].classList = ''
             dots[0].classList = 'dot'
         } else if (currentIndex == dotIndices.length) {
             dotContainer.style.opacity = 1;
+            dotContainer.style.display = 'flex';
         } else {
             dotContainer.style.opacity = 1;
+            dotContainer.style.display = 'flex';
             for (let i = 0; i < dots.length; i ++) {
 
                 if (i == dotIndices[currentIndex]) {
