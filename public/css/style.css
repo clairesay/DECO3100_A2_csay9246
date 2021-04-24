@@ -418,16 +418,16 @@ i > label.definition > strong {
 
 i > label.definition {
     z-index: 5;
-    font-size: 14px;
+    font-size: 12px;
     position: absolute;
-    left: calc(32.5% + 48px);
+    left: calc(20% + 256px);
     visibility: hidden;
     border-radius: 4px;
     width: 20%;
     filter: drop-shadow(0 0 2px #909090);
     background-color: #303030;
     color: #fefefe;
-    padding: 1.5em;
+    padding: 16px;
     transition: all 0.1s ease-out;
     /* border: solid 2px #904E55; */
     /* border: solid 2px #564E58; */

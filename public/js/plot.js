@@ -42,7 +42,7 @@ var layout = {
 var currentIndex;
 scrollContainer.addEventListener('scroll', function() {
   currentIndex = Math.round(this.scrollTop/sectionHeight) - 1
-  console.log(currentIndex)
+  // console.log(currentIndex)
 })
 
 // all info-plots
@@ -91,9 +91,9 @@ const dataAll = [
   },
   {
     source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-refugee.csv",
-    index: 5,
+    index: 6,
     section: 4,
-    piggyIndex: 5,
+    piggyIndex: 6,
     plotType: 'new',
     plot: 'scatter',
     title: 'Refugee Numbers in Sub-Saharan Africa'
@@ -158,7 +158,7 @@ function plotThis(index, piggyIndex, section, xLegend, yLegend, title) {
         line: {
           shape: 'spline',
           color: '#904E55',
-          width: 5
+          width: 3
         },
         // id: counter
       });
@@ -188,7 +188,7 @@ function addThis(index, piggyIndex, section, yLegend) {
     line: {
       shape: 'spline',
       color: '#BFB48F',
-      width: 5
+      width: 3
     },
 
   });
@@ -213,17 +213,23 @@ function styleUpdate(index, piggyIndex, section) {
       Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#30303050", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population', range:[0, 40]}})
       // Plotly.update(plotSpace[section], {}, {yaxis:{color:"#30303050", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title: 'Extreme Poverty % of Population'}})
     }
+  } else if (piggyIndex == 4) {
+    if (index == 4) {
+      // Plotly.restyle(plotSpace[section], {}, 0)
+      // Plotly.restyle(plotSpace[section], {colorscale: [[0, '#C3C9CE'], [1, '#904E55']]}, 0)
+    } else if (index == 5) {
+      // Plotly.restyle(plotSpace[section], {showscale: false}, 0)
+    }
+
   } else if (piggyIndex == 6) {
-    // console.log('true')
-    Plotly.restyle(plotSpace[section], {line:{color: '#BFB48F'}, hoverinfo: 'x+y'}, 0);
+    Plotly.restyle(plotSpace[section], {line:{color: '#BFB48F', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 0);
     Plotly.relayout(plotSpace[section], {title: 'Refugee Population in Sub-Saharan Africa', yaxis: {color:"#303030", showgrid:false, title:'Refugee Population'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
-    if (index == 5) {
-      // console.log()
-      alert('five')
+    if (index == 6) {
+      // alert('five')
       Plotly.relayout(plotSpace[section], {
         shapes: [],
         xaxis: {showgrid: false, range: [1990, 2020] }, 
-        yaxis: {showgrid: false,  range: [2500000, 8000000]},
+        yaxis: {title:'Refugee Population', showgrid: false,  range: [2500000, 8000000]},
         annotations: [
         {
           x: 1994,
@@ -270,8 +276,7 @@ function styleUpdate(index, piggyIndex, section) {
         }
       ]})
       // Plotly.update(plotSpace[section], {}, {xaxis: {range: [1990, 2020] }, annotations:[]})
-    } else if (index == 6) {
-      console.log(index)
+    } else if (index == 7) {
       Plotly.relayout(plotSpace[section], {
         shapes: [
           // 1st highlight during 1994
@@ -310,7 +315,7 @@ function styleUpdate(index, piggyIndex, section) {
 
         ],
         xaxis: {showgrid: false, range: [1990, 2020] }, 
-        yaxis: {showgrid: false,  range: [2500000, 8000000]},
+        yaxis: {title:'Refugee Population', showgrid: false,  range: [2500000, 8000000]},
         annotations: [
         {
           x: 1994,
@@ -356,8 +361,8 @@ function styleUpdate(index, piggyIndex, section) {
           yanchor: 'bottom'
         }
       ]})
-    } else if (index == 7) {
-      console.log(index)
+    } else if (index == 8) {
+
       // Plotly.update(plotSpace[section], {}, {xaxis: {range: [1990, 2000] }})
       Plotly.relayout(plotSpace[section], {
         shapes: [
@@ -380,7 +385,7 @@ function styleUpdate(index, piggyIndex, section) {
           },
         ],
         xaxis: {showgrid: false, range: [1990, 2020] }, 
-        yaxis: {showgrid: false, range: [2500000, 8000000]},
+        yaxis: {title:'Refugee Population', showgrid: false, range: [2500000, 8000000]},
         annotations: [
         {
           x: 1994,
@@ -442,10 +447,16 @@ for (let i = 0; i < dataAll.length; i ++) {
 var dotContainer = document.getElementsByClassName('dot-container')[0]
 // SCROLL EVENTS FROM NON DATA CALLS
 scrollContainer.addEventListener('scroll', function() {
-  if (currentIndex + 1 == 8) {
-    styleUpdate(currentIndex + 1, 7, 4)
-  } else if (currentIndex + 1 == 9) {
-    styleUpdate(currentIndex + 1, 7, 4)
+  if (currentIndex + 1 == 7) {
+    styleUpdate(currentIndex + 1, 6, 4)
+  } else if (currentIndex + 1 == 8) {
+    styleUpdate(currentIndex + 1, 6, 4)
+  } else if (currentIndex + 1 == 4) {
+    console.log('foo')
+    styleUpdate(currentIndex + 1, 4, 3)
+  } else if (currentIndex + 1 == 5) {
+    console.log('bar')
+    styleUpdate(currentIndex + 1, 4, 3)
   }
 
 // ///// if this section is 'centred', set as white
@@ -461,5 +472,6 @@ scrollContainer.addEventListener('scroll', function() {
 
   // }
 })
+
 
 
