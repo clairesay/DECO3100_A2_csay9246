@@ -98,15 +98,15 @@ const dataAll = [
     plot: 'scatter',
     title: 'Refugee Numbers in Sub-Saharan Africa'
   },
-  {
-    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-childmortality.csv",
-    index: 12,
-    section: 8,
-    piggyIndex: 12,
-    plotType: 'new',
-    plot: 'scatter',
-    title: 'Sub-Saharan Africa Child Mortality Rate'
-  }
+  // {
+  //   source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-childmortality.csv",
+  //   index: 16,
+  //   section: 8,
+  //   piggyIndex: 16,
+  //   plotType: 'new',
+  //   plot: 'scatter',
+  //   title: 'Sub-Saharan Africa Child Mortality Rate'
+  // }
 ]
 
 // ////////////// LOADING THE CSVS /////////////// //
@@ -213,14 +213,6 @@ function styleUpdate(index, piggyIndex, section) {
       Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#30303050", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population', range:[0, 40]}})
       // Plotly.update(plotSpace[section], {}, {yaxis:{color:"#30303050", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title: 'Extreme Poverty % of Population'}})
     }
-  } else if (piggyIndex == 4) {
-    if (index == 4) {
-      // Plotly.restyle(plotSpace[section], {}, 0)
-      // Plotly.restyle(plotSpace[section], {colorscale: [[0, '#C3C9CE'], [1, '#904E55']]}, 0)
-    } else if (index == 5) {
-      // Plotly.restyle(plotSpace[section], {showscale: false}, 0)
-    }
-
   } else if (piggyIndex == 6) {
     Plotly.restyle(plotSpace[section], {line:{color: '#BFB48F', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 0);
     Plotly.relayout(plotSpace[section], {title: 'Refugee Population in Sub-Saharan Africa', yaxis: {color:"#303030", showgrid:false, title:'Refugee Population'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
@@ -453,10 +445,13 @@ scrollContainer.addEventListener('scroll', function() {
     styleUpdate(currentIndex + 1, 6, 4)
   } else if (currentIndex + 1 == 4) {
     console.log('foo')
-    styleUpdate(currentIndex + 1, 4, 3)
+    // Plotly.restyle(plotSpace[3], {autocolorscale:false, colorscale: [[0, '#C3C9CE'], [1, '#904E55']]})
+    // styleUpdate(currentIndex + 1, 4, 3)
   } else if (currentIndex + 1 == 5) {
     console.log('bar')
-    styleUpdate(currentIndex + 1, 4, 3)
+    // Plotly.restyle(plotSpace[3], {autocolorscale:false, colorscale: [[0, '#904E55'], [1, '#C3C9CE']]})
+
+    // styleUpdate(currentIndex + 1, 4, 3)
   }
 
 // ///// if this section is 'centred', set as white

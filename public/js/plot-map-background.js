@@ -25,13 +25,15 @@ function createMap(country, value) {
       locations: country,
       z: value,
       text: country,
-      autocolorscale: false,
+      autocolorscale: true,
       colorscale: [[0, '#C3C9CE'], [1, '#904E55']],
-      colorbar: {
-          thickness: 0,
-            opacity: 0
-      },
-      showscale: false
+      showscale: false,
+      marker: {
+        line:{
+            color: '#303030',
+            width: 1
+        }
+    }
   }];
   var mapLayout = {
     // title: 'Pure alcohol consumption<br>among adults (age 15+) in 2010',
@@ -61,3 +63,11 @@ function createMap(country, value) {
 
 ///////// ALL FUNCTIONS EXECUTED BY THE LOAD DATA FUNCTION - CALLS ALL DATA SETS ///////////////////
 loadMapData()
+
+// } else if (piggyIndex == 4) {
+//     if (index == 4) {
+//       // Plotly.restyle(plotSpace[section], {}, 0)
+//       Plotly.restyle(plotSpace[section], {autocolorscale:false, colorscale: [[0, '#C3C9CE'], [1, '#904E55']]}, 0)
+//     } else if (index == 5) {
+//       Plotly.restyle(plotSpace[section], {autocolorscale:false, colorscale: [[0, '#C3C9CE'], [1, '#904E55']]}, 0)
+//     }
