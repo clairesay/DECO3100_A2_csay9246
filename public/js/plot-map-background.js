@@ -41,6 +41,8 @@ function createMap(country, value) {
         projection: {
             type: ''
         },
+        lonaxis: {range:[-180, 180]},
+        lataxis: {range:[-90, 90]},
         bgcolor: 'transparent',
     },
     bordercolor: 'transparent',

@@ -97,7 +97,7 @@ const dataAll = [
     plotType: 'new',
     plot: 'scatter',
     title: 'Refugee Numbers in Sub-Saharan Africa'
-  },
+  }
   // {
   //   source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-childmortality.csv",
   //   index: 16,
@@ -212,6 +212,46 @@ function styleUpdate(index, piggyIndex, section) {
       Plotly.restyle(plotSpace[section], {opacity: 0.1, hoverinfo: 'none'}, 0);
       Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#30303050", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population', range:[0, 40]}})
       // Plotly.update(plotSpace[section], {}, {yaxis:{color:"#30303050", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title: 'Extreme Poverty % of Population'}})
+    }
+  } else if (piggyIndex == 4) {
+    if (index == 4) {
+      Plotly.relayout(plotSpace[section], {geo: {
+        projection: {
+            type: ''
+        },
+        lonaxis: {range:[-180, 180]},
+        lataxis: {range:[-90, 90]},
+        bgcolor: 'transparent',
+    },
+    bordercolor: 'transparent',
+    plot_bgcolor:"#303030",
+    paper_bgcolor:"#303030",
+    margin: {
+        l: 0,
+        r: 0,
+        b: 0,
+        t: 0,
+        // pad: 2
+    }})
+    } else if (index == 5) {
+      Plotly.relayout(plotSpace[section], {geo: {
+        projection: {
+            type: ''
+        },
+        lonaxis: {range:[-90, 60]},
+        lataxis: {range:[-60, 45]},
+        bgcolor: 'transparent',
+    },
+    bordercolor: 'transparent',
+    plot_bgcolor:"#303030",
+    paper_bgcolor:"#303030",
+    margin: {
+        l: 0,
+        r: 0,
+        b: 0,
+        t: 0,
+        // pad: 2
+    }})
     }
   } else if (piggyIndex == 6) {
     Plotly.restyle(plotSpace[section], {line:{color: '#BFB48F', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 0);
@@ -446,12 +486,12 @@ scrollContainer.addEventListener('scroll', function() {
   } else if (currentIndex + 1 == 4) {
     console.log('foo')
     // Plotly.restyle(plotSpace[3], {autocolorscale:false, colorscale: [[0, '#C3C9CE'], [1, '#904E55']]})
-    // styleUpdate(currentIndex + 1, 4, 3)
+    styleUpdate(currentIndex + 1, 4, 3)
   } else if (currentIndex + 1 == 5) {
     console.log('bar')
     // Plotly.restyle(plotSpace[3], {autocolorscale:false, colorscale: [[0, '#904E55'], [1, '#C3C9CE']]})
 
-    // styleUpdate(currentIndex + 1, 4, 3)
+    styleUpdate(currentIndex + 1, 4, 3)
   }
 
 // ///// if this section is 'centred', set as white

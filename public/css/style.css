@@ -62,7 +62,7 @@ section.info-plot.centered {
     position: relative;
     background-image: url(../images/intro.jpg);
     background-size: cover;
-    background-attachment:fixed;
+    background-attachment:scroll;
     /* perspective: 8px;
     perspective-origin: 50%; */
 }
@@ -162,7 +162,7 @@ section.info-plot.txt-centered .paragraph p {
 section.info-plot.centered .paragraph p {
     padding: 24px;
     filter: drop-shadow(0 0 2px #909090);
-    background-color: #fefefe;
+    background-color: #fefefeaf;
     border-radius: 4px;
     /* border: solid 2px #BFB48F; */
 }
@@ -481,3 +481,39 @@ mark.letter {
      /* text-transform: 1 */
      /* font-weight: 700; */
  }
+
+
+ /* ///// bubble text ///////// */
+.bubble {
+    height: 180px;
+    width: 180px;
+
+    border-radius: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #904E55;
+}
+
+.bubble ~ .plot {
+    display: none;
+}
+
+.bubble p {
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+    padding: 24px;
+    font-family: 'Source Sans Pro', 'Arial', 'sans-serif';
+    font-weight: 700;
+}
+
+.graphic-half img {
+    height: 100vh;
+    top: 0;
+    object-fit: cover;
+}
+
+img ~ .plot {
+    display: none;
+}

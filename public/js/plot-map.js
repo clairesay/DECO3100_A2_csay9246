@@ -57,7 +57,8 @@
   ///// construction 
 
   document.getElementById('capsi').addEventListener('click', 
-  function(){
+  function(e){
+      e.preventDefault()
     console.log('zooming')
     
     Plotly.animate(plotSpace[6], {
