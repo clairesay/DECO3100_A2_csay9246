@@ -109,6 +109,8 @@ const dataAll = [
   // }
 ]
 
+const bubbleData = ['Deprivation of basic needs', 'Separation from parents or family members', 'Gender-based violence and abuse', 'Exploitation']
+var addOnce = 0;
 // ////////////// LOADING THE CSVS /////////////// //
 function loadData(dataSource) {
   Plotly.d3.csv(dataSource.source, function(data){ processData(data, dataSource.index, dataSource.piggyIndex, dataSource.section, dataSource.plotType, dataSource.plot, dataSource.title) } );
@@ -490,8 +492,23 @@ scrollContainer.addEventListener('scroll', function() {
   } else if (currentIndex + 1 == 5) {
     console.log('bar')
     // Plotly.restyle(plotSpace[3], {autocolorscale:false, colorscale: [[0, '#904E55'], [1, '#C3C9CE']]})
-
+  
     styleUpdate(currentIndex + 1, 4, 3)
+  } else if (currentIndex + 1 == 15) {
+    if (addOnce == 0) {
+      for (let i = 0; i < bubbleData.length; i ++) {
+        var bubble = document.createElement('div')
+        var bubbleText = document.createElement('p')
+        bubbleText.textContent = bubbleData[i]
+        bubble.classList.add('bubble')
+        bubble.appendChild(bubbleText)
+  
+        var bubbles = document.getElementsByClassName('bubbles')[0]
+        bubbles.appendChild(bubble)
+      }
+      addOnce = 1
+    }
+
   }
 
 // ///// if this section is 'centred', set as white
