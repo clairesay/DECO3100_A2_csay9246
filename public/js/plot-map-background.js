@@ -25,8 +25,8 @@ function createMap(country, value) {
       locations: country,
       z: value,
       text: country,
-      autocolorscale: true,
-      colorscale: [[0, '#C3C9CE'], [1, '#904E55']],
+    //   autocolorscale: true,
+      color_scale: [[0, '#C3C9CE'], [1, '#904E55']],
       showscale: false,
       marker: {
         line:{

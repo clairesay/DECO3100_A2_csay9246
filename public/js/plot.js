@@ -217,6 +217,7 @@ function styleUpdate(index, piggyIndex, section) {
     }
   } else if (piggyIndex == 4) {
     if (index == 4) {
+      Plotly.restyle(plotSpace[section], {colorscale: 'Viridis'}, 0);
       Plotly.relayout(plotSpace[section], {geo: {
         projection: {
             type: ''
@@ -236,12 +237,17 @@ function styleUpdate(index, piggyIndex, section) {
         // pad: 2
     }})
     } else if (index == 5) {
+      Plotly.restyle(plotSpace[section], {
+        colorscale: [[0, 'rgb(242,240,247)'], [0.2, 'rgb(218,218,235)'],
+        [0.4, 'rgb(188,189,220)'], [0.6, 'rgb(158,154,200)'],
+        [0.8, 'rgb(117,107,177)'], [1, 'rgb(84,39,143)']]
+      }, 0);
       Plotly.relayout(plotSpace[section], {geo: {
         projection: {
             type: ''
         },
         lonaxis: {range:[-90, 60]},
-        lataxis: {range:[-60, 45]},
+        lataxis: {range:[-60, 60]},
         bgcolor: 'transparent',
     },
     bordercolor: 'transparent',
