@@ -1,7 +1,7 @@
 
 var plotSpace = document.querySelectorAll('.graphic-half div')
-const dataSource = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-conflict.csv"
-
+// const dataSource = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-conflict.csv"
+const dataSource = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-conflict-gradient.csv"
 function loadMapData() {
     Plotly.d3.csv(dataSource, function(data){ processMap(data) } );
 };
@@ -26,7 +26,7 @@ function createMap(country, value) {
       z: value,
       text: country,
     //   autocolorscale: true,
-      color_scale: [[0, '#C3C9CE'], [1, '#904E55']],
+      colorscale: [[0, '#C3C9CE'], [0.25, '#BBB5BB'], [0.75, '#A27A80'], [1, '#904E55']],
       showscale: false,
       marker: {
         line:{
