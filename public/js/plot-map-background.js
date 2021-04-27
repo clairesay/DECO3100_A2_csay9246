@@ -7,15 +7,17 @@ function loadMapData() {
 };
   
 function processMap(allRows) {
-    var country = [], value = [];
+    var country = [], value = [], falseValue = [];
 
     for (let i = 0; i < allRows.length; i++) {
         let row = allRows[i];
         country.push(row['Country'])
         value.push(row['Conflict'])
+        falseValue.push(row['Shaded Value'])
     }
 
     createMap(country, value);
+    createFalseMap(country, falseValue);
 }
 
 function createMap(country, value) {
@@ -26,7 +28,7 @@ function createMap(country, value) {
       z: value,
       text: country,
     //   autocolorscale: true,
-      colorscale: [[0, '#C3C9CE'], [0.25, '#BBB5BB'], [0.75, '#A27A80'], [1, '#904E55']],
+      colorscale: [[0, '#C3C9CE'], [0.25, '#FEFEFE'], [0.75, '#C28F94'], [1, '#904E55']],
       showscale: false,
       marker: {
         line:{
@@ -61,6 +63,48 @@ function createMap(country, value) {
   Plotly.newPlot(plotSpace[3], mapData, mapLayout, {displayModeBar: false});
 }
 
+function createFalseMap(country, value) {
+  var mapData = [{
+      type: 'choropleth',
+      locationmode: 'country names',
+      locations: country,
+      z: value,
+      text: country,
+    //   autocolorscale: true,
+      colorscale: [[0, 'transparent'], [1, '#FEFEFE50']],
+      showscale: false,
+      marker: {
+        line:{
+            color: '#303030',
+            width: 1
+        }
+    }
+  }];
+  var mapLayout = {
+    // title: 'Pure alcohol consumption<br>among adults (age 15+) in 2010',
+    geo: {
+        projection: {
+            type: ''
+        },
+        lonaxis: {range:[-180, 180]},
+        lataxis: {range:[-90, 90]},
+        bgcolor: 'transparent',
+    },
+    bordercolor: 'transparent',
+    plot_bgcolor:"#303030",
+    paper_bgcolor:"#303030",
+    margin: {
+        l: 0,
+        r: 0,
+        b: 0,
+        t: 0,
+        // pad: 2
+    }
+  
+    // colorbar:
+  };
+  Plotly.newPlot(plotSpace[3], mapData, mapLayout, {displayModeBar: false});
+}
 
 
 ///////// ALL FUNCTIONS EXECUTED BY THE LOAD DATA FUNCTION - CALLS ALL DATA SETS ///////////////////
