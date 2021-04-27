@@ -1,7 +1,8 @@
 
 var plotSpace = document.querySelectorAll('.graphic-half div')
 // const dataSource = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-conflict.csv"
-const dataSource = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-conflict-gradient.csv"
+// const dataSource = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-conflict-gradient.csv"
+const dataSource = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-conflict-shaded.csv"
 function loadMapData() {
     Plotly.d3.csv(dataSource, function(data){ processMap(data) } );
 };
@@ -16,11 +17,10 @@ function processMap(allRows) {
         falseValue.push(row['Shaded Value'])
     }
 
-    createMap(country, value);
-    createFalseMap(country, falseValue);
+    createMap(country, value, falseValue);
 }
 
-function createMap(country, value) {
+function createMap(country, value, falseValue) {
   var mapData = [{
       type: 'choropleth',
       locationmode: 'country names',
@@ -28,7 +28,7 @@ function createMap(country, value) {
       z: value,
       text: country,
     //   autocolorscale: true,
-      colorscale: [[0, '#C3C9CE'], [0.25, '#FEFEFE'], [0.75, '#C28F94'], [1, '#904E55']],
+      colorscale: [[0, '#C3C9CE'], [1, '#904E55']],
       showscale: false,
       marker: {
         line:{
@@ -36,7 +36,25 @@ function createMap(country, value) {
             width: 1
         }
     }
-  }];
+  },
+  {
+    type: 'choropleth',
+    locationmode: 'country names',
+    locations: country,
+    z: falseValue,
+    text: country,
+  //   autocolorscale: true,
+    colorscale: [[0, '#0e1318AF'], [1, 'transparent']],
+    showscale: false,
+    marker: {
+      line:{
+          color: '#303030',
+          width: 1
+      },
+    opacity: 0,
+  }
+}
+];
   var mapLayout = {
     // title: 'Pure alcohol consumption<br>among adults (age 15+) in 2010',
     geo: {
@@ -63,48 +81,48 @@ function createMap(country, value) {
   Plotly.newPlot(plotSpace[3], mapData, mapLayout, {displayModeBar: false});
 }
 
-function createFalseMap(country, value) {
-  var mapData = [{
-      type: 'choropleth',
-      locationmode: 'country names',
-      locations: country,
-      z: value,
-      text: country,
-    //   autocolorscale: true,
-      colorscale: [[0, 'transparent'], [1, '#FEFEFE50']],
-      showscale: false,
-      marker: {
-        line:{
-            color: '#303030',
-            width: 1
-        }
-    }
-  }];
-  var mapLayout = {
-    // title: 'Pure alcohol consumption<br>among adults (age 15+) in 2010',
-    geo: {
-        projection: {
-            type: ''
-        },
-        lonaxis: {range:[-180, 180]},
-        lataxis: {range:[-90, 90]},
-        bgcolor: 'transparent',
-    },
-    bordercolor: 'transparent',
-    plot_bgcolor:"#303030",
-    paper_bgcolor:"#303030",
-    margin: {
-        l: 0,
-        r: 0,
-        b: 0,
-        t: 0,
-        // pad: 2
-    }
+// function createFalseMap(country, value) {
+//   var mapData = [{
+//       type: 'choropleth',
+//       locationmode: 'country names',
+//       locations: country,
+//       z: value,
+//       text: country,
+//     //   autocolorscale: true,
+//       colorscale: [[0, 'transparent'], [1, '#FEFEFE50']],
+//       showscale: false,
+//       marker: {
+//         line:{
+//             color: '#303030',
+//             width: 1
+//         }
+//     }
+//   }];
+//   var mapLayout = {
+//     // title: 'Pure alcohol consumption<br>among adults (age 15+) in 2010',
+//     geo: {
+//         projection: {
+//             type: ''
+//         },
+//         lonaxis: {range:[-180, 180]},
+//         lataxis: {range:[-90, 90]},
+//         bgcolor: 'transparent',
+//     },
+//     bordercolor: 'transparent',
+//     plot_bgcolor:"transparent",
+//     paper_bgcolor:"transparent",
+//     margin: {
+//         l: 0,
+//         r: 0,
+//         b: 0,
+//         t: 0,
+//         // pad: 2
+//     }
   
-    // colorbar:
-  };
-  Plotly.newPlot(plotSpace[3], mapData, mapLayout, {displayModeBar: false});
-}
+//     // colorbar:
+//   };
+//   Plotly.newPlot(plotSpace[3], mapData, mapLayout, {displayModeBar: false});
+// }
 
 
 ///////// ALL FUNCTIONS EXECUTED BY THE LOAD DATA FUNCTION - CALLS ALL DATA SETS ///////////////////

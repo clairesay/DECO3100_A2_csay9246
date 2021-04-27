@@ -107,7 +107,8 @@ section.info-plot.txt-centered .graphic-half {
     position: absolute;
     top: 0;
     left: 0;  
-    filter: brightness(50%)
+    /* background-color: #0e1318af */
+    filter: brightness(60%)
 }
 
 section.info-plot.txt-centered.map, section.info-plot.txt-centered.map > article {

@@ -217,7 +217,8 @@ function styleUpdate(index, piggyIndex, section) {
     }
   } else if (piggyIndex == 4) {
     if (index == 4) {
-      // Plotly.restyle(plotSpace[section], {colorscale: [[0, '#C3C9CE'], [0.25, '#BBB5BB'], [0.75, '#A27A80'], [1, '#904E55']]}, 0);
+      // Plotly.deleteTraces(plotSpace[section], 1);
+      Plotly.restyle(plotSpace[section], {marker: {opacity: 0}}, 1);
       Plotly.relayout(plotSpace[section], {geo: {
         projection: {
             type: ''
@@ -237,12 +238,13 @@ function styleUpdate(index, piggyIndex, section) {
         // pad: 2
     }})
     } else if (index == 5) {
-      // Plotly.restyle(plotSpace[section], {colorscale: [[0, '#C3C9CE'], [0.25, '#BBB5BB'], [0.75, '#A27A80'], [1, '#904E55']]}, 0);
+
+      Plotly.restyle(plotSpace[section], {marker: {opacity: 1}}, 1);
       Plotly.relayout(plotSpace[section], {geo: {
         projection: {
             type: ''
         },
-        lonaxis: {range:[-90, 60]},
+        lonaxis: {range:[-150, 120]},
         lataxis: {range:[-60, 60]},
         bgcolor: 'transparent',
     },
