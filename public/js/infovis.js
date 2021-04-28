@@ -54,7 +54,7 @@ function make_plot(csv_data){
         extension_y2[i] = extension_y2[i] - 32
     }
     
-    let data = [{
+    let dataP = [{
         x: country_data.map(d => d.year),
         y: country_data.map(d => d.mortality),
         mode: 'lines'
@@ -74,12 +74,12 @@ function make_plot(csv_data){
     // var layout = {
 
     // }
-    const plotSpaceP = document.querySelectorAll('#prediction .plot')
-    Plotly.newPlot(plotSpaceP, data);
+    const plotSpaceP = document.querySelectorAll('#prediction .plot')[0]
+    Plotly.newPlot(plotSpaceP, dataP);
 }
 
 
-Plotly.d3.csv("mortality.csv", make_plot);
+Plotly.d3.csv("https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/mortality.csv", make_plot);
 
 //This stretch function is actually just the map function from p5.js
 function stretch(n, start1, stop1, start2, stop2) {
