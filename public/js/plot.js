@@ -498,17 +498,45 @@ scrollContainer.addEventListener('scroll', function() {
     // Plotly.restyle(plotSpace[3], {autocolorscale:false, colorscale: [[0, '#904E55'], [1, '#C3C9CE']]})
   
     styleUpdate(currentIndex + 1, 4, 3)
-  } else if (currentIndex + 1 == 15) {
+  } else if (currentIndex + 1 == 14) {
+    if (addOnce == 1) {
+      var bubble = document.getElementsByClassName('bubble')
+      for (let i = 0; i < bubble.length; i ++) {
+        bubble[i].classList.remove('offset')
+        // if (i > 4) {
+        //   bubble[i].style.display= 'none';
+        //   bubble[i].style.opacity = '0'
+        // }
+      }
+      addOnce = 0
+    }
+
+  }
+  else if (currentIndex + 1 == 15) {
     if (addOnce == 0) {
-      for (let i = 0; i < bubbleData.length; i ++) {
-        var bubble = document.createElement('div')
-        var bubbleText = document.createElement('p')
-        bubbleText.textContent = bubbleData[i]
-        bubble.classList.add('bubble')
-        bubble.appendChild(bubbleText)
+      // var newBubbles = document.getElementsByClassName('new-bubbles')[0]
+      // newBubbles.style.display = 'flex'
+      var bubble = document.getElementsByClassName('bubble')
+      // var element = document.getElementById('image_1'),
+      // style = window.getComputedStyle(element),
+      // top = style.getPropertyValue('top');
+      for (let i = 0; i < bubble.length; i ++) {
+        bubble[i].classList.add('offset')
+        // if (i > 4) {
+        //   bubble[i].style.display= 'flex';
+        //   bubble[i].style.opacity = '1'
+        // }
+      //   let left = parseInt(window.getComputedStyle(bubble[i]).getPropertyValue('left'))
+      //   bubble[i].style.left = left - (0.5*left)
+        // bubble[i].style.backgroundColor = 'green'
+      //   var bubble = document.createElement('div')
+      //   var bubbleText = document.createElement('p')
+      //   bubbleText.textContent = bubbleData[i]
+      //   bubble.classList.add('bubble')
+      //   bubble.appendChild(bubbleText)
   
-        var bubbles = document.getElementsByClassName('bubbles')[0]
-        bubbles.appendChild(bubble)
+      //   var bubbles = document.getElementsByClassName('bubbles')[0]
+      //   bubbles.appendChild(bubble)
       }
       addOnce = 1
     }
@@ -517,13 +545,18 @@ scrollContainer.addEventListener('scroll', function() {
 
 // ///// if this section is 'centred', set as white
   // while (currentIndex) {
-    if (currentIndex != -1) {
+    if (currentIndex != -1 && currentIndex != 22) {
+      dotContainer.style.opacity = 1;
+      dotContainer.style.visibility = 'visible'
       if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('centered') ||
       paragraphSections[currentIndex].parentElement.parentElement.classList.contains('txt-centered')) {
         dotContainer.classList.add('white')
       } else {
         dotContainer.classList.remove('white')
       }
+    } else if (currentIndex == 22) {
+      dotContainer.style.opacity = 0;
+      dotContainer.style.visibility = 'hidden';
     }
 
   // }

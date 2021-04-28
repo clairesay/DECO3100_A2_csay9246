@@ -60,11 +60,15 @@ section.info-plot.centered {
     column-gap: 0;
 
     position: relative;
+
+    /* perspective: 8px;
+    perspective-origin: 50%; */
+}
+
+#intro {
     background-image: url(../images/intro.jpg);
     background-size: cover;
     background-attachment:scroll;
-    /* perspective: 8px;
-    perspective-origin: 50%; */
 }
 
 section.info-plot.txt-centered {
@@ -165,7 +169,7 @@ section.info-plot.txt-centered .paragraph p {
 }
 
 
-section.info-plot.centered .paragraph p {
+section#intro.info-plot.centered .paragraph p {
     padding: 24px;
     filter: drop-shadow(0 0 2px #909090);
     background-color: #fefefeaf;
@@ -502,10 +506,12 @@ mark.letter {
 }
 
 .bubble {
-    flex-grow: 1;
-    max-width: 120px;
+    /* flex-grow: 1; */
+    /* max-width: 120px; */
     /* height: auto; */
-    /* width: 100%; */
+    position: absolute;
+    width: 140px;
+    height: 140px;
     /* padding-top: 100%; */
     /* flex: 1; */
     border-radius: 90px;
@@ -513,19 +519,170 @@ mark.letter {
     justify-content: center;
     align-items: center;
     background-color: #904E55;
+    /* border: 2px solid #904E55; */
+    transition: all 0.4s ease-out;
+    /* transform: scale(0.9); */
 }
+.bubble.offset:nth-of-type(-n + 5) p {
+    /* color: #904E55 */
+}
+
+.bubble.offset:nth-of-type(-n + 5):nth-of-type(odd) {
+    transition-delay: 0s;
+}
+
+.bubble.offset:nth-of-type(-n + 5):nth-of-type(even) {
+    transition-delay: 0.2s;
+}
+
+.bubble.offset:nth-of-type(n + 6):nth-of-type(odd) {
+    transition-delay: 0.6s;
+}
+
+.bubble.offset:nth-of-type(n + 6):nth-of-type(even) {
+    transition-delay: 0.4s;
+}
+
+/*  */
+.bubble:nth-of-type(-n + 5):nth-of-type(odd) {
+    transition-delay: 0.6s;
+}
+
+.bubble:nth-of-type(-n + 5):nth-of-type(even) {
+    transition-delay: 0.4s;
+}
+
+.bubble:nth-of-type(n + 6):nth-of-type(odd) {
+    transition-delay: 0s;
+}
+
+.bubble:nth-of-type(n + 6):nth-of-type(even) {
+    transition-delay: 0.2s;
+}
+
+.bubble:nth-of-type(1) {
+    top: calc(0.1*(100vh - 140px));
+    /* left: 0 */
+    left: calc(-10%)
+}
+
+.bubble:nth-of-type(2) {
+    top: calc(0.30*(100vh - 140px));
+    /* left: calc(50%); */
+    left: calc(25%);
+}
+
+.bubble:nth-of-type(3) {
+    top: calc(0.5*(100vh - 140px));
+    /* left: 0 */
+    left: calc(-10%)
+}
+
+.bubble:nth-of-type(4) {
+    top: calc(0.70*(100vh - 140px));
+    /* left: calc(50%); */
+    left: calc(25%);
+}
+
+.bubble:nth-of-type(5) {
+    top: calc(0.9*(100vh - 140px));
+    /* left: 0 */
+    left: calc(-10%)
+}
+
+.bubble:nth-of-type(n + 6) {
+    opacity: 0;
+    transform: translateX(calc(20%))
+    /* display: none */
+}
+
+.bubble.offset:nth-of-type(n + 6) {
+    opacity: 100;
+    transform: translateX(0)
+}
+
+.bubble:nth-of-type(6) {
+    top: calc(0.1*(100vh - 140px));
+    left: calc(60%);
+}
+
+.bubble:nth-of-type(7) {
+    top: calc(0.3*(100vh - 140px));
+    left: calc(95%);
+}
+
+.bubble:nth-of-type(8) {
+    top: calc(0.50*(100vh - 140px));
+    left: calc(60%);
+}
+
+.bubble:nth-of-type(9) {
+    top: calc(0.70*(100vh - 140px));
+    left: calc(95%);
+}
+
+.bubble:nth-of-type(10) {
+    top: calc(0.9*(100vh - 140px));
+    left: calc(60%);
+}
+
+/* OFFSET BUBBLES */
+.bubble:nth-of-type(-n + 5) {
+    transform: translateX(calc(60%));
+}
+
+.bubble.offset:nth-of-type(-n + 5) {
+    /* background-color: #fafafa; */
+    background-color:#904e557c
+
+
+}
+
+.bubble.offset:nth-of-type(-n + 5) p {
+    /* color: #904E55 */
+}
+
+.bubble.offset:nth-of-type(-n + 5) {
+    transform: translateX(0)
+}
+
+.bubble.offset:nth-of-type(1) {
+    /* top: calc(0.1*(100vh - 140px)); */
+
+}
+
+.bubble.offset:nth-of-type(2) {
+    /* top: calc(0.28*(100vh - 140px)); */
+
+}
+
+.bubble.offset:nth-of-type(3) {
+    /* top: calc(0.5*(100vh - 140px)); */
+
+}
+
+.bubble.offset:nth-of-type(4) {
+    /* top: calc(0.72*(100vh - 140px)); */
+
+}
+
+.bubble.offset:nth-of-type(5) {
+    /* top: calc(0.9*(100vh - 140px)) */
+
+}
+
 
 .bubbles ~ .plot {
     display: none;
 }
 
 .bubble p {
-    text-transform: uppercase;
-    color: white;
+    text-transform:uppercase;
+    color: #fafafa;
     text-align: center;
     padding: 24px;
     font-family: 'Source Sans Pro', 'Arial', 'sans-serif';
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .graphic-half img {
