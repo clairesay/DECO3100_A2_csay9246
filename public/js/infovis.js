@@ -74,8 +74,8 @@ function make_plot(csv_data){
     // var layout = {
 
     // }
-
-    Plotly.newPlot('myDiv', data);
+    const plotSpaceP = document.querySelectorAll('#prediction .plot')
+    Plotly.newPlot(plotSpaceP, data);
 }
 
 
