@@ -545,22 +545,43 @@ scrollContainer.addEventListener('scroll', function() {
 
 // ///// if this section is 'centred', set as white
   // while (currentIndex) {
+    var labels = document.querySelectorAll('.dot-container label h6')
     if (currentIndex != -1 && currentIndex != 22) {
+      if (currentIndex == 14) {
+        labels.forEach(function(object) {
+          object.style.opacity = 0
+        })
+      } else {
+        labels.forEach(function(object) {
+          object.style.opacity = 1
+        })
+      }
       dotContainer.style.opacity = 1;
-      dotContainer.style.visibility = 'visible'
-      if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('centered') ||
-      paragraphSections[currentIndex].parentElement.parentElement.classList.contains('txt-centered')) {
+
+      // dotContainer.style.visibility = 'visible'
+      if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('centered')) {
+        dotContainer.classList.add('white')
+      } else if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('txt-centered')) {
         dotContainer.classList.add('white')
       } else {
         dotContainer.classList.remove('white')
       }
     } else if (currentIndex == 22) {
       dotContainer.style.opacity = 0;
-      dotContainer.style.visibility = 'hidden';
+      labels.forEach(function(object) {
+        object.style.opacity = 1
+      })
+      // dotContainer.style.visibility = 'hidden';
     }
 
   // }
 })
 
 
-
+var people = document.getElementsByClassName('people')[0]
+for (let i = 0; i < 30*20; i ++) {
+  var person = document.createElement('img')
+  person.setAttribute('src', '../public/images/child.svg')
+  
+  people.appendChild(person)
+}

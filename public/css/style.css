@@ -89,12 +89,16 @@ section.info-plot.txt-centered .text-half {
     /* width: 100vw; */
     z-index: 2;
     width: 80%;
-    height: 100vh;
+    height: 200vh;
     position: absolute;
     top: 0;
     left: 0;  
     padding-left: calc(20% - 24px);
     align-items: flex-start;
+}
+
+section.info-plot.txt-centered.single .text-half {
+    height: 100vh;
 }
 
 section.info-plot.txt-centered article > article.paragraph {
@@ -503,6 +507,7 @@ mark.letter {
     /* flex-wrap: wrap; */
     position: sticky;
     top: 0;
+    height: 100vh;
 }
 
 .bubble {
@@ -695,3 +700,58 @@ mark.letter {
 img ~ .plot {
     display: none;
 }
+
+#people-chart .graphic-half {
+    /* height: 200vh; */
+
+}
+
+#people-chart .graphic-half .plot {
+    display:none;
+}
+
+#people-chart .graphic-half .chart {
+    position: sticky;
+    top: 0;
+    background-color: #303030;
+    height: 100vh;
+    /* width: 20%; */
+
+    /* justify-content: flex-end; */
+    /* align-items: center; */
+
+    /* padding: 0 25%; */
+    overflow: hidden;
+}
+
+#people-chart .graphic-half .chart .people {
+    /* display: flex;
+    flex-wrap: wrap;
+    max-width: 280px; */
+    display: grid;
+    position: absolute;
+    width: 100%;
+    grid-template-rows: repeat(20, 1fr);
+    grid-template-columns: repeat(30, 1fr);
+    column-gap: 24px;
+    row-gap: 24px;
+    /* background-color: plum; */
+    /* overflow: hidden; */
+}
+
+#people-chart .graphic-half .chart .people img {
+    /* width: 100%;
+    height: 100%; */
+    /* width: 20px;
+    height: 50px; */
+    /* width: calc() */
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    /* padding: 12px; */
+    /* width: calc(3.333% - 24px);
+    height: auto;
+    padding: 12px; */
+}
+
