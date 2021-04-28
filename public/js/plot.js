@@ -480,7 +480,7 @@ for (let i = 0; i < dataAll.length; i ++) {
   }
 }
 
-
+var people = document.getElementsByClassName('people')[0]
 ////// SELECTING THE DOT CONTAINER
 var dotContainer = document.getElementsByClassName('dot-container')[0]
 // SCROLL EVENTS FROM NON DATA CALLS
@@ -541,6 +541,11 @@ scrollContainer.addEventListener('scroll', function() {
       addOnce = 1
     }
 
+  } else if (currentIndex + 1 == 16) {
+    people.classList.remove('active')
+
+  } else if (currentIndex + 1 == 17) {
+    people.classList.add('active')
   }
 
 // ///// if this section is 'centred', set as white
@@ -578,8 +583,8 @@ scrollContainer.addEventListener('scroll', function() {
 })
 
 
-var people = document.getElementsByClassName('people')[0]
-for (let i = 0; i < 30*20; i ++) {
+
+for (let i = 0; i < 31 * 10 + 2; i ++) {
   var person = document.createElement('img')
   person.setAttribute('src', '../public/images/child.svg')
   

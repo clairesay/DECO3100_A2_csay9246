@@ -731,10 +731,10 @@ img ~ .plot {
     display: grid;
     position: absolute;
     width: 100%;
-    grid-template-rows: repeat(20, 1fr);
-    grid-template-columns: repeat(30, 1fr);
-    column-gap: 24px;
-    row-gap: 24px;
+    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: repeat(32, 1fr);
+    column-gap: 18px;
+    row-gap: 10px;
     /* background-color: plum; */
     /* overflow: hidden; */
 }
@@ -746,12 +746,25 @@ img ~ .plot {
     height: 50px; */
     /* width: calc() */
     object-fit: cover;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    width: calc((100vw - 32*18px)/32);
+    height: calc((100vh - 8*10px)/9);
     top: 0;
     /* padding: 12px; */
     /* width: calc(3.333% - 24px);
     height: auto;
     padding: 12px; */
+    transition: all 0.5s ease-out;
 }
 
+.people img:not(:nth-of-type(n + 144):nth-of-type(-n + 151)) {
+    filter: opacity(10%);
+}
+
+.people.active img:not(:nth-of-type(n + 144):nth-of-type(-n + 151)) {
+    filter: opacity(100%);
+}
+
+/* .people img:nth-of-type(n + 144):nth-of-type(-n + 152) {
+    filter: opacity(60%);
+} */
