@@ -50,6 +50,7 @@ section.info-plot {
 
     position: relative;
     background-color: #fcfcfc;
+
 }
 
 section.info-plot.centered {
@@ -526,7 +527,7 @@ mark.letter {
     background-color: #904E55;
     /* border: 2px solid #904E55; */
     transition: all 0.4s ease-out;
-    /* transform: scale(0.9); */
+    /* transform: scale(0.8); */
 }
 .bubble.offset:nth-of-type(-n + 5) p {
     /* color: #904E55 */
@@ -597,13 +598,13 @@ mark.letter {
 
 .bubble:nth-of-type(n + 6) {
     opacity: 0;
-    transform: translateX(calc(20%))
+    transform: translateX(calc(20%)) scale(0.9)
     /* display: none */
 }
 
 .bubble.offset:nth-of-type(n + 6) {
     opacity: 100;
-    transform: translateX(0)
+    transform: translateX(0) scale(0.9)
 }
 
 .bubble:nth-of-type(6) {
@@ -633,7 +634,7 @@ mark.letter {
 
 /* OFFSET BUBBLES */
 .bubble:nth-of-type(-n + 5) {
-    transform: translateX(calc(60%));
+    transform: translateX(calc(60%)) scale(0.9)
 }
 
 .bubble.offset:nth-of-type(-n + 5) {
@@ -648,7 +649,7 @@ mark.letter {
 }
 
 .bubble.offset:nth-of-type(-n + 5) {
-    transform: translateX(0)
+    transform: translateX(0) scale(0.9)
 }
 
 .bubble.offset:nth-of-type(1) {
@@ -754,7 +755,7 @@ img ~ .plot {
     /* width: calc(3.333% - 24px);
     height: auto;
     padding: 12px; */
-    transition: all 0.5s ease-out;
+    transition: all 0.4s ease-out;
 }
 
 .people img:not(:nth-of-type(n + 144):nth-of-type(-n + 151)) {
@@ -762,7 +763,11 @@ img ~ .plot {
 }
 
 .people.active img:not(:nth-of-type(n + 144):nth-of-type(-n + 151)) {
-    filter: opacity(100%);
+    filter: opacity(50%);
+}
+
+.people.active img:nth-of-type(n + 144):nth-of-type(-n + 151) {
+    filter: opacity(50%);
 }
 
 /* .people img:nth-of-type(n + 144):nth-of-type(-n + 152) {

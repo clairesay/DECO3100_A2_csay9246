@@ -46,7 +46,8 @@ scrollContainer.addEventListener('scroll', function() {
 })
 
 // all info-plots
-var wholeSections = document.getElementsByClassName('info-plot')
+var wholeSections = document.getElementsByClassName('info-plot');
+
 // the graphic half within the info-plot
 var graphicHalf = document.getElementsByClassName('graphic-half')
 
@@ -97,7 +98,7 @@ const dataAll = [
     plotType: 'new',
     plot: 'scatter',
     title: 'Refugee Numbers in Sub-Saharan Africa'
-  }
+  },
   // {
   //   source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-childmortality.csv",
   //   index: 16,

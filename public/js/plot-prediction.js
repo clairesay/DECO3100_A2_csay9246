@@ -1,35 +1,5 @@
-// var trace1 = {
-//     x: [1, 2, 3, 4],
-//     y: [10, 11, 12, 13],
-//     mode: 'markers',
-//     marker: {
-//       size: [40, 60, 80, 100]
-//     }
-//   };
-  
-//   var data = [trace1];
-  
-//   var layout = {
-//     title: 'Marker Size',
-//     showlegend: false,
-//     height: 600,
-//     width: 600
-//   };
-  
-//   Plotly.newPlot('myDiv', data, layout);
 
-// {
-//   source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-refugee.csv",
-//   index: 19,
-//   section: 25,
-//   piggyIndex: 19,
-//   plotType: 'new',
-//   plot: 'scatter',
-//   title: 'Refugee Numbers in Sub-Saharan Africa'
-// }
-
-
-var plotSpacer = document.querySelectorAll('#refugee2 .plot')[0]
+var plotSpacer = document.querySelectorAll('#prediction .plot')[0]
 const refData = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-refugee.csv"
 function loadRefData() {
     Plotly.d3.csv(refData, function(data){ processRef(data) } );
@@ -160,29 +130,7 @@ var refLayout = {
   ]
 // })
 }
-  // var mapLayout = {
-  //   // title: 'Pure alcohol consumption<br>among adults (age 15+) in 2010',
-  //   geo: {
-  //       projection: {
-  //           type: ''
-  //       },
-  //       lonaxis: {range:[-180, 180]},
-  //       lataxis: {range:[-90, 90]},
-  //       bgcolor: 'transparent',
-  //   },
-  //   bordercolor: 'transparent',
-  //   plot_bgcolor:"#303030",
-  //   paper_bgcolor:"#303030",
-  //   margin: {
-  //       l: 0,
-  //       r: 0,
-  //       b: 0,
-  //       t: 0,
-  //       // pad: 2
-  //   }
-  
-  //   // colorbar:
-  // };
+
   Plotly.newPlot(plotSpacer, refData, refLayout, {displayModeBar: false});
 }
 
