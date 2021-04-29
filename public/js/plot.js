@@ -507,6 +507,52 @@ scrollContainer.addEventListener('scroll', function() {
     // Plotly.restyle(plotSpace[3], {autocolorscale:false, colorscale: [[0, '#904E55'], [1, '#C3C9CE']]})
   
     styleUpdate(currentIndex + 1, 4, 3)
+  
+  } else if (currentIndex + 1 == 10 || currentIndex + 1 == 11 || currentIndex + 1 == 12 || currentIndex + 1 == 13){
+    // else if (currentIndex > 8 || currentIndex < 13) {
+      if (currentIndex == 9) {
+        console.log('nine')
+        Plotly.relayout(plotSpace[6], {
+          geo: {
+              scope: 'africa',
+              bgcolor: 'transparent',
+              lonaxis: {range: [-20, 40]},
+              lataxis: {range: [-10, 10]},    
+          }
+        })
+      } else if (currentIndex == 10) {
+        console.log('ten')
+        Plotly.relayout(plotSpace[6], {
+          geo: {
+              scope: 'africa',
+              bgcolor: 'transparent',
+              lonaxis: {range: [8, 50]},
+              lataxis: {range: [-10, 10]},    
+          }
+        })
+      } else if (currentIndex == 11) {
+        console.log('eleven')
+        Plotly.relayout(plotSpace[6], {
+          geo: {
+              scope: 'africa',
+              bgcolor: 'transparent',
+              lonaxis: {range: [0, 40]},
+              lataxis: {range: [-10, 10]},    
+          }
+        })
+      } else if (currentIndex == 12) {
+        console.log('twelve')
+        Plotly.relayout(plotSpace[6], {
+          geo: {
+              scope: 'africa',
+              bgcolor: 'transparent',
+              // lonaxis: {range: [20, 40]},
+              // lataxis: {range: [-10, 10]},    
+          }
+        })
+      }
+    // }
+    console.log('alert')
   } else if (currentIndex + 1 == 14) {
     if (addOnce == 1) {
       var bubble = document.getElementsByClassName('bubble')

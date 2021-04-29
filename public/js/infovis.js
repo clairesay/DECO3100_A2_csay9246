@@ -76,7 +76,7 @@ function make_plot(csv_data){
         line: {
           dash: 'dot',
           shape: 'spline',
-          color: '#904E55',
+          color: 'transparent',
           width: 3
         },
     }, 
@@ -89,7 +89,7 @@ function make_plot(csv_data){
         line: {
           dash: 'dot',
           shape: 'spline',
-          color: '#ff2424',
+          color: 'transparent',
           width: 3
         },
     }]
