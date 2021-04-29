@@ -1,55 +1,25 @@
-// var trace1 = {
-//     x: [1, 2, 3, 4],
-//     y: [10, 11, 12, 13],
-//     mode: 'markers',
-//     marker: {
-//       size: [40, 60, 80, 100]
-//     }
-//   };
-  
-//   var data = [trace1];
-  
-//   var layout = {
-//     title: 'Marker Size',
-//     showlegend: false,
-//     height: 600,
-//     width: 600
-//   };
-  
-//   Plotly.newPlot('myDiv', data, layout);
-
-// {
-//   source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-refugee.csv",
-//   index: 19,
-//   section: 25,
-//   piggyIndex: 19,
-//   plotType: 'new',
-//   plot: 'scatter',
-//   title: 'Refugee Numbers in Sub-Saharan Africa'
-// }
-
-
+// getting the corresponding plot space
 var plotSpacer = document.querySelectorAll('#refugee2 .plot')[0]
+
+// loading the data
 const refData = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-refugee.csv"
 function loadRefData() {
     Plotly.d3.csv(refData, function(data){ processRef(data) } );
 };
   
+// processing the data
 function processRef(allRows) {
   var year = [], refugees = []
-    // var country = [], value = [], falseValue = [];
-
     for (let i = 0; i < allRows.length; i++) {
         let row = allRows[i];
         year.push(row['Year'])
         refugees.push(row['Refugee Population'])
-        // falseValue.push(row['Shaded Value'])
     }
-
     createRef(year, refugees);
 }
 
 function createRef(year, refugees) {
+  // adding traces
   var refData = [{
     x: year,
     y: refugees,
@@ -72,7 +42,7 @@ var refLayout = {
     family: "Source Sans Pro, sans-serif",
     color: "#303030"
     },
-  // Plotly.relayout(plotSpace[section], {
+    // highlight shapes to draw attention to peak events
     shapes: [
       // 1st highlight during 1994
       {
@@ -106,13 +76,13 @@ var refLayout = {
         line: {
             width: 0
         }
-    },
-
+      },
     ],
     xaxis: {showgrid: false, range: [1990, 2020] }, 
     yaxis: {title:'Refugee Population', showgrid: false,  range: [2500000, 8000000]},
     plot_bgcolor:"transparent",
     paper_bgcolor:"transparent",
+    // annotations to label key events with information
     annotations: [
     {
       x: 1994,
@@ -142,7 +112,6 @@ var refLayout = {
       yref: 'y',
       text: 'Today: 7.3 million refugees',
       font: {
-        // family: 'Courier New, monospace',
         size: 12,
         color: '#fefefe'
       },
@@ -158,33 +127,9 @@ var refLayout = {
       yanchor: 'bottom'
     }
   ]
-// })
 }
-  // var mapLayout = {
-  //   // title: 'Pure alcohol consumption<br>among adults (age 15+) in 2010',
-  //   geo: {
-  //       projection: {
-  //           type: ''
-  //       },
-  //       lonaxis: {range:[-180, 180]},
-  //       lataxis: {range:[-90, 90]},
-  //       bgcolor: 'transparent',
-  //   },
-  //   bordercolor: 'transparent',
-  //   plot_bgcolor:"#303030",
-  //   paper_bgcolor:"#303030",
-  //   margin: {
-  //       l: 0,
-  //       r: 0,
-  //       b: 0,
-  //       t: 0,
-  //       // pad: 2
-  //   }
-  
-  //   // colorbar:
-  // };
+  // creating the plot
   Plotly.newPlot(plotSpacer, refData, refLayout, {displayModeBar: false});
 }
 
-///////// ALL FUNCTIONS EXECUTED BY THE LOAD DATA FUNCTION - CALLS ALL DATA SETS ///////////////////
 loadRefData()

@@ -1,138 +1,144 @@
+// CREDIT TO TUTORIAL PROVIDED BY ALEX (TUTOR) https://www.youtube.com/watch?v=Qc-5WYOYVyU&t=828s
+function make_plot(csv_data){
+    let country_data = csv_data.filter(d => d.country == "Southern Sub-Saharan Africa");
 
-var plotSpacer = document.querySelectorAll('#prediction .plot')[0]
-const refData = "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/ssafrica-refugee.csv"
-function loadRefData() {
-    Plotly.d3.csv(refData, function(data){ processRef(data) } );
-};
-  
-function processRef(allRows) {
-  var year = [], refugees = []
-    // var country = [], value = [], falseValue = [];
+    //To normalise our data, we need to know the minimum and maximum values
+    //Math.min doesn't work with strings so we need to convert
+    let mortality_data = country_data.map(d => Number(d.mortality))
+    let min_mortality = Math.min(...mortality_data)
+    let max_mortality = Math.max(...mortality_data)
 
-    for (let i = 0; i < allRows.length; i++) {
-        let row = allRows[i];
-        year.push(row['Year'])
-        refugees.push(row['Refugee Population'])
-        // falseValue.push(row['Shaded Value'])
+    //This regression library needs values stored in arrays
+    //We are using the strech function to normalise our data
+    let regression_data = country_data.map(d => [stretch(d.year, 2005, 2017, 0, 1),
+                                                 stretch(d.mortality, min_mortality, max_mortality, 0, 1)])
+
+    //Here is where we train our regressor, experiment with the order value
+    let regression_result = regression.polynomial(regression_data, {order: 3});
+
+    let regression_data2 = country_data.map(d => [stretch(d.year, 1995, 2000, 0, 1),
+        stretch(d.mortality, min_mortality, max_mortality, 0, 1)])
+
+    //Here is where we train our regressor, experiment with the order value
+    let regression_result2 = regression.polynomial(regression_data2, {order: 6});
+
+    //Now we have a trained predictor, lets actually use it!
+    let extension_x = [];
+    let extension_y = [];
+    let extension_x2 = [];
+    let extension_y2 = [];
+
+    // GOOD PREDICTION
+    for(let year = 2017; year < 2026; year++){
+        //We've still got to work in the normalised scale
+        let prediction = regression_result.predict(stretch(year, 2005, 2017, 0, 1))[1]
+
+        extension_x.push(year);
+        //Make sure to un-normalise for displaying on the plot
+        extension_y.push(stretch(prediction, 0, 1, min_mortality, max_mortality));
+
     }
 
-    createRef(year, refugees);
-}
+    // BAD PREDICTION
+    for(let year = 2005; year < 2014; year++){
 
-function createRef(year, refugees) {
-  var refData = [{
-    x: year,
-    y: refugees,
-    name: 'Refugee Population',
-    hoverinfo: 'none',
-    type: 'scatter',
-    mode: 'lines',
-    line: {
-      shape: 'spline',
-      color: '#BFB48F',
-      width: 3
-    },
-  }
-];
+        //We've still got to work in the normalised scale
+        let prediction2 = regression_result2.predict(stretch(year, 1995, 2000, 0, 1))[1]
+        extension_x2.push(year);
+        //Make sure to un-normalise for displaying on the plot
+        extension_y2.push(stretch(prediction2, 0, 1, min_mortality, max_mortality));
 
-var refLayout = {
-  title: 'Refugee Population in Sub-Saharan Africa',
-  font: {
-    size: 12,
-    family: "Source Sans Pro, sans-serif",
-    color: "#303030"
-    },
-  // Plotly.relayout(plotSpace[section], {
-    shapes: [
-      // 1st highlight during 1994
-      {
-          type: 'rect',
-          // x-reference is assigned to the x-values
-          xref: 'x',
-          // y-reference is assigned to the plot paper [0,1]
-          yref: 'paper',
-          x0: '1990',
-          y0: 0,
-          x1: '1998',
-          y1: 1,
-          fillcolor: '#d3d3d3',
-          opacity: 0.2,
-          line: {
-              width: 0
-          }
-      },
-      {
-        type: 'rect',
-        // x-reference is assigned to the x-values
-        xref: 'x',
-        // y-reference is assigned to the plot paper [0,1]
-        yref: 'paper',
-        x0: '2013',
-        y0: 0,
-        x1: '2019',
-        y1: 1,
-        fillcolor: '#d3d3d3',
-        opacity: 0.2,
+    }
+
+    // OFFSETTING POSITION ON PLOT
+    for (let i = 0; i < extension_y.length; i ++) {
+        extension_y[i] = extension_y[i] - 8.2
+    }
+
+    for (let i = 0; i < extension_y2.length; i ++) {
+        extension_y2[i] = extension_y2[i] - 35.5
+    }
+
+    for (let i = 0; i < extension_x2.length; i++) {
+        extension_x2[i] = extension_x2[i] + 12
+    }
+    
+    // traces
+    let dataP = [{
+        x: country_data.map(d => d.year),
+        y: country_data.map(d => d.mortality),
+        name: 'Recorded',
+        mode: 'lines',
+        type: 'scatter',
         line: {
-            width: 0
-        }
+          shape: 'spline',
+          color: '#904E55',
+          width: 3
+        },
     },
+    //adding our extension as a second trace
+    {
+        x: extension_x,
+        y: extension_y,
+        name: 'Trendline',
+        mode: 'lines',
+        type: 'scatter',
+        line: {
+          dash: 'dot',
+          shape: 'spline',
+          color: 'transparent',
+          width: 3
+        },
+    }, 
+    {
+        x: extension_x2,
+        y: extension_y2,
+        name: 'Projection            ',
+        mode: 'lines',
+        type: 'scatter',
+        line: {
+          dash: 'dot',
+          shape: 'spline',
+          color: 'transparent',
+          width: 3
+        },
+    }]
 
-    ],
-    xaxis: {showgrid: false, range: [1990, 2020] }, 
-    yaxis: {title:'Refugee Population', showgrid: false,  range: [2500000, 8000000]},
-    plot_bgcolor:"transparent",
-    paper_bgcolor:"transparent",
-    annotations: [
-    {
-      x: 1994,
-      y: 6727751,
-      xref: 'x',
-      yref: 'y',
-      text: '1994: 6.7 million refugees',
-      font: {
-        size: 12,
-        color: '#fefefe'
-      },
-      align: 'center',
-      arrowcolor: '#303030',
-      width: 160,
-      bgcolor: '#303030',
-      showarrow: true,
-      arrowhead: 6,
-      ax: 0,
-      ay: -40,
-      xanchor: 'left',
-      yanchor: 'bottom'
-    },
-    {
-      x: 2019,
-      y: 7304831,
-      xref: 'x',
-      yref: 'y',
-      text: 'Today: 7.3 million refugees',
-      font: {
-        // family: 'Courier New, monospace',
-        size: 12,
-        color: '#fefefe'
-      },
-      align: 'center',
-      arrowcolor: '#303030',
-      width: 180,
-      bgcolor: '#303030',
-      showarrow: true,
-      arrowhead: 6,
-      ax: 0,
-      ay: -40,
-      xanchor: 'right',
-      yanchor: 'bottom'
+    var preLayout = {
+        legend: {
+            x: 0.05,
+            xanchor: 'left',
+            y: 0.05,
+            itemwidth: 20,
+        },
+        title: 'Child Mortality in Sub-Saharan Africa',
+        xaxis:{
+            range:[1990, 2025],
+            showgrid: false,
+        },
+        yaxis:{
+            range:[20, 100],
+            showgrid: false,
+            title: 'Child Mortality'
+        },
+        font: {
+            size: 12,
+            family: "Source Sans Pro, sans-serif",
+            color: "#303030"
+            }, 
+        plot_bgcolor:"transparent",
+        paper_bgcolor:"transparent",
     }
-  ]
-// })
+
+    // plotting the trace
+    const plotSpaceP = document.querySelectorAll('#prediction .plot')[0]
+    Plotly.newPlot(plotSpaceP, dataP, preLayout, {displayModeBar: false});
 }
 
-  Plotly.newPlot(plotSpacer, refData, refLayout, {displayModeBar: false});
-}
+// importing csv data
+Plotly.d3.csv("https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/mortality.csv", make_plot);
 
-///////// ALL FUNCTIONS EXECUTED BY THE LOAD DATA FUNCTION - CALLS ALL DATA SETS ///////////////////
-loadRefData()
+//This stretch function is actually just the map function from p5.js
+function stretch(n, start1, stop1, start2, stop2) {
+    return ((n-start1)/(stop1-start1))*(stop2-start2)+start2;
+};

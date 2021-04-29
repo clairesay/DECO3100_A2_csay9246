@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- CSS stylesheets -->
         <link rel="stylesheet" href="public/css/css-reset.css">
         <link rel="stylesheet" href="public/css/style.css">
+        <!-- JS libraries -->
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/regression/2.0.1/regression.min.js'></script>
-
     </head>
     <body>
+        <!-- ENABLES SCROLL SNAPPING -->
         <div id="scroll-container">
+            <!-- LANDING PAGE -->
             <section id="landing" >
                 <h1>Vulnerable</h1>
                 <h3>How armed conflicts disrupt a global fight to end child mortality</h3>
@@ -18,25 +21,20 @@
                         <path d="M12 6L10.9425 4.9425L6.75001 9.1275V0H5.25001V9.1275L1.06501 4.935L9.53674e-06 6L6.00001 12L12 6Z" fill="#303030"/>
                     </svg>                        
                 </a>
-
             </section>
             <!-- INTRODUCTION -->
             <section id="intro" class="info-plot centered">
                 <article class="text-half">
                     <article id="Child Mortality" class="paragraph">
-                        <p>In 1989, the United Nations’ Convention on the Rights of a Child (UNCRC) 
+                        <p> In 1989, the United Nations’ Convention on the Rights of a Child (UNCRC) 
                             was established in a bid to end child mortality, 
                             declaring</br><q>"all children have the right to life, survival and development, and be 
-                                protected from violence, abuse or neglect."</q></p>
-                                <!-- <i>child mortality<label class="definition"><strong>Child mortality:</strong> The death of children under the age of five. (Our World in Data, 2019)</label></i> -->
+                            protected from violence, abuse or neglect."</q></p>
                     </article>
                 </article>
-
-                <article class="graphic-half">
-
-                </article>
-
+                <article class="graphic-half"></article>
             </section>
+            <!-- CHILD MORTALITY -->
             <section class="info-plot">
                 <article class="text-half">
                     <article class="paragraph">
@@ -50,71 +48,29 @@
                         <p>And it's no coincidence that the drop in child mortality reflects an equally affirming decline in <i>extreme poverty<label class="definition"><strong>Extreme poverty:</strong> To live on an income below the international poverty line of $1.90 per day. (World Bank, 2019)</label></i>.
                             Driven by rapid global economic growth, 1.2 billion people are now living with better access to basic needs, particularly clean water, food and health care. (World Vision, 2021)</p>
                         <p>With a generally higher standard of living, more children are growing up in healthier and safer environments. </p>
-
                     </article>
                 </article>
                 <article class="graphic-half">
                     <div id="myPlot"></div>
-                    <!-- <img src="public/images/charts/world_child_mortality_rate.png"> -->
-                    <!-- <div style="position: sticky; top: 10px;" id="myPlot"></div> -->
                 </article>
             </section>
             <section class="info-plot txt-centered map">
                 <article class="text-half">
                     <article class="paragraph">
-                        <!-- <p>While it's true that the child mortality rate is trending down globally, some parts of the world continue to experience notable, one-off events such as disease and genocide,  -->
                         <p>However, some parts of the world continue to be disrupted in their journey to end child mortality, as a result of insurgency and armed conflict. 
                         </br></br><strong>Prolonged conflicts are known to generate large scale displacement crises, subsequently "exacerbating poverty and food-insecurity." </strong>(Hayes, Lundy and Hallward, 2016)</p>
-
-                        <!-- continues to be one of the most adversely affected regions -->
-                        <!-- As civil unrest rages on in  -->
-                        <!-- which have caused spontaneous spikes in their respective child mortality rates.</p> -->
-                            <!-- nations continue to record more deaths than others. </p> -->
-                        <!-- <p>There are also a spectrum of notable, one-off events which have caused spontaneous spikes in child mortality for certain regions. </p> -->
-                        <!-- Certain regions have also experienced disruptions,  
-                            deviating at some point, in their journey to end child mortality. -->
-                        <!-- <p>But when you look at the data closely, some parts of the world have experienced disruptions,  
-                        deviating at some point, in their journey to end <i>child mortality.<label class="definition"><strong>Child mortality:</strong> The death of children under the age of five. (Our World in Data, 2019)</label></i></p> -->
                     </article>
                     <article class="paragraph">
                         <p>As one of the regions most adversely affected by civil unrest, Sub-Saharan Africa continues to face the repercussions of war in the form of humanitarian crises and increased child mortality. 
                     </br></br>
                         Lets see how.</p>
-                        <!-- <p>Although these seemingly one-off events appear spontaneous in nature, many
-                            share a commonality - having been affected by internal armed conflicts,
-                            these nations have experienced some of the largest modern day refugee crises.
-                        </p> -->
-                        <!-- <p>Living in a state of physical displacement and seeking refuge as a result of war exacerbates poor living standards and diminishes health, particularly amongst young children, who are the most vulnerable. </p> -->
-                        <!-- <p>Sub-Saharan continues to be one of the most adversely affected regions. Lets see why.</p> -->
-                        <!-- <p>A nation under siege sees its civilians living in a state of physical displacement and at the mercy of neighbouring countries and humanitarian aid.  exacerbating poor living standards and diminishing health.  or taking up refugee status</p> -->
-                        <!-- <p>However the regions most affected, have experienced to some extent, internal armed conflicts, which have generated
-                            some of the largest modern day refugee populations. </p> -->
-
-                        <!-- <p>These regions have one clear thing in common - they have 
-                            been affected by internal armed conflicts, which has generated some of the largest modern day
-                            refugee populations.</p> -->
-                    </article>
-                    <!-- <article class="paragraph">
-
-                    </article> -->
-                </article>
-                <article class="graphic-half">
-
-                    <!-- <div style="position: sticky; top: 10px;" id="myPlot"></div> -->
-                </article>
-            </section>
-            <!-- <section class="info-plot centered">
-                <article class="text-half">
-                    <article class="paragraph">
-                        <p>Prolonged conflicts are known to generate large scale displacement crises, subsequently "exacerbating poverty and food-insecurity" amongst the affected.</p>
                     </article>
                 </article>
                 <article class="graphic-half"></article>
-            </section> -->
+            </section>
             <!-- SUB-SAHARAN AFRICA -->
             <section class="info-plot">
                 <article class="text-half">
-
                     <article id="Sub-Saharan Africa" class="paragraph">
                         <p><mark class="letter">A</mark>ccording to data by the United Nations High Commissioner for Refugees (UNHCR), this is the internal
                             <i>refugee<label class="definition"><strong>Refugee:</strong> Someone who is unable or unwilling to return 
@@ -127,15 +83,10 @@
                             two key displacement events - once around 1994, and the other, in very recent times.</strong> </p>
                     </article>
                     <article class="paragraph">
-                        <!-- <p>First, let's have a look at what happened in 1994.</p> -->
                         <p>First, let's have a look at what caused the spike in 1994.</p>
-                        <!-- <button id="capsi">Click Me</button> -->
                     </article>
-                    
                 </article>
-                <article class="graphic-half">
-
-                </article>
+                <article class="graphic-half"></article>
             </section>
             <section class="info-plot txt-centered single">
                 <article class="text-half">
@@ -153,26 +104,10 @@
                     <img style="transform: scaleX(-1)" src="public/images/civilwar.jpg">
                 </article>
             </section>
-            <!-- <section class="info-plot">
-                <article class="text-half">
-                    <article class="paragraph">
-
-                    </article>
-                </article>
-                <article class="graphic-half">
-                </article>
-            </section> -->
-            <!-- EVENTS IN SUB-SAHARAN AFRICA -->
+            <!-- EVENTS IN SUB-SAHARAN AFRICA AROUND 1994 -->
             <section class="info-plot">
                 <article class="text-half">
-                    <!-- <article class="paragraph">
-                        <p>
-                            Although armed conflicts were also ongoing in other parts of the region, the following key events 
-                            caused refugee numbers to skyrocket.
-                        </p>
-                    </article> -->
                     <article class="paragraph">
-                        <!-- <button id="capsi">event</button> -->
                         <h3>1977 - 1992</br> Mozambican Civil War</h3>
                         <p>
                             Armed conflict between Marxist and anti-communist forces within Mozambique finally came 
@@ -181,49 +116,24 @@
                     </article>
                     <article class="paragraph">
                         <h3>‎1993 - 2005</br> Ethnic Violence and Civil War in Burundi</h3>
-                        <!-- <p>
-                            The 1993 and 1994 genocides against the Tutsi and some of the Hutu ethnic groups in Burundi and Rwanda were the culmination 
-                            of decades of inequality and colonial divisions between the ethnic groups. Over 3 
-                            million refugees fled their home country in what was known as the Great Lakes Refugee Crisis.
-                        </p> -->
-                        <p>
-                            
-                            <!-- Civil war broke out following the assassination of Burundi's first democratically elected Hutu president.  -->
-                            <!-- Political crisis in an unstable democratic landscape escalated into armed conflict.  -->
-                            Political crisis escalated into ethnic violence, resulting in the massacre of thousands of Burundian people from various ethnic minorities. 
-                            <!-- The massacre of thousands of innocent Tutsis by the Hutu people, and further killings in retaliation was the culmination of decades of inequality and colonial divisions between ethnic groups in Burundi. -->
-                            <!-- Following the genocidal events, civil war broke out.  -->
-                            These events <strong>displaced nearly 900 000 Burundians, who sought refuge in neighbouring countries.</strong>
-                            <!-- In light of this conflict a further displacing hundreds of thousands of innocent civilians. -->
-                        
-                        </p>
+                        <p> Political crisis escalated into ethnic violence, resulting in the massacre of thousands of Burundian people from various ethnic minorities. 
+                            These events <strong>displaced nearly 900 000 Burundians, who sought refuge in neighbouring countries.</strong></p>
                     </article>
                     <article class="paragraph">
                         <h3>1994</br> Rwandan Genocide</h3>
-                        <p>
-                            In similar scenes, the 1994 genocide initiated by armed militias, 
-                            <!-- against the Tutsi and some of the Hutu ethnic groups in Rwanda,  -->
-                            resulted in the deaths of some 800 000 people. <strong>The extent of the violence prompted 2 million Rwandans to flee their home country</strong> in what was known as the Great Lakes Refugee Crisis.
-                        </p>
+                        <p> In similar scenes, the 1994 genocide initiated by armed militias, 
+                            resulted in the deaths of some 800 000 people. <strong>The extent of the violence prompted 2 million Rwandans to flee their home country</strong> in what was known as the Great Lakes Refugee Crisis.</p>
                     </article>
                     <article  class="paragraph">
-                        <p>From these events, and many like them, villages became warzones and innocent civilians were forced to leave behind the life 
+                        <p> From these events, and many like them, villages became warzones and innocent civilians were forced to leave behind the life 
                             they knew. </p>
-
-                            <p>But why was child mortality specifically impacted by this?</p>
+                        <p>But why was child mortality specifically impacted by this?</p>
                     </article>
                 </article>
                 <article class="graphic-half">
                 </article>
             </section>
-            <!-- CONSEQUENCE ON CHILD MORTALITY -->
-            <!-- <section class="info-plot">
-                <article class="text-half">
-
-                </article>
-                <article class="graphic-half">
-                </article>
-            </section> -->
+            <!-- IMPACTS ON CHILD MORTALITY -->
             <section class="info-plot">
                 <article class="text-half">
                     <article id="Impacts on Child Mortality" class="paragraph">
@@ -232,24 +142,10 @@
                         </br></br>
                             <strong>They are 14 times less likely to survive past 
                             the age of five, compared to children living in non-conflict zones around the world.</strong> (World Health Organisation, 2021)
-                            <!-- They already had a statistically lower chance of survival past
-                            the age of five, compared to children living in non-conflict zones around the world.  -->
                         </p>
                     </article>
                     <article class="paragraph">
-                        <p>
-                            But as a refugee, these children are exposed to further risks, which exacerbate poor health.
-                            <!-- particularly: -->
-                            <!-- even more limited access to basic needs,
-                            Separation from their parents or family members
-                            Potential military enlistment and more.  -->
-                        </p>
-                        <!-- <ul>
-                            <li>Deprivation of basic needs</li>
-                            <li>Separation from parents or family members</li>
-                            <li>Gender-based violence and abuse</li>
-                            <li>Exploitation</li>
-                        </ul> -->
+                        <p>But as a refugee, these children are exposed to further risks, which exacerbate poor health.</p>
                     </article>
                 </article>
                 <article class="graphic-half">
@@ -270,19 +166,13 @@
             <section id="people-chart" class="info-plot txt-centered map">
                 <article class="text-half">
                     <article class="paragraph">
-                        <p>
-                            The consequence? As a result of the events in the early 1990s, 
-                            <strong>child mortality 
-                            <!-- deviated from the common downward trajectory and  -->
-                            climbed by as much as 8 deaths per 1000 live births.</strong>
-                        </p>
+                        <p> The consequence? As a result of the events in the early 1990s, 
+                            <strong>child mortality climbed by as much as 8 deaths per 1000 live births.</strong></p>
                     </article>
                     <article class="paragraph">
-                        <p>
-                            Although this doesn't seem like much, in Sub-Saharan Africa, this 
+                        <p> Although this doesn't seem like much, in Sub-Saharan Africa, this 
                             represented <strong>an additional 180 000 children annually, who never lived to see their 
-                            fifth birthday.</strong>
-                        </p>
+                            fifth birthday.</strong></p>
                     </article>
                 </article>
                 <article class="graphic-half">
@@ -304,17 +194,10 @@
             <section  class="info-plot">
                 <article class="text-half">
                     <article id="Today's Events" class="paragraph">
-                        <p>
-                            <mark class="letter">T</mark>he events in 1994 caused a mass exodus of innocent people who fled for their lives. Recalling the refugee numbers from earlier, <strong>it looks as though history is repeating itself. </strong>
-                            <!-- As we saw in the chart, child mortality is 
-                            So what does this mean for today? As we see in the chart, refugee populations skyrocketed 
-                            to over 7 million people, and it is still rising.  -->
-                        </p>
+                        <p><mark class="letter">T</mark>he events in 1994 caused a mass exodus of innocent people who fled for their lives. Recalling the refugee numbers from earlier, <strong>it looks as though history is repeating itself. </strong></p>
                     </article>
-
                 </article>
-                <article id="refugee2" class="graphic-half">
-                </article>
+                <article id="refugee2" class="graphic-half"></article>
             </section>
             <section class="info-plot">
                 <article class="text-half">
@@ -322,148 +205,51 @@
                         <p>The millions of refugees displaced by the ongoing South Sudanese Civil War, Somali Civil War and numerous, minor armed conflicts across Sub-Saharan Africa, are a dire reflection of past events.
                         </br></br>So what does this mean for the future of child mortality?</p>
                     </article>
-                    <!-- <article class="paragraph"> -->
-                        <!-- <p>
-                            Today, the South Sudanese Civil War, Somali Civil War and many other armed conflicts across the region
-                            <strong>render Sub-Saharan Africa to be one of the most dangerous places in the world to grow up as a child.</strong> (Save our Children, 2021)
-                            </br></br>So what does this mean for the future of child mortality?</p> -->
-                        <!-- <p>
-                            The raging violence today, is a dire reflection of past events. We have already seen that civil wars 
-                            and mass displacement hurt children the most. 
-                        </p> -->
-                             <!-- in Sub-Saharan Africa. -->
-                            <!-- <strong>render Sub-Saharan Africa to be one of the most dangerous places in the world to grow up as a child.</strong> (Save our Children, 2021) -->
-                            <!-- Today, several countries in Sub-Saharan Africa continue to face similar threats from armed 
-                            conflicts between rebel forces, terrorist groups and militant groups, and are known to be 
-                            some of the most dangerous places to grow up as a child. (Save our Children, 2021) -->
-
-                        <!-- <p>The millions of refugees displaced by the ongoing South Sudanese Civil War, Somali Civil War and numerous, minor armed conflicts across Sub-Saharan Africa, are a dire reflection of past events.
-                            </br></br>So what does this mean for the future of child mortality?</p> -->
-                    <!-- </article> -->
-                    <!-- <article  class="paragraph">
-                        
-                    </article> -->
-                    <!-- <article class="paragraph">
-                        <h3>Ongoing South Sudanese Civil War</h3>
-                        <p>
-                            Since the start of its civil war in 2013, South Sudan has seen more than 2.4 million 
-                            refugees flee to neighbouring countries, ‘the majority of whom are women and children’. 
-                            (Mercy Corps, 2020)
-                        </p>
-                    </article>
-                    <article class="paragraph">
-                        <h3>Ongoing armed conflicts</h3>
-                        <p>
-                            Somalia, the Democratic Republic of Congo and many more nations continue to experience civil unrest, 
-                            as a result of dissonance between terrorist groups, rebel forces, militias and government forces.  
-                            These conflicts represent millions more displacements.
-                        </p>
-                    </article> -->
                 </article>
-                <article class="graphic-half">
-                </article>
+                <article class="graphic-half"></article>
             </section>
             <!-- PREDICTIONS ON CHILD MORTALITY -->
             <section class="info-plot">
                 <article class="text-half">
-                    <!-- <article class="paragraph"> -->
-
-
-                        <!-- <p> -->
-                            <!-- For each of the 7 million refugees in Sub-Saharan, many more are internally displaced.  -->
-                            <!-- Of the 7 million refugees, half are aged under five, and with no end in sight to some of the major conflicts, 
-                            we can only think:
-                        </p> -->
-                    <!-- </article> -->
-
                     <article id="predictions" class="paragraph">
                         <p>If the present day refugee crises simply did not happen, <strong>Sub-Saharan Africa was expected to see a sustained decline in their child mortality rate,</strong> as per the global trend.</p>
                     </article>
                     <article class="paragraph">
                         <p>However, the resemblance of past and present refugee crises suggests that <strong>under-five deaths is likely to project upwards in the near future while refugee populations remain high,</strong> similar to how it did in the late 1990s.</p>
                         <p>Only when refugee populations subside, may Sub-Saharan Africa see their child mortality rate return to a new recovery phase.</p></p>
-
-                    </article>
-                    
-                
-                        <!-- <p>If all XXX civil conflicts were to end today, refugee populations would XXX and subsequently, as we've seen, child mortality will return to a new norm. </p>
-                        <p>But if they were not to end yet, the child mortality rate in Sub-Saharan Africa may rise at dangerous rates, with adverse impacts.</p> -->
-                        <!-- <p>
-                            Is this a repeat of the great refugee crisis in 1994? What are the consequences for child mortality? 
-                            And how will Sub-Saharan Africa bounce back from this disaster to rejoin a global fight to end child 
-                            mortality?
-                        </p> -->
                     </article>
                 </article>
-                <article id="prediction" class="graphic-half">
-                </article>
+                <article id="prediction" class="graphic-half"></article>
             </section>
             <section class="info-plot centered">
                 <article class="text-half">
                     <article class="paragraph">
                         <p>The longer armed conflict pans out, the greater the refugee population, putting more and more children at risk.
-                    </br></br>
+                        </br></br>
                         <strong>Until civil conflicts are settled around the world, the fight to end child mortality may continue for longer than we may have hoped.</p></strong>
-                        <!-- <img src="public/images/spline.svg"> -->
-                        <!-- <svg width="31" height="82" viewBox="0 0 31 82" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.94552 1.36955C7.27352 6.60308 6.43192 11.2774 5.0416 16.3172C4.29316 19.0303 3.46122 21.7129 2.69301 24.4158C2.061 26.6396 -0.211398 33.194 3.4566 34.111C6.95913 34.9866 9.43111 29.3784 10.9073 27.1C13.3502 23.3295 17.1752 17.2879 22.2916 17.1965C24.1841 17.1627 24.614 17.937 23.9576 19.7187C22.828 22.7847 20.6879 25.5806 19.0984 28.4189C16.4016 33.2346 12.5545 39.0984 15.6508 44.431C17.1704 47.0481 17.1828 49.6603 17.0044 52.6568C16.784 56.359 16.7273 60.2149 16.9465 63.9139C17.2754 69.4627 17.3168 75.3543 17.3168 80.7127" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M13.5287 1C12.8567 6.23352 12.0151 10.9078 10.6247 15.9477C9.87629 18.6608 9.04435 21.3433 8.27614 24.0463C7.64413 26.27 5.37173 32.8245 9.03973 33.7415C12.5423 34.6171 15.0142 29.0088 16.4904 26.7304C18.9333 22.9599 22.7583 16.9183 27.8747 16.827C29.7672 16.7932 30.1971 17.5675 29.5407 19.3491C28.4112 22.4151 26.271 25.211 24.6816 28.0493C21.9848 32.8651 18.1376 38.7288 21.2339 44.0614C22.7535 46.6786 22.7659 49.2908 22.5875 52.2873C22.3671 55.9894 22.3105 59.8453 22.5297 63.5443C22.8585 69.0931 22.8999 74.9847 22.8999 80.3431" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                             -->
                     </article>
                 </article>
                 <article class="graphic-half">
                 </article>
             </section>
-            <!-- --------------------------------- -->
-            <!-- dynamically updated text describe -->
-            <!-- <h1 class="side-heading">Today</h1> -->
+
             <!-- dynamically updated dot-container -->
             <strong><div class="dot-container"></div></strong>
         </div>
 
-        <script>
-            // smooth scrolling found on stack exchange
-            // https://stackoverflow.com/questions/7717527/smooth-scrolling-when-clicking-an-anchor-link
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            // document.getElementsByTagName('label').forEach(anchor => {
-            //     anchor.addEventListener('click', function (e) {
-            //         e.preventDefault();
-            //         alert('yo')
-            //         document.querySelector('#' + this.id).scrollIntoView({
-            //             behavior: 'smooth'
-            //         });
-            //     });
-            // });
-        </script>
-        <!-- <script src="public/js/script.js"></script> -->
+        <!-- SCRIPT FILES -->
+        <!-- snap scroll functionality and index assortment -->
         <script src="public/js/scroll.js"></script>
+        <!-- plotly functionality for line graphs and adding -->
         <script src="public/js/plot.js"></script>
-        <script src="public/js/infovis.js"></script>
+        <!-- plotly functionality for predictor graph -->
+        <script src="public/js/plot-prediction.js"></script>
+        <!-- plotly functionality for second refugee numbers plot -->
         <script src="public/js/plot-causes.js"></script>
-        <script src="public/js/plot-map.js"></script>
+        <!-- plotly functionality for static map -->
         <script src="public/js/plot-map-background.js"></script>
+        <!-- plotly functionality for refugee scatter plots -->
+        <script src="public/js/plot-map.js"></script>
+
     </body>
-    <!-- <script>
-        var plotDiv = document.getElementById('myPlot');
-        const plotDiv = document.getElementById('myPlot');
-
-        var plotData = {
-
-        }
-
-        Plotly.newPlot(plotDiv, [plotData]);
-        // library object, plot function, HTML element, data object
-        // input parameter must be an array...
-        // (second one)
-    </script> -->
 </html>
