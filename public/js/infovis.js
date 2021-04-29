@@ -27,7 +27,7 @@ function make_plot(csv_data){
     let extension_y = [];
     // let extension_x2 = [];
     let extension_y2 = [];
-    for(let year = 2017; year < 2031; year++){
+    for(let year = 2017; year < 2026; year++){
         //We've still got to work in the normalised scale
         let prediction = regression_result.predict(stretch(year, 2005, 2017, 0, 1))[1]
 
@@ -57,7 +57,7 @@ function make_plot(csv_data){
     let dataP = [{
         x: country_data.map(d => d.year),
         y: country_data.map(d => d.mortality),
-        name: 'Child Mortality',
+        name: 'Recorded',
         mode: 'lines',
         type: 'scatter',
         line: {
@@ -83,7 +83,7 @@ function make_plot(csv_data){
     {
         x: extension_x,
         y: extension_y2,
-        name: 'Projected child mortality',
+        name: 'Projection',
         mode: 'lines',
         type: 'scatter',
         line: {
@@ -95,9 +95,17 @@ function make_plot(csv_data){
     }]
 
     var preLayout = {
+        legend: {
+            x: 0.05,
+            xanchor: 'left',
+            y: 0.05,
+            itemwidth: 20,
+            // "orientation": "h"
+            // y: 0
+        },
         title: 'Child Mortality in Sub-Saharan Africa',
         xaxis:{
-            range:[1990, 2032],
+            range:[1990, 2026],
             showgrid: false,
         },
         yaxis:{

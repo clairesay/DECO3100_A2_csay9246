@@ -56,29 +56,29 @@
   Plotly.newPlot(plotSpace[6], data, lay, {displayModeBar: false});
   ///// construction 
 
-  document.getElementById('capsi').addEventListener('click', 
-  function(e){
-      e.preventDefault()
-    console.log('zooming')
+  // document.getElementById('capsi').addEventListener('click', 
+  // function(e){
+  //     e.preventDefault()
+  //   console.log('zooming')
     
-    Plotly.animate(plotSpace[6], {
-      layout: {
-        geo: {
-            scope: 'africa',
-            bgcolor: 'transparent',
-            lonaxis: {range: [20, 40]},
-            lataxis: {range: [-10, 10]},    
-        }
+  //   Plotly.animate(plotSpace[6], {
+  //     layout: {
+  //       geo: {
+  //           scope: 'africa',
+  //           bgcolor: 'transparent',
+  //           lonaxis: {range: [20, 40]},
+  //           lataxis: {range: [-10, 10]},    
+  //       }
 
-      }
-    }, {
-      transition: {
-        duration: 500,
-        easing: 'cubic-in-out'
-      },
-      frame: {
-        duration: 500
-      }
-    })
-  }
-  )
+  //     }
+  //   }, {
+  //     transition: {
+  //       duration: 500,
+  //       easing: 'cubic-in-out'
+  //     },
+  //     frame: {
+  //       duration: 500
+  //     }
+  //   })
+  // }
+  // )

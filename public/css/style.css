@@ -72,6 +72,10 @@ section.info-plot.centered {
     background-attachment:scroll;
 }
 
+section.info-plot.centered:nth-of-type(2){
+
+}
+
 section.info-plot.txt-centered {
 
     padding: 0 20%;
@@ -180,6 +184,20 @@ section#intro.info-plot.centered .paragraph p {
     background-color: #fefefeaf;
     border-radius: 4px;
     /* border: solid 2px #BFB48F; */
+}
+
+section.info-plot.centered .paragraph p {
+    padding: 24px;
+    filter: drop-shadow(0 0 2px #909090);
+    background-color: #fefefeaf;
+    border-radius: 4px;
+}
+
+section.info-plot.centered:last-of-type .paragraph p {
+    padding: 0;
+    filter: none;
+    background-color: transparent;
+    border-radius: 0;
 }
 
 section.info-plot article > article.paragraph:not(:first-child), section.info-plot article p:not(:first-child) {

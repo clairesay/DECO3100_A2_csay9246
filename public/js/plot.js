@@ -475,9 +475,85 @@ function styleUpdate(index, piggyIndex, section) {
     if (index == 20) {          
       Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E55', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
       Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#ff242400', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
+      Plotly.relayout(document.querySelectorAll('#prediction .plot')[0], 
+      {
+      shapes: [],
+      title: 'Child Mortality in Sub-Saharan Africa',
+      xaxis:{
+          range:[1990, 2026],
+          showgrid: false,
+      },
+      yaxis:{
+          range:[20, 100],
+          showgrid: false,
+          title: 'Child Mortality'
+      },
+      font: {
+          size: 12,
+          family: "Source Sans Pro, sans-serif",
+          color: "#303030"
+          }, 
+      plot_bgcolor:"transparent",
+      paper_bgcolor:"transparent",
+    })
     } else if (index == 21) {
       Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E55fa', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
       Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#ff2424', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
+      Plotly.relayout(document.querySelectorAll('#prediction .plot')[0], 
+      {
+      shapes: [
+        // 1st highlight during 1994
+        {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '1995',
+            y0: 0,
+            x1: '2005',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+        {
+          type: 'rect',
+          // x-reference is assigned to the x-values
+          xref: 'x',
+          // y-reference is assigned to the plot paper [0,1]
+          yref: 'paper',
+          x0: '2017',
+          y0: 0,
+          x1: '2025',
+          y1: 1,
+          fillcolor: '#d3d3d3',
+          opacity: 0.2,
+          line: {
+              width: 0
+          }
+      }
+      ],
+      title: 'Child Mortality in Sub-Saharan Africa',
+      xaxis:{
+          range:[1990, 2026],
+          showgrid: false,
+      },
+      yaxis:{
+          range:[20, 100],
+          showgrid: false,
+          title: 'Child Mortality'
+      },
+      font: {
+          size: 12,
+          family: "Source Sans Pro, sans-serif",
+          color: "#303030"
+          }, 
+      plot_bgcolor:"transparent",
+      paper_bgcolor:"transparent",
+    })
     }
   }
 }
