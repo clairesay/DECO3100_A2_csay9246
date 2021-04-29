@@ -66,7 +66,7 @@ function createRef(year, refugees) {
 ];
 
 var refLayout = {
-  title: 'Refugee Population in Sub-Saharan Africa',
+  title: 'Refugees Originating from Sub-Saharan Africa',
   font: {
     size: 12,
     family: "Source Sans Pro, sans-serif",

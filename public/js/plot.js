@@ -42,7 +42,7 @@ var layout = {
 var currentIndex;
 scrollContainer.addEventListener('scroll', function() {
   currentIndex = Math.round(this.scrollTop/sectionHeight) - 1
-  // console.log(currentIndex)
+  console.log(currentIndex)
 })
 
 // all info-plots
@@ -262,7 +262,7 @@ function styleUpdate(index, piggyIndex, section) {
     }
   } else if (piggyIndex == 6) {
     Plotly.restyle(plotSpace[section], {line:{color: '#BFB48F', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 0);
-    Plotly.relayout(plotSpace[section], {title: 'Refugee Population in Sub-Saharan Africa', yaxis: {color:"#303030", showgrid:false, title:'Refugee Population'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
+    Plotly.relayout(plotSpace[section], {title: 'Refugees Originating from Sub-Saharan Africa', yaxis: {color:"#303030", showgrid:false, title:'Refugee Population'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
     if (index == 6) {
       // alert('five')
       Plotly.relayout(plotSpace[section], {
@@ -471,6 +471,14 @@ function styleUpdate(index, piggyIndex, section) {
         }
       ]})
     }
+  } else if (index == 20 || index == 21) {
+    if (index == 20) {          
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E55', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#ff242400', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
+    } else if (index == 21) {
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E55fa', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#ff2424', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
+    }
   }
 }
 
@@ -491,11 +499,11 @@ scrollContainer.addEventListener('scroll', function() {
   } else if (currentIndex + 1 == 8) {
     styleUpdate(currentIndex + 1, 6, 4)
   } else if (currentIndex + 1 == 4) {
-    console.log('foo')
+    // console.log('foo')
     // Plotly.restyle(plotSpace[3], {autocolorscale:false, colorscale: [[0, '#C3C9CE'], [1, '#904E55']]})
     styleUpdate(currentIndex + 1, 4, 3)
   } else if (currentIndex + 1 == 5) {
-    console.log('bar')
+    // console.log('bar')
     // Plotly.restyle(plotSpace[3], {autocolorscale:false, colorscale: [[0, '#904E55'], [1, '#C3C9CE']]})
   
     styleUpdate(currentIndex + 1, 4, 3)
@@ -547,6 +555,12 @@ scrollContainer.addEventListener('scroll', function() {
 
   } else if (currentIndex + 1 == 17) {
     people.classList.add('active')
+  } else if (currentIndex + 1 == 20) {
+    console.log('bro')
+    styleUpdate(currentIndex + 1, 0, 0)
+  } else if (currentIndex + 1 == 21) {
+    console.log('meme')
+    styleUpdate(currentIndex + 1, 0, 0)
   }
 
 // ///// if this section is 'centred', set as white
