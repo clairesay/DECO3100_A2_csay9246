@@ -20,7 +20,7 @@ var layout = {
     x: 0.05,
     xanchor: 'left',
     y: 0.05,
-    itemwidth: 20,
+    // itemwidth: 20,
     // "orientation": "h"
     // y: 0
   },
@@ -35,7 +35,6 @@ var layout = {
   // },
   plot_bgcolor:"transparent",
   paper_bgcolor:"transparent",
-
 };
 
 // currentIndex of the info-plot in view
@@ -154,7 +153,7 @@ function plotThis(index, piggyIndex, section, xLegend, yLegend, title) {
       dataBranch[index].trace.push({
         x: dataBranch[index].x, 
         y: dataBranch[index].y,
-        name: yLegend,
+        name: yLegend + '      ',
         hoverinfo: 'none',
         type: 'scatter',
         mode: 'lines',
@@ -184,7 +183,7 @@ function addThis(index, piggyIndex, section, yLegend) {
     x: dataBranch[index].x, 
     y: dataBranch[index].y,
     yaxis: 'y2',
-    name: yLegend,
+    name: yLegend + '      ',
     type: 'scatter',
     mode: 'lines',
     opacity: 0.1,
@@ -207,19 +206,19 @@ function styleUpdate(index, piggyIndex, section) {
     if (index == 2) {
       Plotly.restyle(plotSpace[section], {opacity: 0.1, hoverinfo: 'none'}, 1);
       Plotly.restyle(plotSpace[section], {opacity: 1, hoverinfo: 'x+y'}, 0);
-      Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#303030", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population', range:[0, 40]}})
+      Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#303030", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'% of World Population living in Extreme Poverty', range:[0, 40]}})
       // Plotly.update(plotSpace[section], {}, {yaxis: {color:"#303030", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title: 'Extreme Poverty % of Population'}})
       
     } else if (index == 3) {
       Plotly.restyle(plotSpace[section], {opacity: 1, hoverinfo: 'x+y'}, 1);
       Plotly.restyle(plotSpace[section], {opacity: 0.1, hoverinfo: 'none'}, 0);
-      Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#30303050", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population', range:[0, 40]}})
+      Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#30303050", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:'% of World Population living in Extreme Poverty', range:[0, 40]}})
       // Plotly.update(plotSpace[section], {}, {yaxis:{color:"#30303050", showgrid:false, title:'Child Mortality Rate'}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title: 'Extreme Poverty % of Population'}})
     }
   } else if (piggyIndex == 4) {
     if (index == 4) {
       // Plotly.deleteTraces(plotSpace[section], 1);
-      Plotly.restyle(plotSpace[section], {marker: {opacity: 0}}, 1);
+      Plotly.restyle(plotSpace[section], {marker: {opacity: 0}, hoverinfo: 'none'}, 1);
       Plotly.relayout(plotSpace[section], {geo: {
         projection: {
             type: ''
@@ -240,7 +239,7 @@ function styleUpdate(index, piggyIndex, section) {
     }})
     } else if (index == 5) {
 
-      Plotly.restyle(plotSpace[section], {marker: {opacity: 1}}, 1);
+      Plotly.restyle(plotSpace[section], {marker: {opacity: 1}, hoverinfo: 'none'}, 1);
       Plotly.relayout(plotSpace[section], {geo: {
         projection: {
             type: ''
@@ -263,7 +262,7 @@ function styleUpdate(index, piggyIndex, section) {
   } else if (piggyIndex == 6) {
     Plotly.restyle(plotSpace[section], {line:{color: '#BFB48F', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 0);
     Plotly.relayout(plotSpace[section], {title: 'Refugees Originating from Sub-Saharan Africa', yaxis: {color:"#303030", showgrid:false, title:'Refugee Population'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
-    if (index == 6) {
+    if (index == 5 || index == 6) {
       // alert('five')
       Plotly.relayout(plotSpace[section], {
         shapes: [],
@@ -473,8 +472,8 @@ function styleUpdate(index, piggyIndex, section) {
     }
   } else if (index == 20 || index == 21) {
     if (index == 20) {          
-      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E55', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
-      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#ff242400', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#564E58', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E5530', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
       Plotly.relayout(document.querySelectorAll('#prediction .plot')[0], 
       {
       shapes: [],
@@ -497,8 +496,8 @@ function styleUpdate(index, piggyIndex, section) {
       paper_bgcolor:"transparent",
     })
     } else if (index == 21) {
-      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E55fa', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
-      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#ff2424', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#564E5830', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E55', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
       Plotly.relayout(document.querySelectorAll('#prediction .plot')[0], 
       {
       shapes: [
@@ -588,22 +587,24 @@ scrollContainer.addEventListener('scroll', function() {
     // else if (currentIndex > 8 || currentIndex < 13) {
       if (currentIndex == 9) {
         console.log('nine')
+        // setTimeout(function() {
         Plotly.relayout(plotSpace[6], {
           geo: {
               scope: 'africa',
               bgcolor: 'transparent',
-              lonaxis: {range: [-20, 40]},
-              lataxis: {range: [-10, 10]},    
+              // lonaxis: {range: [-20, 40]},
+              // lataxis: {range: [-10, 10]},    
           }
         })
+      // } , 2000)
       } else if (currentIndex == 10) {
         console.log('ten')
         Plotly.relayout(plotSpace[6], {
           geo: {
               scope: 'africa',
               bgcolor: 'transparent',
-              lonaxis: {range: [8, 50]},
-              lataxis: {range: [-10, 10]},    
+              // lonaxis: {range: [8, 50]},
+              // lataxis: {range: [-10, 10]},    
           }
         })
       } else if (currentIndex == 11) {
@@ -612,8 +613,8 @@ scrollContainer.addEventListener('scroll', function() {
           geo: {
               scope: 'africa',
               bgcolor: 'transparent',
-              lonaxis: {range: [0, 40]},
-              lataxis: {range: [-10, 10]},    
+              // lonaxis: {range: [0, 40]},
+              // lataxis: {range: [-10, 10]},    
           }
         })
       } else if (currentIndex == 12) {
@@ -678,17 +679,17 @@ scrollContainer.addEventListener('scroll', function() {
   } else if (currentIndex + 1 == 17) {
     people.classList.add('active')
   } else if (currentIndex + 1 == 20) {
-    console.log('bro')
+
     styleUpdate(currentIndex + 1, 0, 0)
   } else if (currentIndex + 1 == 21) {
-    console.log('meme')
+
     styleUpdate(currentIndex + 1, 0, 0)
   }
 
 // ///// if this section is 'centred', set as white
   // while (currentIndex) {
     var labels = document.querySelectorAll('.dot-container label h6')
-    if (currentIndex != -1 && currentIndex != 22) {
+    if (currentIndex != -1 && currentIndex != 21) {
       if (currentIndex == 14) {
         labels.forEach(function(object) {
           object.style.opacity = 0
@@ -708,7 +709,7 @@ scrollContainer.addEventListener('scroll', function() {
       } else {
         dotContainer.classList.remove('white')
       }
-    } else if (currentIndex == 22) {
+    } else if (currentIndex == 21) {
       dotContainer.style.opacity = 0;
       labels.forEach(function(object) {
         object.style.opacity = 1

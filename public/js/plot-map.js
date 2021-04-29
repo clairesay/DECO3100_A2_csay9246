@@ -36,8 +36,8 @@
       geo: {
           scope: 'africa',
           bgcolor: 'transparent',
-          lonaxis: {range: [-30, 60]},
-          lataxis: {range: [-45, 45]},    
+        //   lonaxis: {range: [-30, 60]},
+        //   lataxis: {range: [-45, 45]},    
       },
       dragmode: false,
 

@@ -18,6 +18,10 @@ p, li, q {
     font-size: 14px;
 }
 
+strong {
+    font-weight: 700;
+}
+
 /* GLOBAL STYLES */
 #scroll-container {
     max-height: 100vh;
@@ -215,6 +219,7 @@ section.info-plot article > article.paragraph {
 
 section.info-plot article > article.paragraph > h3 {
     color: #999999;
+    font-weight: 600
     /* padding-bottom: 1.5em; */
 }
 
@@ -286,6 +291,7 @@ section#landing * {
 section#landing a {
     margin-top: 2em;
     padding: 6px 24px;
+    font-weight: 600;
 }
 
 /* INTRO */

@@ -25,8 +25,9 @@ function make_plot(csv_data){
     //Now we have a trained predictor, lets actually use it!
     let extension_x = [];
     let extension_y = [];
-    // let extension_x2 = [];
+    let extension_x2 = [];
     let extension_y2 = [];
+
     for(let year = 2017; year < 2026; year++){
         //We've still got to work in the normalised scale
         let prediction = regression_result.predict(stretch(year, 2005, 2017, 0, 1))[1]
@@ -35,23 +36,41 @@ function make_plot(csv_data){
         //Make sure to un-normalise for displaying on the plot
         extension_y.push(stretch(prediction, 0, 1, min_mortality, max_mortality));
 
+    }
 
-        //We've still got to work in the normalised scale
-        let prediction2 = regression_result2.predict(stretch(year, 1995, 2000, 0, 1))[1]
+    for(let year = 2005; year < 2014; year++){
+        // //We've still got to work in the normalised scale
+        // let prediction = regression_result.predict(stretch(year, 2005, 2017, 0, 1))[1]
 
-        // extension_x2.push(year);
-        //Make sure to un-normalise for displaying on the plot
-        extension_y2.push(stretch(prediction2, 0, 1, min_mortality, max_mortality));
+        // extension_x.push(year);
+        // //Make sure to un-normalise for displaying on the plot
+        // extension_y.push(stretch(prediction, 0, 1, min_mortality, max_mortality));
+
+        // if (year >= 2017 && < 2026) {
+            // console.log(year)
+            //We've still got to work in the normalised scale
+            let prediction2 = regression_result2.predict(stretch(year, 1995, 2000, 0, 1))[1]
+            extension_x2.push(year);
+            // extension_x2.push(year);
+            //Make sure to un-normalise for displaying on the plot
+            extension_y2.push(stretch(prediction2, 0, 1, min_mortality, max_mortality));
+
+        // }
 
 
     }
 
-    for (let i = 0; i < extension_y2.length; i ++) {
+
+    for (let i = 0; i < extension_y.length; i ++) {
         extension_y[i] = extension_y[i] - 8.2
     }
 
     for (let i = 0; i < extension_y2.length; i ++) {
-        extension_y2[i] = extension_y2[i] - 45
+        extension_y2[i] = extension_y2[i] - 35.5
+    }
+
+    for (let i = 0; i < extension_x2.length; i++) {
+        extension_x2[i] = extension_x2[i] + 12
     }
     
     let dataP = [{
@@ -81,9 +100,9 @@ function make_plot(csv_data){
         },
     }, 
     {
-        x: extension_x,
+        x: extension_x2,
         y: extension_y2,
-        name: 'Projection',
+        name: 'Projection            ',
         mode: 'lines',
         type: 'scatter',
         line: {
@@ -105,7 +124,7 @@ function make_plot(csv_data){
         },
         title: 'Child Mortality in Sub-Saharan Africa',
         xaxis:{
-            range:[1990, 2026],
+            range:[1990, 2025],
             showgrid: false,
         },
         yaxis:{
