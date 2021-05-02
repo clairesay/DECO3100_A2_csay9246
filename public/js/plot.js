@@ -435,7 +435,7 @@ function styleUpdate(index, piggyIndex, section) {
   } else if (index == 20 || index == 21) {
     if (index == 20) {          
       Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#564E58', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
-      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E5530', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E5510', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
       Plotly.relayout(document.querySelectorAll('#prediction .plot')[0], 
       {
       shapes: [],
@@ -550,8 +550,8 @@ scrollContainer.addEventListener('scroll', function() {
           geo: {
               scope: 'africa',
               bgcolor: 'transparent',
-              // lonaxis: {range: [-20, 40]},
-              // lataxis: {range: [-10, 10]},    
+              // lonaxis: {range: [25, 45]},
+              // lataxis: {range: [-32, -5]},    
           }
         })
       } else if (currentIndex == 10) {

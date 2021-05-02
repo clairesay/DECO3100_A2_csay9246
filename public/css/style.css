@@ -587,3 +587,14 @@ i:hover > label.definition {
 .people.active img:nth-of-type(n + 144):nth-of-type(-n + 151) {
     filter: opacity(50%);
 }
+
+
+/* MINI MAP */
+#mini-map {
+    position: fixed;
+    top: 15%;
+    width: 200px;
+    height: 200px;
+    right: 45%;
+    /* top: -10%; */
+}
