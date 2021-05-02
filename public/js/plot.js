@@ -543,48 +543,49 @@ scrollContainer.addEventListener('scroll', function() {
   } else if (currentIndex + 1 == 5) {
     styleUpdate(currentIndex + 1, 4, 3)
 
-  // SUB-SAHARAN AFRICA MAP
-  } else if (currentIndex + 1 == 10 || currentIndex + 1 == 11 || currentIndex + 1 == 12 || currentIndex + 1 == 13){
-      if (currentIndex == 9) {
-        Plotly.relayout(plotSpace[6], {
-          geo: {
-              scope: 'africa',
-              bgcolor: 'transparent',
-              // lonaxis: {range: [25, 45]},
-              // lataxis: {range: [-32, -5]},    
-          }
-        })
-      } else if (currentIndex == 10) {
-        Plotly.relayout(plotSpace[6], {
-          geo: {
-              scope: 'africa',
-              bgcolor: 'transparent',
-              // lonaxis: {range: [8, 50]},
-              // lataxis: {range: [-10, 10]},    
-          }
-        })
-      } else if (currentIndex == 11) {
-        Plotly.relayout(plotSpace[6], {
-          geo: {
-              scope: 'africa',
-              bgcolor: 'transparent',
-              // lonaxis: {range: [0, 40]},
-              // lataxis: {range: [-10, 10]},    
-          }
-        })
-      } else if (currentIndex == 12) {
-        Plotly.relayout(plotSpace[6], {
-          geo: {
-              scope: 'africa',
-              bgcolor: 'transparent',
-              // lonaxis: {range: [20, 40]},
-              // lataxis: {range: [-10, 10]},    
-          }
-        })
-      }
+  // // SUB-SAHARAN AFRICA MAP
+  // } else if (currentIndex + 1 == 10 || currentIndex + 1 == 11 || currentIndex + 1 == 12 || currentIndex + 1 == 13){
+  //     if (currentIndex == 9) {
+  //       Plotly.relayout(plotSpace[6], {
+  //         geo: {
+  //             scope: 'africa',
+  //             bgcolor: 'transparent',
+  //             // lonaxis: {range: [25, 45]},
+  //             // lataxis: {range: [-32, -5]},    
+  //         }
+  //       })
+  //     } else if (currentIndex == 10) {
+  //       Plotly.relayout(plotSpace[6], {
+  //         geo: {
+  //             scope: 'africa',
+  //             bgcolor: 'transparent',
+  //             // lonaxis: {range: [8, 50]},
+  //             // lataxis: {range: [-10, 10]},    
+  //         }
+  //       })
+  //     } else if (currentIndex == 11) {
+  //       Plotly.relayout(plotSpace[6], {
+  //         geo: {
+  //             scope: 'africa',
+  //             bgcolor: 'transparent',
+  //             // lonaxis: {range: [0, 40]},
+  //             // lataxis: {range: [-10, 10]},    
+  //         }
+  //       })
+  //     } else if (currentIndex == 12) {
+  //       Plotly.relayout(plotSpace[6], {
+  //         geo: {
+  //             scope: 'africa',
+  //             bgcolor: 'transparent',
+  //             // lonaxis: {range: [20, 40]},
+  //             // lataxis: {range: [-10, 10]},    
+  //         }
+  //       })
+  //     }
 
-  // BUBBLE CHART
+
   } else if (currentIndex + 1 == 14) {
+      // BUBBLE CHART
     if (addOnce == 1) {
       var bubble = document.getElementsByClassName('bubble')
       for (let i = 0; i < bubble.length; i ++) {
