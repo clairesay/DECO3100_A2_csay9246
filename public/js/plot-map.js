@@ -69,8 +69,54 @@
         r: 0,
         b: 0,
         t: 0,
+    },
+    // annotations: [
+    //     {
+    //         x: 0.67,
+    //         y: 0.54,
+    //         xref: 'paper',
+    //         yref: 'paper',
+    //         text: 'Rwanda: 2257570 refugees',
+    //         font: {
+    //           size: 12,
+    //           color: '#fefefe',
+    //           family: "Source Sans Pro, sans-serif",
+    //         },
+    //         align: 'center',
+    //         arrowcolor: '#303030',
+    //         width: 175,
+    //         bgcolor: '#303030',
+    //         showarrow: true,
+    //         arrowhead: 6,
+    //         ax: 0,
+    //         ay: -40,
+    //         xanchor: 'left',
+    //         yanchor: 'bottom'
+    //     },
+    //     {
+    //         x: 0.23,
+    //         y: 0.57,
+    //         xref: 'paper',
+    //         yref: 'paper',
+    //         text: 'Liberia: 797834 refugees',
+    //         font: {
+    //           size: 12,
+    //           color: '#fefefe',
+    //           family: "Source Sans Pro, sans-serif",
+    //         },
+    //         align: 'center',
+    //         arrowcolor: '#303030',
+    //         width: 160,
+    //         bgcolor: '#303030',
+    //         showarrow: true,
+    //         arrowhead: 6,
+    //         ax: 0,
+    //         ay: -40,
+    //         xanchor: 'left',
+    //         yanchor: 'bottom'
+    //       },
 
-    }
+    //   ]
     
   };
 //   var miniMapData = [{
@@ -164,9 +210,17 @@
 //   plotSpace[6].parentElement.appendChild(miniMap)
 //   var miniMap = document.getElementById('mini-map')
 //   Plotly.newPlot(miniMap, miniMapData, miniMapLayout, {displayModeBar: false})
+var bubbleLegend = document.getElementById('legend')
+bubbleLegend.style.visibility = 'visible';
+plotSpace[6].appendChild(bubbleLegend);
   Plotly.newPlot(plotSpace[6], data, lay, {displayModeBar: false});
+
     }
     loadRefugeeMapData()
+
+    // var plotContainer = plotSpace[6].querySelectorAll('.plot-container')[0]
+    // plotContainer.style.maxWidth = '90%'
+
   ///// construction 
 
   // document.getElementById('capsi').addEventListener('click', 

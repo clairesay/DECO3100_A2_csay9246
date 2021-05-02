@@ -544,44 +544,188 @@ scrollContainer.addEventListener('scroll', function() {
     styleUpdate(currentIndex + 1, 4, 3)
 
   // // SUB-SAHARAN AFRICA MAP
-  // } else if (currentIndex + 1 == 10 || currentIndex + 1 == 11 || currentIndex + 1 == 12 || currentIndex + 1 == 13){
-  //     if (currentIndex == 9) {
-  //       Plotly.relayout(plotSpace[6], {
-  //         geo: {
-  //             scope: 'africa',
-  //             bgcolor: 'transparent',
-  //             // lonaxis: {range: [25, 45]},
-  //             // lataxis: {range: [-32, -5]},    
-  //         }
-  //       })
-  //     } else if (currentIndex == 10) {
-  //       Plotly.relayout(plotSpace[6], {
-  //         geo: {
-  //             scope: 'africa',
-  //             bgcolor: 'transparent',
-  //             // lonaxis: {range: [8, 50]},
-  //             // lataxis: {range: [-10, 10]},    
-  //         }
-  //       })
-  //     } else if (currentIndex == 11) {
-  //       Plotly.relayout(plotSpace[6], {
-  //         geo: {
-  //             scope: 'africa',
-  //             bgcolor: 'transparent',
-  //             // lonaxis: {range: [0, 40]},
-  //             // lataxis: {range: [-10, 10]},    
-  //         }
-  //       })
-  //     } else if (currentIndex == 12) {
-  //       Plotly.relayout(plotSpace[6], {
-  //         geo: {
-  //             scope: 'africa',
-  //             bgcolor: 'transparent',
-  //             // lonaxis: {range: [20, 40]},
-  //             // lataxis: {range: [-10, 10]},    
-  //         }
-  //       })
-  //     }
+  } else if (currentIndex + 1 == 10 || currentIndex + 1 == 11 || currentIndex + 1 == 12 || currentIndex + 1 == 13){
+      if (currentIndex == 9) {
+        Plotly.relayout(plotSpace[6], {
+
+          geo: {
+            scope: 'africa',
+            bgcolor: 'transparent',
+          //   lonaxis: {range: [-30, 60]},
+          //   lataxis: {range: [-45, 45]}, 
+          countrycolor: '#303030'
+        },
+        dragmode: false,
+        
+        plot_bgcolor:"transparent",
+        paper_bgcolor:"transparent",
+        margin: {
+          l: 0,
+          r: 0,
+          b: 0,
+          t: 0,
+      },
+      annotations: []
+        })
+      } else if (currentIndex == 10) {
+        Plotly.relayout(plotSpace[6], {
+            geo: {
+                scope: 'africa',
+                bgcolor: 'transparent',
+              //   lonaxis: {range: [-30, 60]},
+              //   lataxis: {range: [-45, 45]}, 
+              countrycolor: '#303030'
+            },
+            dragmode: false,
+            
+            plot_bgcolor:"transparent",
+            paper_bgcolor:"transparent",
+            margin: {
+              l: 0,
+              r: 0,
+              b: 0,
+              t: 0,
+      
+          },
+          annotations: [
+              {
+                  x: 0.67,
+                  y: 0.54,
+                  xref: 'paper',
+                  yref: 'paper',
+                  text: 'Rwanda: 2257570 refugees',
+                  font: {
+                    size: 12,
+                    color: '#fefefe',
+                    family: "Source Sans Pro, sans-serif",
+                  },
+                  align: 'center',
+                  arrowcolor: '#303030',
+                  width: 175,
+                  bgcolor: '#303030',
+                  showarrow: true,
+                  arrowhead: 6,
+                  ax: 0,
+                  ay: -50,
+                  xanchor: 'right',
+                  yanchor: 'bottom'
+              },
+              {
+                  x: 0.23,
+                  y: 0.57,
+                  xref: 'paper',
+                  yref: 'paper',
+                  text: 'Liberia: 797834 refugees',
+                  font: {
+                    size: 12,
+                    color: 'transparent',
+                    family: "Source Sans Pro, sans-serif",
+                  },
+                  align: 'center',
+                  arrowcolor: 'transparent',
+                  width: 160,
+                  bgcolor: 'transparent',
+                  showarrow: true,
+                  arrowhead: 6,
+                  ax: 0,
+                  ay: -40,
+                  xanchor: 'left',
+                  yanchor: 'bottom'
+                },
+      
+            ]
+        })
+
+      } else if (currentIndex == 11) {
+        Plotly.relayout(plotSpace[6], {
+          geo: {
+              scope: 'africa',
+              bgcolor: 'transparent',
+            //   lonaxis: {range: [-30, 60]},
+            //   lataxis: {range: [-45, 45]}, 
+            countrycolor: '#303030'
+          },
+          dragmode: false,
+          
+          plot_bgcolor:"transparent",
+          paper_bgcolor:"transparent",
+          margin: {
+            l: 0,
+            r: 0,
+            b: 0,
+            t: 0,
+    
+        },
+        annotations: [
+            {
+                x: 0.67,
+                y: 0.54,
+                xref: 'paper',
+                yref: 'paper',
+                text: 'Rwanda: 2257570 refugees',
+                font: {
+                  size: 12,
+                  color: 'transparent',
+                  family: "Source Sans Pro, sans-serif",
+                },
+                align: 'center',
+                arrowcolor: 'transparent',
+                width: 175,
+                bgcolor: 'transparent',
+                showarrow: true,
+                arrowhead: 6,
+                ax: 0,
+                ay: -50,
+                xanchor: 'right',
+                yanchor: 'bottom'
+            },
+            {
+                x: 0.23,
+                y: 0.57,
+                xref: 'paper',
+                yref: 'paper',
+                text: 'Liberia: 797834 refugees',
+                font: {
+                  size: 12,
+                  color: '#fefefe',
+                  family: "Source Sans Pro, sans-serif",
+                },
+                align: 'center',
+                arrowcolor: '#303030',
+                width: 160,
+                bgcolor: '#303030',
+                showarrow: true,
+                arrowhead: 6,
+                ax: 0,
+                ay: -40,
+                xanchor: 'left',
+                yanchor: 'bottom'
+              },
+    
+          ]
+      })
+      } else if (currentIndex == 12) {
+        Plotly.relayout(plotSpace[6], {
+          geo: {
+            scope: 'africa',
+            bgcolor: 'transparent',
+          //   lonaxis: {range: [-30, 60]},
+          //   lataxis: {range: [-45, 45]}, 
+          countrycolor: '#303030'
+        },
+        dragmode: false,
+        
+        plot_bgcolor:"transparent",
+        paper_bgcolor:"transparent",
+        margin: {
+          l: 0,
+          r: 0,
+          b: 0,
+          t: 0,
+      },
+      annotations: []
+        })
+      }
 
 
   } else if (currentIndex + 1 == 14) {
