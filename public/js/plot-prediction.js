@@ -1,5 +1,5 @@
 // CREDIT TO TUTORIAL PROVIDED BY ALEX (TUTOR) https://www.youtube.com/watch?v=Qc-5WYOYVyU&t=828s
-function make_plot(csv_data){
+function make_plot(csv_data) {
     let country_data = csv_data.filter(d => d.country == "Southern Sub-Saharan Africa");
 
     //To normalise our data, we need to know the minimum and maximum values
@@ -11,16 +11,16 @@ function make_plot(csv_data){
     //This regression library needs values stored in arrays
     //We are using the strech function to normalise our data
     let regression_data = country_data.map(d => [stretch(d.year, 2005, 2017, 0, 1),
-                                                 stretch(d.mortality, min_mortality, max_mortality, 0, 1)])
+    stretch(d.mortality, min_mortality, max_mortality, 0, 1)])
 
     //Here is where we train our regressor, experiment with the order value
-    let regression_result = regression.polynomial(regression_data, {order: 3});
+    let regression_result = regression.polynomial(regression_data, { order: 3 });
 
     let regression_data2 = country_data.map(d => [stretch(d.year, 1995, 2000, 0, 1),
-        stretch(d.mortality, min_mortality, max_mortality, 0, 1)])
+    stretch(d.mortality, min_mortality, max_mortality, 0, 1)])
 
     //Here is where we train our regressor, experiment with the order value
-    let regression_result2 = regression.polynomial(regression_data2, {order: 6});
+    let regression_result2 = regression.polynomial(regression_data2, { order: 6 });
 
     //Now we have a trained predictor, lets actually use it!
     let extension_x = [];
@@ -29,7 +29,7 @@ function make_plot(csv_data){
     let extension_y2 = [];
 
     // GOOD PREDICTION
-    for(let year = 2017; year < 2026; year++){
+    for (let year = 2017; year < 2026; year++) {
         //We've still got to work in the normalised scale
         let prediction = regression_result.predict(stretch(year, 2005, 2017, 0, 1))[1]
 
@@ -40,7 +40,7 @@ function make_plot(csv_data){
     }
 
     // BAD PREDICTION
-    for(let year = 2005; year < 2014; year++){
+    for (let year = 2005; year < 2014; year++) {
 
         //We've still got to work in the normalised scale
         let prediction2 = regression_result2.predict(stretch(year, 1995, 2000, 0, 1))[1]
@@ -51,18 +51,18 @@ function make_plot(csv_data){
     }
 
     // OFFSETTING POSITION ON PLOT
-    for (let i = 0; i < extension_y.length; i ++) {
+    for (let i = 0; i < extension_y.length; i++) {
         extension_y[i] = extension_y[i] - 8.2
     }
 
-    for (let i = 0; i < extension_y2.length; i ++) {
+    for (let i = 0; i < extension_y2.length; i++) {
         extension_y2[i] = extension_y2[i] - 35.5
     }
 
     for (let i = 0; i < extension_x2.length; i++) {
         extension_x2[i] = extension_x2[i] + 12
     }
-    
+
     // traces
     let dataP = [{
         x: country_data.map(d => d.year),
@@ -71,9 +71,9 @@ function make_plot(csv_data){
         mode: 'lines',
         type: 'scatter',
         line: {
-          shape: 'spline',
-          color: '#904E55',
-          width: 3
+            shape: 'spline',
+            color: '#904E55',
+            width: 3
         },
     },
     //adding our extension as a second trace
@@ -84,12 +84,12 @@ function make_plot(csv_data){
         mode: 'lines',
         type: 'scatter',
         line: {
-          dash: 'dot',
-          shape: 'spline',
-          color: 'transparent',
-          width: 3
+            dash: 'dot',
+            shape: 'spline',
+            color: 'transparent',
+            width: 3
         },
-    }, 
+    },
     {
         x: extension_x2,
         y: extension_y2,
@@ -97,10 +97,10 @@ function make_plot(csv_data){
         mode: 'lines',
         type: 'scatter',
         line: {
-          dash: 'dot',
-          shape: 'spline',
-          color: 'transparent',
-          width: 3
+            dash: 'dot',
+            shape: 'spline',
+            color: 'transparent',
+            width: 3
         },
     }]
 
@@ -112,12 +112,12 @@ function make_plot(csv_data){
             itemwidth: 20,
         },
         title: 'Child Mortality in Sub-Saharan Africa',
-        xaxis:{
-            range:[1990, 2025],
+        xaxis: {
+            range: [1990, 2025],
             showgrid: false,
         },
-        yaxis:{
-            range:[20, 100],
+        yaxis: {
+            range: [20, 100],
             showgrid: false,
             title: 'Child Mortality'
         },
@@ -125,14 +125,14 @@ function make_plot(csv_data){
             size: 12,
             family: "Source Sans Pro, sans-serif",
             color: "#303030"
-            }, 
-        plot_bgcolor:"transparent",
-        paper_bgcolor:"transparent",
+        },
+        plot_bgcolor: "transparent",
+        paper_bgcolor: "transparent",
     }
 
     // plotting the trace
     const plotSpaceP = document.querySelectorAll('#prediction .plot')[0]
-    Plotly.newPlot(plotSpaceP, dataP, preLayout, {displayModeBar: false});
+    Plotly.newPlot(plotSpaceP, dataP, preLayout, { displayModeBar: false });
 }
 
 // importing csv data
@@ -140,5 +140,5 @@ Plotly.d3.csv("https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/
 
 //This stretch function is actually just the map function from p5.js
 function stretch(n, start1, stop1, start2, stop2) {
-    return ((n-start1)/(stop1-start1))*(stop2-start2)+start2;
+    return ((n - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
 };

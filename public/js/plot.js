@@ -1,16 +1,16 @@
 // Common layout for all charts - will be altered according to each chart's individual configuration
 var layout = {
   font: {
-  size: 12,
-  family: "Source Sans Pro, sans-serif",
-  color: "#303030"
+    size: 12,
+    family: "Source Sans Pro, sans-serif",
+    color: "#303030"
   },
   xaxis: {
-  showgrid: false,
-  range: [1990, 2020],
+    showgrid: false,
+    range: [1990, 2020],
   },
   yaxis: {
-  showgrid: false,
+    showgrid: false,
   },
   showgrid: false,
   showLegend: true,
@@ -24,14 +24,14 @@ var layout = {
     overlaying: 'y',
     side: 'right'
   },
-  plot_bgcolor:"transparent",
-  paper_bgcolor:"transparent",
+  plot_bgcolor: "transparent",
+  paper_bgcolor: "transparent",
 };
 
 // currentIndex of the info-plot in view
 var currentIndex;
-scrollContainer.addEventListener('scroll', function() {
-  currentIndex = Math.round(this.scrollTop/sectionHeight) - 1
+scrollContainer.addEventListener('scroll', function () {
+  currentIndex = Math.round(this.scrollTop / sectionHeight) - 1
   console.log(currentIndex)
 })
 
@@ -42,7 +42,7 @@ var wholeSections = document.getElementsByClassName('info-plot');
 var graphicHalf = document.getElementsByClassName('graphic-half')
 
 // creating divs for a plot in each graphic half space. This is where we'll directly plot stuff
-for (let i = 0; i < wholeSections.length; i ++) {
+for (let i = 0; i < wholeSections.length; i++) {
   var myPlot = document.createElement('div');
   myPlot.setAttribute('class', 'plot')
   graphicHalf[i].appendChild(myPlot)
@@ -56,16 +56,16 @@ var dataBranch = [];
 
 // creating an object for each of the sections in the array
 var paragraphSections = document.getElementsByClassName('paragraph')
-for (let i = 0; i < paragraphSections.length; i ++) {
+for (let i = 0; i < paragraphSections.length; i++) {
   // making space in the data branches
-  dataBranch.push({x: [], y: [], plotType: '', trace:[]})
+  dataBranch.push({ x: [], y: [], plotType: '', trace: [] })
 }
 
 // array of all the data
 const dataAll = [
   {
-    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-child-mortality.csv", 
-    index: 2, 
+    source: "https://raw.githubusercontent.com/clairesay/DECO3100_A2_csay9246/main/public/data/world-child-mortality.csv",
+    index: 2,
     section: 2,
     piggyIndex: 2,
     plotType: 'new',
@@ -96,7 +96,7 @@ var addOnce = 0;
 
 // ////////////// LOADING THE CSVS /////////////// //
 function loadData(dataSource) {
-  Plotly.d3.csv(dataSource.source, function(data){ processData(data, dataSource.index, dataSource.piggyIndex, dataSource.section, dataSource.plotType, dataSource.plot, dataSource.title) } );
+  Plotly.d3.csv(dataSource.source, function (data) { processData(data, dataSource.index, dataSource.piggyIndex, dataSource.section, dataSource.plotType, dataSource.plot, dataSource.title) });
 };
 
 // ///////////// PROCESSING THE DATA ///////////////
@@ -109,11 +109,11 @@ function processData(allRows, index, piggyIndex, section, plotType, plot, title)
   // PUSHING THE RELEVANT DATA TO THE DATABRANCH ARRAY/OBJECT TREE
   for (let i = 0; i < allRows.length; i++) {
     let row = allRows[i];
-    dataBranch[index].x.push( row[xKey] );
-    dataBranch[index].y.push( row[yKey] );
+    dataBranch[index].x.push(row[xKey]);
+    dataBranch[index].y.push(row[yKey]);
     dataBranch[index].plotType = plotType;
   }
-  
+
   // CHECK IF WE'RE CREATING A NEW PLOT OR BUILDING ON TOP OF AN EXISTING ONE
   if (plotType == 'new') {
     plotThis(index, piggyIndex, section, xKey, yKey, title)
@@ -121,7 +121,7 @@ function processData(allRows, index, piggyIndex, section, plotType, plot, title)
     addThis(index, piggyIndex, section, yKey)
   }
 
-  scrollContainer.addEventListener('scroll', function() {
+  scrollContainer.addEventListener('scroll', function () {
     if (currentIndex + 1 == index) {
       styleUpdate(index, piggyIndex, section)
     }
@@ -132,7 +132,7 @@ function processData(allRows, index, piggyIndex, section, plotType, plot, title)
 function plotThis(index, piggyIndex, section, xLegend, yLegend, title) {
   // pushing the data
   dataBranch[index].trace.push({
-    x: dataBranch[index].x, 
+    x: dataBranch[index].x,
     y: dataBranch[index].y,
     name: yLegend + '      ',
     hoverinfo: 'none',
@@ -147,13 +147,13 @@ function plotThis(index, piggyIndex, section, xLegend, yLegend, title) {
   layout.title = title
   layout.xaxis.title = xLegend
   layout.yaxis.title = yLegend
-  Plotly.newPlot(plotSpace[section], dataBranch[index].trace, layout, {displayModeBar: false})
+  Plotly.newPlot(plotSpace[section], dataBranch[index].trace, layout, { displayModeBar: false })
 }
 
 // ADD TRACES TO THE PLOTS
 function addThis(index, piggyIndex, section, yLegend) {
   dataBranch[piggyIndex].trace.push({
-    x: dataBranch[index].x, 
+    x: dataBranch[index].x,
     y: dataBranch[index].y,
     yaxis: 'y2',
     name: yLegend + '      ',
@@ -168,7 +168,7 @@ function addThis(index, piggyIndex, section, yLegend) {
 
   });
   layout.yaxis2.title = yLegend
-  Plotly.update(plotSpace[section], dataBranch[piggyIndex].trace, layout, {displayModeBar: false})
+  Plotly.update(plotSpace[section], dataBranch[piggyIndex].trace, layout, { displayModeBar: false })
 }
 
 // UPDATING ANY STYLES OF THE TRACES OR LAYOUT
@@ -176,128 +176,133 @@ function styleUpdate(index, piggyIndex, section) {
   // CHILD MORTALITY X EXTREME POVERTY
   if (piggyIndex == 2) {
     if (index == 2) {
-      Plotly.restyle(plotSpace[section], {opacity: 0.1, hoverinfo: 'none'}, 1);
-      Plotly.restyle(plotSpace[section], {opacity: 1, hoverinfo: 'x+y'}, 0);
-      Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#303030", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'% of World Population living in Extreme Poverty', range:[0, 40]}})
+      Plotly.restyle(plotSpace[section], { opacity: 0.1, hoverinfo: 'none' }, 1);
+      Plotly.restyle(plotSpace[section], { opacity: 1, hoverinfo: 'x+y' }, 0);
+      Plotly.relayout(plotSpace[section], { title: 'Child Mortality and Extreme Poverty', yaxis: { color: "#303030", showgrid: false, title: 'Child Mortality Rate', range: [0, 90] }, yaxis2: { color: "#30303050", showgrid: false, overlaying: 'y', side: 'right', title: '% of World Population living in Extreme Poverty', range: [0, 40] } })
     } else if (index == 3) {
-      Plotly.restyle(plotSpace[section], {opacity: 1, hoverinfo: 'x+y'}, 1);
-      Plotly.restyle(plotSpace[section], {opacity: 0.1, hoverinfo: 'none'}, 0);
-      Plotly.relayout(plotSpace[section], {title: 'Child Mortality and Extreme Poverty', yaxis: {color:"#30303050", showgrid:false, title:'Child Mortality Rate', range:[0, 90]}, yaxis2: {color:"#303030", showgrid:false, overlaying:'y', side:'right', title:'% of World Population living in Extreme Poverty', range:[0, 40]}})
+      Plotly.restyle(plotSpace[section], { opacity: 1, hoverinfo: 'x+y' }, 1);
+      Plotly.restyle(plotSpace[section], { opacity: 0.1, hoverinfo: 'none' }, 0);
+      Plotly.relayout(plotSpace[section], { title: 'Child Mortality and Extreme Poverty', yaxis: { color: "#30303050", showgrid: false, title: 'Child Mortality Rate', range: [0, 90] }, yaxis2: { color: "#303030", showgrid: false, overlaying: 'y', side: 'right', title: '% of World Population living in Extreme Poverty', range: [0, 40] } })
     }
-  // MAP OF CONFLICT SITUATIONS AROUND THE WORLD
+    // MAP OF CONFLICT SITUATIONS AROUND THE WORLD
   } else if (piggyIndex == 4) {
     if (index == 4) {
-      Plotly.restyle(plotSpace[section], {marker: {opacity: 0}, hoverinfo: 'none'}, 1);
-      Plotly.relayout(plotSpace[section], {geo: {
-        projection: {
+      Plotly.restyle(plotSpace[section], { marker: { opacity: 0 }, hoverinfo: 'none' }, 1);
+      Plotly.relayout(plotSpace[section], {
+        geo: {
+          projection: {
             type: ''
+          },
+          lonaxis: { range: [-180, 180] },
+          lataxis: { range: [-90, 90] },
+          bgcolor: 'transparent',
         },
-        lonaxis: {range:[-180, 180]},
-        lataxis: {range:[-90, 90]},
-        bgcolor: 'transparent',
-    },
-    bordercolor: 'transparent',
-    plot_bgcolor:"#303030",
-    paper_bgcolor:"#303030",
-    margin: {
-        l: 0,
-        r: 0,
-        b: 0,
-        t: 0,
-    }})
+        bordercolor: 'transparent',
+        plot_bgcolor: "#303030",
+        paper_bgcolor: "#303030",
+        margin: {
+          l: 0,
+          r: 0,
+          b: 0,
+          t: 0,
+        }
+      })
     } else if (index == 5) {
 
-      Plotly.restyle(plotSpace[section], {marker: {opacity: 1}, hoverinfo: 'none'}, 1);
-      Plotly.relayout(plotSpace[section], {geo: {
-        projection: {
+      Plotly.restyle(plotSpace[section], { marker: { opacity: 1 }, hoverinfo: 'none' }, 1);
+      Plotly.relayout(plotSpace[section], {
+        geo: {
+          projection: {
             type: ''
+          },
+          lonaxis: { range: [-150, 120] },
+          lataxis: { range: [-60, 60] },
+          bgcolor: 'transparent',
         },
-        lonaxis: {range:[-150, 120]},
-        lataxis: {range:[-60, 60]},
-        bgcolor: 'transparent',
-    },
-    bordercolor: 'transparent',
-    plot_bgcolor:"#303030",
-    paper_bgcolor:"#303030",
-    margin: {
-        l: 0,
-        r: 0,
-        b: 0,
-        t: 0,
-    }})
+        bordercolor: 'transparent',
+        plot_bgcolor: "#303030",
+        paper_bgcolor: "#303030",
+        margin: {
+          l: 0,
+          r: 0,
+          b: 0,
+          t: 0,
+        }
+      })
     }
-  // REFUGEE POPULATIONS 1
+    // REFUGEE POPULATIONS 1
   } else if (piggyIndex == 6) {
-    Plotly.restyle(plotSpace[section], {line:{color: '#BFB48F', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 0);
-    Plotly.relayout(plotSpace[section], {title: 'Refugees Originating from Sub-Saharan Africa', yaxis: {color:"#303030", showgrid:false, title:'Refugee Population'}, yaxis2: {color:"#30303050", showgrid:false, overlaying:'y', side:'right', title:'Extreme Poverty % of Population'}})
+    Plotly.restyle(plotSpace[section], { line: { color: '#BFB48F', shape: 'spline', width: 3 }, hoverinfo: 'x+y' }, 0);
+    Plotly.relayout(plotSpace[section], { title: 'Refugees Originating from Sub-Saharan Africa', yaxis: { color: "#303030", showgrid: false, title: 'Refugee Population' }, yaxis2: { color: "#30303050", showgrid: false, overlaying: 'y', side: 'right', title: 'Extreme Poverty % of Population' } })
     if (index == 5 || index == 6) {
       Plotly.relayout(plotSpace[section], {
         shapes: [],
-        xaxis: {showgrid: false, range: [1990, 2020] }, 
-        yaxis: {title:'Refugee Population', showgrid: false,  range: [2500000, 8000000]},
+        xaxis: { showgrid: false, range: [1990, 2020] },
+        yaxis: { title: 'Refugee Population', showgrid: false, range: [2500000, 8000000] },
         annotations: [
-        {
-          x: 1994,
-          y: 6727751,
-          xref: 'x',
-          yref: 'y',
-          text: '1994: 6.7 million refugees',
-          font: {
-            size: 12,
-            color: 'transparent'
+          {
+            x: 1994,
+            y: 6727751,
+            xref: 'x',
+            yref: 'y',
+            text: '1994: 6.7 million refugees',
+            font: {
+              size: 12,
+              color: 'transparent'
+            },
+            align: 'center',
+            arrowcolor: 'transparent',
+            width: 160,
+            bgcolor: 'transparent',
+            showarrow: true,
+            arrowhead: 6,
+            ax: 0,
+            ay: -40,
+            xanchor: 'left',
+            yanchor: 'bottom'
           },
-          align: 'center',
-          arrowcolor: 'transparent',
-          width: 160,
-          bgcolor: 'transparent',
-          showarrow: true,
-          arrowhead: 6,
-          ax: 0,
-          ay: -40,
-          xanchor: 'left',
-          yanchor: 'bottom'
-        },
-        {
-          x: 2019,
-          y: 7304831,
-          xref: 'x',
-          yref: 'y',
-          text: 'Today: 7.3 million refugees',
-          font: {
-            size: 12,
-            color: 'transparent'
-          },
-          align: 'center',
-          arrowcolor: 'transparent',
-          width: 180,
-          bgcolor: 'transparent',
-          showarrow: true,
-          arrowhead: 6,
-          ax: 0,
-          ay: -40,
-          xanchor: 'right',
-          yanchor: 'bottom'
-        }
-      ]})
+          {
+            x: 2019,
+            y: 7304831,
+            xref: 'x',
+            yref: 'y',
+            text: 'Today: 7.3 million refugees',
+            font: {
+              size: 12,
+              color: 'transparent'
+            },
+            align: 'center',
+            arrowcolor: 'transparent',
+            width: 180,
+            bgcolor: 'transparent',
+            showarrow: true,
+            arrowhead: 6,
+            ax: 0,
+            ay: -40,
+            xanchor: 'right',
+            yanchor: 'bottom'
+          }
+        ]
+      })
     } else if (index == 7) {
       Plotly.relayout(plotSpace[section], {
         shapes: [
           // 1st highlight during 1994
           {
-              type: 'rect',
-              // x-reference is assigned to the x-values
-              xref: 'x',
-              // y-reference is assigned to the plot paper [0,1]
-              yref: 'paper',
-              x0: '1990',
-              y0: 0,
-              x1: '1998',
-              y1: 1,
-              fillcolor: '#d3d3d3',
-              opacity: 0.2,
-              line: {
-                  width: 0
-              }
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '1990',
+            y0: 0,
+            x1: '1998',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+              width: 0
+            }
           },
           {
             type: 'rect',
@@ -312,215 +317,217 @@ function styleUpdate(index, piggyIndex, section) {
             fillcolor: '#d3d3d3',
             opacity: 0.2,
             line: {
-                width: 0
+              width: 0
             }
-        },
+          },
 
         ],
-        xaxis: {showgrid: false, range: [1990, 2020] }, 
-        yaxis: {title:'Refugee Population', showgrid: false,  range: [2500000, 8000000]},
+        xaxis: { showgrid: false, range: [1990, 2020] },
+        yaxis: { title: 'Refugee Population', showgrid: false, range: [2500000, 8000000] },
         annotations: [
-        {
-          x: 1994,
-          y: 6727751,
-          xref: 'x',
-          yref: 'y',
-          text: '1994: 6.7 million refugees',
-          font: {
-            size: 12,
-            color: '#fefefe'
+          {
+            x: 1994,
+            y: 6727751,
+            xref: 'x',
+            yref: 'y',
+            text: '1994: 6.7 million refugees',
+            font: {
+              size: 12,
+              color: '#fefefe'
+            },
+            align: 'center',
+            arrowcolor: '#303030',
+            width: 160,
+            bgcolor: '#303030',
+            showarrow: true,
+            arrowhead: 6,
+            ax: 0,
+            ay: -40,
+            xanchor: 'left',
+            yanchor: 'bottom'
           },
-          align: 'center',
-          arrowcolor: '#303030',
-          width: 160,
-          bgcolor: '#303030',
-          showarrow: true,
-          arrowhead: 6,
-          ax: 0,
-          ay: -40,
-          xanchor: 'left',
-          yanchor: 'bottom'
-        },
-        {
-          x: 2019,
-          y: 7304831,
-          xref: 'x',
-          yref: 'y',
-          text: 'Today: 7.3 million refugees',
-          font: {
-            size: 12,
-            color: '#fefefe'
-          },
-          align: 'center',
-          arrowcolor: '#303030',
-          width: 180,
-          bgcolor: '#303030',
-          showarrow: true,
-          arrowhead: 6,
-          ax: 0,
-          ay: -40,
-          xanchor: 'right',
-          yanchor: 'bottom'
-        }
-      ]})
+          {
+            x: 2019,
+            y: 7304831,
+            xref: 'x',
+            yref: 'y',
+            text: 'Today: 7.3 million refugees',
+            font: {
+              size: 12,
+              color: '#fefefe'
+            },
+            align: 'center',
+            arrowcolor: '#303030',
+            width: 180,
+            bgcolor: '#303030',
+            showarrow: true,
+            arrowhead: 6,
+            ax: 0,
+            ay: -40,
+            xanchor: 'right',
+            yanchor: 'bottom'
+          }
+        ]
+      })
     } else if (index == 8) {
       Plotly.relayout(plotSpace[section], {
         shapes: [
           // 1st highlight during 1994
           {
-              type: 'rect',
-              // x-reference is assigned to the x-values
-              xref: 'x',
-              // y-reference is assigned to the plot paper [0,1]
-              yref: 'paper',
-              x0: '1990',
-              y0: 0,
-              x1: '1998',
-              y1: 1,
-              fillcolor: '#d3d3d3',
-              opacity: 0.2,
-              line: {
-                  width: 0
-              }
-          },
-        ],
-        xaxis: {showgrid: false, range: [1990, 2020] }, 
-        yaxis: {title:'Refugee Population', showgrid: false, range: [2500000, 8000000]},
-        annotations: [
-        {
-          x: 1994,
-          y: 6727751,
-          xref: 'x',
-          yref: 'y',
-          text: '1994: 6.7 million refugees',
-          font: {
-            size: 12,
-            color: '#fefefe'
-          },
-          align: 'center',
-          arrowcolor: '#303030',
-          width: 160,
-          bgcolor: '#303030',
-          showarrow: true,
-          arrowhead: 6,
-          ax: 0,
-          ay: -40,
-          xanchor: 'left',
-          yanchor: 'bottom'
-        },
-        {
-          x: 2019,
-          y: 7304831,
-          xref: 'x',
-          yref: 'y',
-          text: 'Today: 7.3 million refugees',
-          font: {
-            size: 12,
-            color: 'transparent'
-          },
-          align: 'center',
-          arrowcolor: 'transparent',
-          width: 180,
-          bgcolor: 'transparent',
-          showarrow: true,
-          arrowhead: 6,
-          ax: 0,
-          ay: -40,
-          xanchor: 'right',
-          yanchor: 'bottom'
-        }
-      ]})
-    }
-  // PREDICTION PLOT
-  } else if (index == 20 || index == 21) {
-    if (index == 20) {          
-      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#564E58', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
-      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E5510', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
-      Plotly.relayout(document.querySelectorAll('#prediction .plot')[0], 
-      {
-      shapes: [],
-      title: 'Child Mortality in Sub-Saharan Africa',
-      xaxis:{
-          range:[1990, 2026],
-          showgrid: false,
-      },
-      yaxis:{
-          range:[20, 100],
-          showgrid: false,
-          title: 'Child Mortality'
-      },
-      font: {
-          size: 12,
-          family: "Source Sans Pro, sans-serif",
-          color: "#303030"
-          }, 
-      plot_bgcolor:"transparent",
-      paper_bgcolor:"transparent",
-    })
-    } else if (index == 21) {
-      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#564E5830', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 1);
-      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], {line:{dash: 'dot', color: '#904E55', shape: 'spline', width: 3}, hoverinfo: 'x+y'}, 2);
-      Plotly.relayout(document.querySelectorAll('#prediction .plot')[0], 
-      {
-      shapes: [
-        // 1st highlight during 1994
-        {
             type: 'rect',
             // x-reference is assigned to the x-values
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '1995',
+            x0: '1990',
             y0: 0,
-            x1: '2005',
+            x1: '1998',
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
             line: {
-                width: 0
-            }
-        },
-        {
-          type: 'rect',
-          // x-reference is assigned to the x-values
-          xref: 'x',
-          // y-reference is assigned to the plot paper [0,1]
-          yref: 'paper',
-          x0: '2017',
-          y0: 0,
-          x1: '2025',
-          y1: 1,
-          fillcolor: '#d3d3d3',
-          opacity: 0.2,
-          line: {
               width: 0
+            }
+          },
+        ],
+        xaxis: { showgrid: false, range: [1990, 2020] },
+        yaxis: { title: 'Refugee Population', showgrid: false, range: [2500000, 8000000] },
+        annotations: [
+          {
+            x: 1994,
+            y: 6727751,
+            xref: 'x',
+            yref: 'y',
+            text: '1994: 6.7 million refugees',
+            font: {
+              size: 12,
+              color: '#fefefe'
+            },
+            align: 'center',
+            arrowcolor: '#303030',
+            width: 160,
+            bgcolor: '#303030',
+            showarrow: true,
+            arrowhead: 6,
+            ax: 0,
+            ay: -40,
+            xanchor: 'left',
+            yanchor: 'bottom'
+          },
+          {
+            x: 2019,
+            y: 7304831,
+            xref: 'x',
+            yref: 'y',
+            text: 'Today: 7.3 million refugees',
+            font: {
+              size: 12,
+              color: 'transparent'
+            },
+            align: 'center',
+            arrowcolor: 'transparent',
+            width: 180,
+            bgcolor: 'transparent',
+            showarrow: true,
+            arrowhead: 6,
+            ax: 0,
+            ay: -40,
+            xanchor: 'right',
+            yanchor: 'bottom'
           }
-      }
-      ],
-      title: 'Child Mortality in Sub-Saharan Africa',
-      xaxis:{
-          range:[1990, 2026],
-          showgrid: false,
-      },
-      yaxis:{
-          range:[20, 100],
-          showgrid: false,
-          title: 'Child Mortality'
-      },
-      font: {
-          size: 12,
-          family: "Source Sans Pro, sans-serif",
-          color: "#303030"
-          }, 
-      plot_bgcolor:"transparent",
-      paper_bgcolor:"transparent",
-    })
+        ]
+      })
+    }
+    // PREDICTION PLOT
+  } else if (index == 20 || index == 21) {
+    if (index == 20) {
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], { line: { dash: 'dot', color: '#564E58', shape: 'spline', width: 3 }, hoverinfo: 'x+y' }, 1);
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], { line: { dash: 'dot', color: '#904E5510', shape: 'spline', width: 3 }, hoverinfo: 'x+y' }, 2);
+      Plotly.relayout(document.querySelectorAll('#prediction .plot')[0],
+        {
+          shapes: [],
+          title: 'Child Mortality in Sub-Saharan Africa',
+          xaxis: {
+            range: [1990, 2026],
+            showgrid: false,
+          },
+          yaxis: {
+            range: [20, 100],
+            showgrid: false,
+            title: 'Child Mortality'
+          },
+          font: {
+            size: 12,
+            family: "Source Sans Pro, sans-serif",
+            color: "#303030"
+          },
+          plot_bgcolor: "transparent",
+          paper_bgcolor: "transparent",
+        })
+    } else if (index == 21) {
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], { line: { dash: 'dot', color: '#564E5830', shape: 'spline', width: 3 }, hoverinfo: 'x+y' }, 1);
+      Plotly.restyle(document.querySelectorAll('#prediction .plot')[0], { line: { dash: 'dot', color: '#904E55', shape: 'spline', width: 3 }, hoverinfo: 'x+y' }, 2);
+      Plotly.relayout(document.querySelectorAll('#prediction .plot')[0],
+        {
+          shapes: [
+            // 1st highlight during 1994
+            {
+              type: 'rect',
+              // x-reference is assigned to the x-values
+              xref: 'x',
+              // y-reference is assigned to the plot paper [0,1]
+              yref: 'paper',
+              x0: '1995',
+              y0: 0,
+              x1: '2005',
+              y1: 1,
+              fillcolor: '#d3d3d3',
+              opacity: 0.2,
+              line: {
+                width: 0
+              }
+            },
+            {
+              type: 'rect',
+              // x-reference is assigned to the x-values
+              xref: 'x',
+              // y-reference is assigned to the plot paper [0,1]
+              yref: 'paper',
+              x0: '2017',
+              y0: 0,
+              x1: '2025',
+              y1: 1,
+              fillcolor: '#d3d3d3',
+              opacity: 0.2,
+              line: {
+                width: 0
+              }
+            }
+          ],
+          title: 'Child Mortality in Sub-Saharan Africa',
+          xaxis: {
+            range: [1990, 2026],
+            showgrid: false,
+          },
+          yaxis: {
+            range: [20, 100],
+            showgrid: false,
+            title: 'Child Mortality'
+          },
+          font: {
+            size: 12,
+            family: "Source Sans Pro, sans-serif",
+            color: "#303030"
+          },
+          plot_bgcolor: "transparent",
+          paper_bgcolor: "transparent",
+        })
     }
   }
 }
 
 ///////// ALL FUNCTIONS EXECUTED BY THE LOAD DATA FUNCTION - THIS CALLS ALL DATA SETS ///////////////////
-for (let i = 0; i < dataAll.length; i ++) {
+for (let i = 0; i < dataAll.length; i++) {
   if (dataAll[i] !== undefined) {
     loadData(dataAll[i]);
   }
@@ -532,7 +539,7 @@ var people = document.getElementsByClassName('people')[0]
 var dotContainer = document.getElementsByClassName('dot-container')[0]
 
 // SCROLL EVENTS FROM NON DATA CALLS
-scrollContainer.addEventListener('scroll', function() {
+scrollContainer.addEventListener('scroll', function () {
   // 
   if (currentIndex + 1 == 7) {
     styleUpdate(currentIndex + 1, 6, 4)
@@ -543,196 +550,196 @@ scrollContainer.addEventListener('scroll', function() {
   } else if (currentIndex + 1 == 5) {
     styleUpdate(currentIndex + 1, 4, 3)
 
-  // // SUB-SAHARAN AFRICA MAP
-  } else if (currentIndex + 1 == 10 || currentIndex + 1 == 11 || currentIndex + 1 == 12 || currentIndex + 1 == 13){
-      if (currentIndex == 9) {
-        Plotly.relayout(plotSpace[6], {
+    // // SUB-SAHARAN AFRICA MAP
+  } else if (currentIndex + 1 == 10 || currentIndex + 1 == 11 || currentIndex + 1 == 12 || currentIndex + 1 == 13) {
+    if (currentIndex == 9) {
+      Plotly.relayout(plotSpace[6], {
 
-          geo: {
-            scope: 'africa',
-            bgcolor: 'transparent',
+        geo: {
+          scope: 'africa',
+          bgcolor: 'transparent',
           //   lonaxis: {range: [-30, 60]},
           //   lataxis: {range: [-45, 45]}, 
           countrycolor: '#303030'
         },
         dragmode: false,
-        
-        plot_bgcolor:"transparent",
-        paper_bgcolor:"transparent",
+
+        plot_bgcolor: "transparent",
+        paper_bgcolor: "transparent",
         margin: {
           l: 0,
           r: 0,
           b: 0,
           t: 0,
-      },
-      annotations: []
-        })
-      } else if (currentIndex == 10) {
-        Plotly.relayout(plotSpace[6], {
-            geo: {
-                scope: 'africa',
-                bgcolor: 'transparent',
-              //   lonaxis: {range: [-30, 60]},
-              //   lataxis: {range: [-45, 45]}, 
-              countrycolor: '#303030'
-            },
-            dragmode: false,
-            
-            plot_bgcolor:"transparent",
-            paper_bgcolor:"transparent",
-            margin: {
-              l: 0,
-              r: 0,
-              b: 0,
-              t: 0,
-      
-          },
-          annotations: [
-              {
-                  x: 0.67,
-                  y: 0.54,
-                  xref: 'paper',
-                  yref: 'paper',
-                  text: 'Rwanda: 2257570 refugees',
-                  font: {
-                    size: 12,
-                    color: '#fefefe',
-                    family: "Source Sans Pro, sans-serif",
-                  },
-                  align: 'center',
-                  arrowcolor: '#303030',
-                  width: 175,
-                  bgcolor: '#303030',
-                  showarrow: true,
-                  arrowhead: 6,
-                  ax: 0,
-                  ay: -50,
-                  xanchor: 'right',
-                  yanchor: 'bottom'
-              },
-              {
-                  x: 0.23,
-                  y: 0.57,
-                  xref: 'paper',
-                  yref: 'paper',
-                  text: 'Liberia: 797834 refugees',
-                  font: {
-                    size: 12,
-                    color: 'transparent',
-                    family: "Source Sans Pro, sans-serif",
-                  },
-                  align: 'center',
-                  arrowcolor: 'transparent',
-                  width: 160,
-                  bgcolor: 'transparent',
-                  showarrow: true,
-                  arrowhead: 6,
-                  ax: 0,
-                  ay: -40,
-                  xanchor: 'left',
-                  yanchor: 'bottom'
-                },
-      
-            ]
-        })
+        },
+        annotations: []
+      })
+    } else if (currentIndex == 10) {
+      Plotly.relayout(plotSpace[6], {
+        geo: {
+          scope: 'africa',
+          bgcolor: 'transparent',
+          //   lonaxis: {range: [-30, 60]},
+          //   lataxis: {range: [-45, 45]}, 
+          countrycolor: '#303030'
+        },
+        dragmode: false,
 
-      } else if (currentIndex == 11) {
-        Plotly.relayout(plotSpace[6], {
-          geo: {
-              scope: 'africa',
-              bgcolor: 'transparent',
-            //   lonaxis: {range: [-30, 60]},
-            //   lataxis: {range: [-45, 45]}, 
-            countrycolor: '#303030'
-          },
-          dragmode: false,
-          
-          plot_bgcolor:"transparent",
-          paper_bgcolor:"transparent",
-          margin: {
-            l: 0,
-            r: 0,
-            b: 0,
-            t: 0,
-    
+        plot_bgcolor: "transparent",
+        paper_bgcolor: "transparent",
+        margin: {
+          l: 0,
+          r: 0,
+          b: 0,
+          t: 0,
+
         },
         annotations: [
-            {
-                x: 0.67,
-                y: 0.54,
-                xref: 'paper',
-                yref: 'paper',
-                text: 'Rwanda: 2257570 refugees',
-                font: {
-                  size: 12,
-                  color: 'transparent',
-                  family: "Source Sans Pro, sans-serif",
-                },
-                align: 'center',
-                arrowcolor: 'transparent',
-                width: 175,
-                bgcolor: 'transparent',
-                showarrow: true,
-                arrowhead: 6,
-                ax: 0,
-                ay: -50,
-                xanchor: 'right',
-                yanchor: 'bottom'
+          {
+            x: 0.67,
+            y: 0.54,
+            xref: 'paper',
+            yref: 'paper',
+            text: 'Rwanda: 2257570 refugees',
+            font: {
+              size: 12,
+              color: '#fefefe',
+              family: "Source Sans Pro, sans-serif",
             },
-            {
-                x: 0.23,
-                y: 0.57,
-                xref: 'paper',
-                yref: 'paper',
-                text: 'Liberia: 797834 refugees',
-                font: {
-                  size: 12,
-                  color: '#fefefe',
-                  family: "Source Sans Pro, sans-serif",
-                },
-                align: 'center',
-                arrowcolor: '#303030',
-                width: 160,
-                bgcolor: '#303030',
-                showarrow: true,
-                arrowhead: 6,
-                ax: 0,
-                ay: -40,
-                xanchor: 'left',
-                yanchor: 'bottom'
-              },
-    
-          ]
-      })
-      } else if (currentIndex == 12) {
-        Plotly.relayout(plotSpace[6], {
-          geo: {
-            scope: 'africa',
+            align: 'center',
+            arrowcolor: '#303030',
+            width: 175,
+            bgcolor: '#303030',
+            showarrow: true,
+            arrowhead: 6,
+            ax: 0,
+            ay: -50,
+            xanchor: 'right',
+            yanchor: 'bottom'
+          },
+          {
+            x: 0.23,
+            y: 0.57,
+            xref: 'paper',
+            yref: 'paper',
+            text: 'Liberia: 797834 refugees',
+            font: {
+              size: 12,
+              color: 'transparent',
+              family: "Source Sans Pro, sans-serif",
+            },
+            align: 'center',
+            arrowcolor: 'transparent',
+            width: 160,
             bgcolor: 'transparent',
+            showarrow: true,
+            arrowhead: 6,
+            ax: 0,
+            ay: -40,
+            xanchor: 'left',
+            yanchor: 'bottom'
+          },
+
+        ]
+      })
+
+    } else if (currentIndex == 11) {
+      Plotly.relayout(plotSpace[6], {
+        geo: {
+          scope: 'africa',
+          bgcolor: 'transparent',
           //   lonaxis: {range: [-30, 60]},
           //   lataxis: {range: [-45, 45]}, 
           countrycolor: '#303030'
         },
         dragmode: false,
-        
-        plot_bgcolor:"transparent",
-        paper_bgcolor:"transparent",
+
+        plot_bgcolor: "transparent",
+        paper_bgcolor: "transparent",
         margin: {
           l: 0,
           r: 0,
           b: 0,
           t: 0,
-      },
-      annotations: []
-        })
-      }
+
+        },
+        annotations: [
+          {
+            x: 0.67,
+            y: 0.54,
+            xref: 'paper',
+            yref: 'paper',
+            text: 'Rwanda: 2257570 refugees',
+            font: {
+              size: 12,
+              color: 'transparent',
+              family: "Source Sans Pro, sans-serif",
+            },
+            align: 'center',
+            arrowcolor: 'transparent',
+            width: 175,
+            bgcolor: 'transparent',
+            showarrow: true,
+            arrowhead: 6,
+            ax: 0,
+            ay: -50,
+            xanchor: 'right',
+            yanchor: 'bottom'
+          },
+          {
+            x: 0.23,
+            y: 0.57,
+            xref: 'paper',
+            yref: 'paper',
+            text: 'Liberia: 797834 refugees',
+            font: {
+              size: 12,
+              color: '#fefefe',
+              family: "Source Sans Pro, sans-serif",
+            },
+            align: 'center',
+            arrowcolor: '#303030',
+            width: 160,
+            bgcolor: '#303030',
+            showarrow: true,
+            arrowhead: 6,
+            ax: 0,
+            ay: -40,
+            xanchor: 'left',
+            yanchor: 'bottom'
+          },
+
+        ]
+      })
+    } else if (currentIndex == 12) {
+      Plotly.relayout(plotSpace[6], {
+        geo: {
+          scope: 'africa',
+          bgcolor: 'transparent',
+          //   lonaxis: {range: [-30, 60]},
+          //   lataxis: {range: [-45, 45]}, 
+          countrycolor: '#303030'
+        },
+        dragmode: false,
+
+        plot_bgcolor: "transparent",
+        paper_bgcolor: "transparent",
+        margin: {
+          l: 0,
+          r: 0,
+          b: 0,
+          t: 0,
+        },
+        annotations: []
+      })
+    }
 
 
   } else if (currentIndex + 1 == 14) {
-      // BUBBLE CHART
+    // BUBBLE CHART
     if (addOnce == 1) {
       var bubble = document.getElementsByClassName('bubble')
-      for (let i = 0; i < bubble.length; i ++) {
+      for (let i = 0; i < bubble.length; i++) {
         bubble[i].classList.remove('offset')
       }
       addOnce = 0
@@ -742,58 +749,58 @@ scrollContainer.addEventListener('scroll', function() {
   else if (currentIndex + 1 == 15) {
     if (addOnce == 0) {
       var bubble = document.getElementsByClassName('bubble')
-      for (let i = 0; i < bubble.length; i ++) {
+      for (let i = 0; i < bubble.length; i++) {
         bubble[i].classList.add('offset')
       }
       addOnce = 1
     }
 
-  // PEOPLE GRAPH
+    // PEOPLE GRAPH
   } else if (currentIndex + 1 == 16) {
     people.classList.remove('active')
   } else if (currentIndex + 1 == 17) {
     people.classList.add('active')
   } else if (currentIndex + 1 == 20) {
 
-  // PREDICTION CHART
+    // PREDICTION CHART
     styleUpdate(currentIndex + 1, 0, 0)
   } else if (currentIndex + 1 == 21) {
     styleUpdate(currentIndex + 1, 0, 0)
   }
 
 
-    var labels = document.querySelectorAll('.dot-container label h6')
-    // check index for location i.e. if its first or last, completely hide the dot containers
-    if (currentIndex != -1 && currentIndex != 21) {
-      if (currentIndex == 14) {
-        labels.forEach(function(object) {
-          object.style.opacity = 0
-        })
-      } else {
-        labels.forEach(function(object) {
-          object.style.opacity = 1
-        })
-      }
-      dotContainer.style.opacity = 1;
-
-      // if this section is 'centered', meaning it has a coloured background, set the dot containers to white
-      if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('centered')) {
-        dotContainer.classList.add('white')
-      } else if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('txt-centered')) {
-        dotContainer.classList.add('white')
-      } else {
-        dotContainer.classList.remove('white')
-      }
-    } else if (currentIndex == 21) {
-      dotContainer.style.opacity = 0;
-      labels.forEach(function(object) {
+  var labels = document.querySelectorAll('.dot-container label h6')
+  // check index for location i.e. if its first or last, completely hide the dot containers
+  if (currentIndex != -1 && currentIndex != 21) {
+    if (currentIndex == 14) {
+      labels.forEach(function (object) {
+        object.style.opacity = 0
+      })
+    } else {
+      labels.forEach(function (object) {
         object.style.opacity = 1
       })
     }
+    dotContainer.style.opacity = 1;
+
+    // if this section is 'centered', meaning it has a coloured background, set the dot containers to white
+    if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('centered')) {
+      dotContainer.classList.add('white')
+    } else if (paragraphSections[currentIndex].parentElement.parentElement.classList.contains('txt-centered')) {
+      dotContainer.classList.add('white')
+    } else {
+      dotContainer.classList.remove('white')
+    }
+  } else if (currentIndex == 21) {
+    dotContainer.style.opacity = 0;
+    labels.forEach(function (object) {
+      object.style.opacity = 1
+    })
+  }
 })
 
 // populate people chart with people
-for (let i = 0; i < 31 * 10 + 2; i ++) {
+for (let i = 0; i < 31 * 10 + 2; i++) {
   var person = document.createElement('img')
   person.setAttribute('src', '../public/images/child.svg')
   people.appendChild(person)

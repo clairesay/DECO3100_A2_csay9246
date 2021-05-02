@@ -24,7 +24,7 @@ var dotIndices = []
 var storeIndex = -1;
 
 // for each of the indexes with an ID
-sections.forEach(function(value, index) {
+sections.forEach(function (value, index) {
     indice = index;
     // check if the ID for this problem is true
     if (value.hasAttribute('id')) {
@@ -40,11 +40,11 @@ sections.forEach(function(value, index) {
         dotLabel.appendChild(createDot);
         dotLabel.appendChild(dotText)
         dotContainer.appendChild(dotLabel);
-        
+
         // when the user clicks on a dot, smooth scroll to the corresponding height
-        createDot.addEventListener('click', function(event) {
+        createDot.addEventListener('click', function (event) {
             event.preventDefault();
-            scrollContainer.scrollTo({top: (index + 1)*sectionHeight, behavior: 'smooth'})
+            scrollContainer.scrollTo({ top: (index + 1) * sectionHeight, behavior: 'smooth' })
         })
 
         // we want to store the index at which each dot links to 
@@ -55,12 +55,12 @@ sections.forEach(function(value, index) {
     }
 
     // checking where the user has scrolled in the page
-    scrollContainer.addEventListener('scroll', function() {
+    scrollContainer.addEventListener('scroll', function () {
 
         let dotLabelText = document.querySelectorAll('label h6')
         let dots = document.querySelectorAll('label a.dot')
 
-        var currentIndex = Math.round(this.scrollTop/sectionHeight) - 1
+        var currentIndex = Math.round(this.scrollTop / sectionHeight) - 1
 
         // decide the active display of the dot containers
         // i.e. for the landing page, don't show it
@@ -76,7 +76,7 @@ sections.forEach(function(value, index) {
             dotContainer.style.opacity = 1;
             dotContainer.style.display = 'flex';
             // if the user is within the range of a certain id, highlight its corresponding dot
-            for (let i = 0; i < dots.length; i ++) {
+            for (let i = 0; i < dots.length; i++) {
 
                 if (i == dotIndices[currentIndex]) {
                     dotLabelText[i].classList = 'active'
