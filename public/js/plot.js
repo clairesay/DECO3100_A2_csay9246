@@ -32,7 +32,7 @@ var layout = {
 var currentIndex;
 scrollContainer.addEventListener('scroll', function () {
   currentIndex = Math.round(this.scrollTop / sectionHeight) - 1
-  console.log(currentIndex)
+  // console.log(currentIndex)
 })
 
 // all info-plots
@@ -147,7 +147,7 @@ function plotThis(index, piggyIndex, section, xLegend, yLegend, title) {
   layout.title = title
   layout.xaxis.title = xLegend
   layout.yaxis.title = yLegend
-  Plotly.newPlot(plotSpace[section], dataBranch[index].trace, layout, { displayModeBar: false })
+  Plotly.newPlot(plotSpace[section], dataBranch[index].trace, layout, { displayModeBar: false, responsive: true })
 }
 
 // ADD TRACES TO THE PLOTS
@@ -168,7 +168,7 @@ function addThis(index, piggyIndex, section, yLegend) {
 
   });
   layout.yaxis2.title = yLegend
-  Plotly.update(plotSpace[section], dataBranch[piggyIndex].trace, layout, { displayModeBar: false })
+  Plotly.update(plotSpace[section], dataBranch[piggyIndex].trace, layout, { displayModeBar: false, responsive: true })
 }
 
 // UPDATING ANY STYLES OF THE TRACES OR LAYOUT

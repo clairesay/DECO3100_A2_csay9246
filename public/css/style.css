@@ -638,3 +638,20 @@ i:hover>label.definition {
 #legend>p {
     font-family: 'Source Sans Pro', 'Arial', sans-serif;
 }
+
+/* FINAL SLIDE */
+#last {
+    position: relative;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#last img {
+    max-height: 30%;
+    width: 200px;
+    padding-bottom: 5%;
+    padding-top: 10%; 
+    transform: rotate(180deg);
+}

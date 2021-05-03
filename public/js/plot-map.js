@@ -79,7 +79,7 @@ function createRefugeeMap(country, refugees, refugeesLabel) {
     var bubbleLegend = document.getElementById('legend')
     bubbleLegend.style.visibility = 'visible';
     plotSpace[6].appendChild(bubbleLegend);
-    Plotly.newPlot(plotSpace[6], data, lay, { displayModeBar: false });
+    Plotly.newPlot(plotSpace[6], data, lay, { displayModeBar: false, responsive: true });
 
 }
 loadRefugeeMapData()

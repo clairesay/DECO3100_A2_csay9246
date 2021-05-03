@@ -132,7 +132,7 @@ function make_plot(csv_data) {
 
     // plotting the trace
     const plotSpaceP = document.querySelectorAll('#prediction .plot')[0]
-    Plotly.newPlot(plotSpaceP, dataP, preLayout, { displayModeBar: false });
+    Plotly.newPlot(plotSpaceP, dataP, preLayout, { displayModeBar: false, responsive: true });
 }
 
 // importing csv data

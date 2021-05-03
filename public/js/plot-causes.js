@@ -129,7 +129,7 @@ function createRef(year, refugees) {
     ]
   }
   // creating the plot
-  Plotly.newPlot(plotSpacer, refData, refLayout, { displayModeBar: false });
+  Plotly.newPlot(plotSpacer, refData, refLayout, { displayModeBar: false, responsive: true });
 }
 
 loadRefData()

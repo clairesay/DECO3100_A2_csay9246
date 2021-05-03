@@ -79,7 +79,7 @@ function createMap(country, value, falseValue) {
   conflictLegend.style.visibility = 'visible';
   plotSpace[3].appendChild(conflictLegend);
   // create the plot
-  Plotly.newPlot(plotSpace[3], mapData, mapLayout, { displayModeBar: false });
+  Plotly.newPlot(plotSpace[3], mapData, mapLayout, { displayModeBar: false, responsive: true });
 }
 
 loadMapData()
