@@ -481,7 +481,7 @@ function styleUpdate(index, piggyIndex, section) {
               y0: 0,
               x1: '2005',
               y1: 1,
-              fillcolor: '#d3d3d3',
+              fillcolor: '#904E5550',
               opacity: 0.2,
               line: {
                 width: 0
@@ -497,7 +497,7 @@ function styleUpdate(index, piggyIndex, section) {
               y0: 0,
               x1: '2025',
               y1: 1,
-              fillcolor: '#d3d3d3',
+              fillcolor: '#904E5550',
               opacity: 0.2,
               line: {
                 width: 0
