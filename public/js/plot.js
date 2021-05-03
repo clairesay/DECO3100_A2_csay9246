@@ -802,6 +802,6 @@ scrollContainer.addEventListener('scroll', function () {
 // populate people chart with people
 for (let i = 0; i < 31 * 10 + 2; i++) {
   var person = document.createElement('img')
-  person.setAttribute('src', '../public/images/child.svg')
+  person.setAttribute('src', './public/images/child.svg')
   people.appendChild(person)
 }
